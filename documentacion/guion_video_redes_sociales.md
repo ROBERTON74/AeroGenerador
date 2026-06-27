@@ -1,8 +1,8 @@
 ﻿# Guion base para video de redes sociales
 
-## Autoria y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la estructura de la aplicacion, la integracion de datos, el enfoque visual, la documentacion y las decisiones principales de desarrollo. He utilizado herramientas de IA como apoyo tecnico para acelerar tareas de redaccion, revision, depuracion y generacion de alternativas, pero la orquestacion del proyecto, la seleccion de tecnologias, la integracion final y los criterios de entrega son mios. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 ## Proyecto
 
@@ -51,7 +51,7 @@ El token no debe mostrarse en el video, ni subirse a repositorios.
 - Three.js: motor 3D para la escena, materiales, luces, sombras y animacion.
 - @react-three/fiber: integracion de Three.js con React.
 - @react-three/drei: utilidades 3D como cielo, entorno, nubes, textos y controles.
-- @react-three/rapier: fisica visual para dar masa, torque, inercia y amortiguacion a la oscilacion del aerogenerador.
+- Animacion visual con Three.js y `useFrame`: animacion visual para aportar inercia, oscilacion y amortiguacion a la oscilacion del aerogenerador.
 - CSS propio: dashboard, paneles SCADA, animaciones, responsive y efectos visuales.
 - Lucide React: iconos del dashboard.
 
@@ -202,5 +202,7 @@ No es telemetria de una turbina individual: es un prototipo de visualizacion tec
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+
 

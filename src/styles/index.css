@@ -1,4 +1,4 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -2224,3 +2224,5 @@ button.scada-card {
     transform: scale(0.82);
   }
 }
+
+

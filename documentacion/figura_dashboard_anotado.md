@@ -1,8 +1,8 @@
-# Figura tecnica del dashboard anotado
+﻿# Figura tecnica del dashboard anotado
 
-## Autoria, destino academico y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la estructura de la aplicacion, la integracion de datos, el enfoque visual, la documentacion y las decisiones principales de desarrollo. He utilizado herramientas de IA como apoyo tecnico para acelerar tareas de redaccion, revision, depuracion y generacion de alternativas, pero la orquestacion del proyecto, la seleccion de tecnologias, la integracion final y los criterios de entrega son mios.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**, dentro de un contexto academico y de laboratorio de ingenieria.
 
@@ -73,4 +73,6 @@ La figura tambien ayuda a defender que existe una separacion clara entre dato re
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+

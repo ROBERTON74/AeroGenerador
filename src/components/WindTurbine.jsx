@@ -1,4 +1,4 @@
-import { Text } from '@react-three/drei';
+﻿import { Text } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
@@ -321,7 +321,7 @@ function StressMotionArrows({ intensity }) {
         phase={0.2}
       />
       <RedCalloutArrow start={[-1.68, 2.76, 0.5]} end={[-3.1, 3.58, 0.78]} />
-      <MechanicalLabel text="Oscilación de la torre" position={[-3.88, 3.6, 0.8]} width={1.58} />
+      <MechanicalLabel text="Oscilacion de la torre" position={[-3.88, 3.6, 0.8]} width={1.58} />
       <MechanicalArrow
         position={[1.38, 2.3, 0.48]}
         rotation={[0, 0, Math.PI]}
@@ -330,7 +330,7 @@ function StressMotionArrows({ intensity }) {
         phase={1.7}
       />
       <RedCalloutArrow start={[1.56, 2.36, 0.5]} end={[3.16, 2.94, 0.78]} />
-      <MechanicalLabel text="Flexión lateral" position={[3.74, 2.96, 0.8]} width={1.16} />
+      <MechanicalLabel text="Flexion lateral" position={[3.74, 2.96, 0.8]} width={1.16} />
       <MechanicalArrow
         position={[-1.55, 0.82, 0.56]}
         rotation={[0, 0, 0.12]}
@@ -340,7 +340,7 @@ function StressMotionArrows({ intensity }) {
         travel={0.05}
       />
       <RedCalloutArrow start={[-1.74, 0.88, 0.58]} end={[-3.04, 1.52, 0.88]} />
-      <MechanicalLabel text="Base y cimentación" position={[-3.74, 1.54, 0.9]} width={1.42} />
+      <MechanicalLabel text="Base y cimentacion" position={[-3.74, 1.54, 0.9]} width={1.42} />
       <TorsionArrow intensity={intensity} />
     </>
   );
@@ -399,7 +399,7 @@ function StressMap({ intensity }) {
       <RedCalloutArrow start={[-0.4, 5.28, 0.6]} end={[-3.08, 6.02, 0.98]} />
       <MechanicalLabel text="Buje motor" position={[-3.62, 6.08, 1]} width={1.08} />
       <RedCalloutArrow start={[1.7, 5.74, 0.43]} end={[3.1, 6.14, 0.4]} />
-      <MechanicalLabel text="Torsión de pala" position={[3.72, 6.18, 0.4]} width={1.24} />
+      <MechanicalLabel text="Torsion de pala" position={[3.72, 6.18, 0.4]} width={1.24} />
       <StressMotionArrows intensity={intensity} />
       <pointLight position={[0.2, 5.22, 0.44]} color={STRESS_RED} intensity={0.25 + intensity * 0.7} distance={3.4} />
     </>
@@ -808,3 +808,5 @@ export default function WindTurbine({
     </group>
   );
 }
+
+

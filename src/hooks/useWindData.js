@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+﻿import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   createFallbackWindData,
   deriveScadaMetrics,
@@ -85,3 +85,5 @@ export function useWindData() {
 
   return { data, loading, error, refresh };
 }
+
+

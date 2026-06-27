@@ -1,8 +1,8 @@
 ﻿# AGENTS.md
 
-## Autoria y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la estructura de la aplicacion, la integracion de datos, el enfoque visual, la documentacion y las decisiones principales de desarrollo. He utilizado herramientas de IA como apoyo tecnico para acelerar tareas de redaccion, revision, depuracion y generacion de alternativas, pero la orquestacion del proyecto, la seleccion de tecnologias, la integracion final y los criterios de entrega son mios. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 ## Objetivo del proyecto
 
@@ -10,7 +10,7 @@ Crear una aplicacion web interactiva que muestre un aerogenerador 3D realista en
 
 La aplicacion debe representar visualmente un molino eolico funcionando. La velocidad de giro de las aspas debe cambiar segun datos reales obtenidos desde una API publica, preferiblemente Red Electrica de Espana / ESIOS.
 
-Con el token personal de ESIOS configurado, la aplicacion consulta el indicador `551` de generacion eolica en tiempo real. La API devuelve el ambito `PenÃ­nsula`, no parques eolicos ni molinos concretos. El dashboard debe tomar ESIOS como fuente maestra; las variables que ESIOS no entrega directamente se calculan como equivalentes derivados de la generacion real.
+Con el token personal de ESIOS configurado, la aplicacion consulta el indicador `551` de generacion eolica en tiempo real. La API devuelve el ambito `Peninsula`, no parques eolicos ni molinos concretos. El dashboard debe tomar ESIOS como fuente maestra; las variables que ESIOS no entrega directamente se calculan como equivalentes derivados de la generacion real.
 
 ## Idea principal
 
@@ -29,7 +29,7 @@ La persona que abra la aplicacion vera en pantalla:
 - Una vista desplegable de rosa de viento/yaw al pulsar su tarjeta, con brujula tecnica, vector de viento, orientacion de gondola y arco de desalineacion.
 - Una vista termica desplegable del gearbox y aceite al pulsar la tarjeta de temperaturas, con animacion tecnica y zonas de friccion resaltadas.
 - Una vista desplegable de pitch y condicion al pulsar su tarjeta, con rotor animado, raiz de pala resaltada y barras de estado por componente.
-- Fisica visual con Rapier Physics para que la oscilacion principal del aerogenerador tenga masa, torque y amortiguacion.
+- Animacion visual con Three.js para que la oscilacion principal del aerogenerador tenga inercia, oscilacion y amortiguacion visual.
 
 ## Importante sobre los datos
 
@@ -42,7 +42,7 @@ La aplicacion debe usar datos reales agregados, por ejemplo:
 - Porcentaje de la eolica dentro del mix energetico.
 - Hora del ultimo dato recibido.
 - Estado aproximado de generacion.
-- Generacion ESIOS con ambito `PenÃ­nsula`; viento equivalente, yaw, pitch, temperaturas y cargas calculadas desde esa generacion.
+- Generacion ESIOS con ambito `Peninsula`; viento equivalente, yaw, pitch, temperaturas y cargas calculadas desde esa generacion.
 
 La animacion del aerogenerador sera una representacion visual basada en esos datos reales.
 
@@ -60,14 +60,14 @@ Estado de precision de datos para entrega:
 - La turbina tipo usada para curva de potencia y equivalentes SCADA queda calibrada a `5 MW`, coherente con la referencia Siemens Gamesa SG 5.0-145 del modelo.
 - Las rpm estimadas, temperaturas y vibracion quedan acotadas para evitar valores poco realistas.
 - Rangos actuales de estimacion: gearbox 35-82 C, generador 38-92 C, aceite 32-72 C y vibracion 0,35-3,2 mm/s.
-- Se creo y actualizo `resumeen para tutor.md` con explicacion de ESIOS, API key, refresco cada cinco minutos e ingenieria inversa didactica.
+- Se creo y actualizo `resumen_para_tutor.md` con explicacion de ESIOS, API key, refresco cada cinco minutos e ingenieria inversa didactica.
 
 Fecha de registro: 31 de mayo de 2026.
 
 Estado consolidado:
 
 - El proyecto se llama **AeroGenerador** y combina dos entregables: la aplicacion web en Vite/React/Three.js y el modelo Blender `.blend`.
-- La app web incorpora Three.js, `@react-three/fiber`, `@react-three/drei`, `@react-three/rapier`, dashboard SCADA, datos ESIOS/REData y animacion vinculada a generacion eolica agregada.
+- La app web incorpora Three.js, `@react-three/fiber`, `@react-three/drei`, Three.js y `useFrame`, dashboard SCADA, datos ESIOS/REData y animacion vinculada a generacion eolica agregada.
 - El archivo Blender principal que debe recordarse es `aerogenerador_modelado_escala_real_base_rectangular_nubes_azules.blend`.
 - Ambos avances deben mantenerse juntos en la documentacion: el navegador muestra la experiencia interactiva y Blender conserva el modelado de referencia a escala.
 
@@ -77,15 +77,15 @@ Estado alcanzado:
 
 - Aplicacion en Vite/React/Three.js funcionando en `http://localhost:5177/`.
 - Datos conectados con ESIOS mediante token y REData como respaldo sin token.
-- ESIOS indicador `551` probado correctamente; devuelve `geo_name: PenÃ­nsula`.
+- ESIOS indicador `551` probado correctamente; devuelve `geo_name: Peninsula`.
 - Dashboard SCADA con metricas energeticas reales y metricas mecanicas/equivalentes derivadas de ESIOS.
 - Ventanas desplegables uniformes para potencia nominal, curva de potencia, rosa de viento/yaw, pitch/condicion y temperaturas.
 - Cada ventana tiene animacion propia y se puede cerrar o abrir desde su tarjeta.
 - El dashboard puede minimizarse hacia abajo para ver el aerogenerador completo.
 - La escena principal muestra sombras reforzadas, incluida la sombra visible de las palas sobre el suelo.
-- La animacion principal integra `@react-three/rapier` para mejorar la respuesta fisica visual. El punto de retorno anterior queda documentado en `punto_retorno_pre_rapier.md`.
+- La animacion principal integra Three.js y `useFrame` para mejorar la respuesta fisica visual. El punto de retorno anterior queda documentado en `nota_animacion_threejs.md`.
 - La documentacion principal incluye instrucciones de reversion por modulo y tareas pendientes.
-- Se creo el archivo raiz `tecnolgias usasdas.md` como resumen directo de lenguajes, tecnologias, APIs, scripts, componentes y estado del proyecto.
+- Se creo el archivo raiz `tecnologias_resumen.md` como resumen directo de lenguajes, tecnologias, APIs, scripts, componentes y estado del proyecto.
 
 Pendiente principal:
 
@@ -140,7 +140,7 @@ Frontend:
 - Three.js
 - @react-three/fiber
 - @react-three/drei
-- @react-three/rapier
+- Animacion visual con Three.js y `useFrame`
 - Tailwind CSS
 
 Backend opcional:
@@ -183,5 +183,7 @@ wind-turbine-dashboard/
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+
 

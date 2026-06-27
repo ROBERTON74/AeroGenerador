@@ -1,8 +1,8 @@
-﻿# Tecnolgias usasdas
+﻿# Tecnologias usadas - resumen
 
-## Autoria y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la estructura de la aplicacion, la integracion de datos, el enfoque visual, la documentacion y las decisiones principales de desarrollo. He utilizado herramientas de IA como apoyo tecnico para acelerar tareas de redaccion, revision, depuracion y generacion de alternativas, pero la orquestacion del proyecto, la seleccion de tecnologias, la integracion final y los criterios de entrega son mios. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 Resumen de las tecnologias, lenguajes, librerias, APIs y herramientas que he usado en el proyecto del aerogenerador 3D.
 
@@ -21,7 +21,7 @@ Resumen de las tecnologias, lenguajes, librerias, APIs y herramientas que he usa
 - Three.js: motor 3D para geometria, luces, materiales, camara, animacion y escena.
 - @react-three/fiber: integracion de Three.js con React.
 - @react-three/drei: utilidades 3D como `OrbitControls`, `Sky`, `Environment`, `Clouds`, `Sparkles` y `Text`.
-- @react-three/rapier: integracion de Rapier Physics para mejorar la fisica visual del aerogenerador principal.
+- Animacion visual con Three.js y `useFrame`: integracion de animacion visual con Three.js para mejorar la fisica visual del aerogenerador principal.
 - Tailwind CSS: configuracion base de estilos, combinada con CSS propio.
 - Lucide React: iconos de interfaz para viento, ubicacion, conexion, refresco y controles del dashboard.
 
@@ -62,7 +62,7 @@ Configurados en `vite.config.js`:
 - Aerogenerador 3D animado.
 - Escena con terreno, cielo, nubes, arboles, turbinas de fondo y particulas de viento.
 - Sombras reforzadas, incluyendo sombra visible de las palas sobre el suelo.
-- Fisica visual con Rapier para aportar masa, torque, inercia y amortiguacion a la oscilacion principal.
+- Animacion visual con Three.js para aportar masa, torque, inercia y amortiguacion a la oscilacion principal.
 - Dashboard con datos de generacion eolica ESIOS, equivalentes derivados, rpm, punta de pala y fuente del dato.
 - Calibracion energetica mediante factor de carga: generacion eolica ESIOS dividida entre `31.679 MW` de potencia eolica instalada de referencia.
 - Modo de analisis mecanico con zonas de esfuerzo, flechas, torsion, flexion y vista interna.
@@ -75,7 +75,7 @@ Configurados en `vite.config.js`:
   - Temperaturas de gearbox, aceite y generador.
 - Boton para minimizar el dashboard y dejar visible el aerogenerador completo.
 - Documentacion de reversion para poder quitar modulos concretos si el resultado no convence.
-- Documento `punto_retorno_pre_rapier.md` para volver a la animacion previa a Rapier.
+- Documento `nota_animacion_threejs.md` para explicar como simplificar la animacion visual si hace falta.
 
 ## Modelo Blender documentado
 
@@ -94,7 +94,7 @@ Si Blender abre una escena vacia o una version anterior, cargo explicitamente es
 ## Datos importantes
 
 - Los datos electricos publicos son agregados, no pertenecen a un aerogenerador individual.
-- El indicador ESIOS `551` devuelve el ambito `PenÃ­nsula`; no devuelve ubicacion de parques ni molinos concretos.
+- El indicador ESIOS `551` devuelve el ambito `Peninsula`; no devuelve ubicacion de parques ni molinos concretos.
 - Las metricas SCADA son estimaciones didacticas a partir de datos agregados de ESIOS/REData.
 - La API key de ESIOS permite consultar generacion eolica real agregada, no telemetria real de rpm, pitch, yaw, temperatura o vibracion de una maquina concreta.
 - He programado la app para consultar ESIOS al abrirse y despues cada cinco minutos mediante `POLL_INTERVAL = 5 * 60 * 1000`.
@@ -108,7 +108,7 @@ Si Blender abre una escena vacia o una version anterior, cargo explicitamente es
 Fecha de registro: 31 de mayo de 2026.
 
 - Dejo documentadas juntas las dos partes del proyecto AeroGenerador:
-  - Aplicacion web con Three.js, React, ESIOS/REData, dashboard SCADA y Rapier.
+  - Aplicacion web con Three.js, React, ESIOS/REData y dashboard SCADA.
   - Modelo Blender principal `aerogenerador_modelado_escala_real_base_rectangular_nubes_azules.blend`.
 - La app web sigue teniendo como localhost habitual `http://localhost:5177/`.
 - El `.blend` anterior queda como referencia de modelado y escala.
@@ -118,7 +118,7 @@ Fecha de registro: 17 de junio de 2026.
 - Pulo las metricas de datos para la entrega final.
 - Normalizo la generacion real de ESIOS contra `31.679 MW` de potencia eolica instalada de referencia.
 - La interfaz que he desarrollado distingue entre `Factor carga` y `Mix` segun la fuente de datos disponible.
-- Actualizo `resumeen para tutor.md` con la explicacion de API key, refresco cada cinco minutos e ingenieria inversa didactica.
+- Actualizo `resumen_para_tutor.md` con la explicacion de API key, refresco cada cinco minutos e ingenieria inversa didactica.
 
 Fecha de registro: 28 de mayo de 2026.
 
@@ -135,5 +135,7 @@ Fecha de registro: 28 de mayo de 2026.
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+
 

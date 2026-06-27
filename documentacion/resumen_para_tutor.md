@@ -1,8 +1,8 @@
 ﻿# Resumen para tutor
 
-## Autoria y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la integracion con ESIOS, el dashboard, la escena 3D, el enfoque de estimaciones y la documentacion final. He usado IA como apoyo tecnico para revisar textos, depurar ideas y acelerar partes del proceso, pero la orquestacion de la arquitectura, las decisiones de desarrollo y la integracion final son mias. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 He desarrollado la aplicacion web **AeroGenerador** como un aerogenerador 3D interactivo en movimiento, usando React, Vite y Three.js. La escena representa un molino eolico funcionando, con terreno, cielo, sombras, aspas animadas y un dashboard inferior tipo SCADA con informacion energetica y tecnica.
 
@@ -82,5 +82,7 @@ Para revisar la arquitectura del codigo, mantenimiento futuro y posibles ampliac
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+
 

@@ -1,8 +1,8 @@
 ﻿# Explicacion del dashboard, ESIOS y modelos matematicos
 
-## Autoria, destino academico y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la integracion con ESIOS, el dashboard, la escena 3D, el enfoque de estimaciones y la documentacion final. He usado IA como apoyo tecnico para revisar textos, depurar ideas y acelerar partes del proceso, pero la orquestacion de la arquitectura, las decisiones de desarrollo y la integracion final son mias.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**, dentro de un contexto academico y de laboratorio de ingenieria. Por eso documento con claridad que datos son reales, que datos son derivados y que limites tiene la visualizacion.
 
@@ -390,5 +390,7 @@ La API key de ESIOS me permite acceder a generacion eolica real agregada del sis
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+
 

@@ -1,8 +1,8 @@
 ﻿# Indice de documentacion de entrega
 
-## Autoria, destino academico y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la estructura de la aplicacion, la integracion de datos, el enfoque visual, la documentacion y las decisiones principales de desarrollo. He utilizado herramientas de IA como apoyo tecnico para acelerar tareas de redaccion, revision, depuracion y generacion de alternativas, pero la orquestacion del proyecto, la seleccion de tecnologias, la integracion final y los criterios de entrega son mios.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**, dentro de un contexto academico y de laboratorio de ingenieria.
 
@@ -24,7 +24,7 @@ Este indice organiza la documentacion de **AeroGenerador** como una entrega tecn
 Archivo:
 
 ```text
-resumeen para tutor.md
+resumen_para_tutor.md
 ```
 
 Finalidad:
@@ -110,7 +110,7 @@ Explica las tecnologias principales: Vite, React, Three.js, React Three Fiber, D
 Archivo:
 
 ```text
-tecnolgias usasdas.md
+tecnologias_resumen.md
 ```
 
 Finalidad:
@@ -129,17 +129,17 @@ Finalidad:
 
 Sirve para explicar el proyecto en una presentacion oral, video academico o demostracion publica.
 
-### 10. Punto de retorno antes de Rapier
+### 10. Nota tecnica sobre animacion Three.js
 
 Archivo:
 
 ```text
-punto_retorno_pre_rapier.md
+nota_animacion_threejs.md
 ```
 
 Finalidad:
 
-Documento de control tecnico para revertir la parte de fisica visual si en el futuro se quiere volver a una animacion mas simple.
+Documento tecnico que explica como esta implementada la animacion visual con Three.js y como simplificarla si hace falta.
 
 ### 11. AGENTS
 
@@ -159,7 +159,7 @@ Para una entrega academica formal, considero principales estos cuatro:
 
 ```text
 README.md
-resumeen para tutor.md
+resumen_para_tutor.md
 motivacion_y_justificacion_del_proyecto.md
 explicacion_dashboard_esios_modelos_matematicos.md
 figura_dashboard_anotado.md
@@ -181,5 +181,7 @@ Esta separacion entre dato real y dato derivado es esencial para que el proyecto
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+
 

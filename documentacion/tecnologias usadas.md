@@ -1,8 +1,8 @@
 ﻿# Tecnologias usadas
 
-## Autoria y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la estructura de la aplicacion, la integracion de datos, el enfoque visual, la documentacion y las decisiones principales de desarrollo. He utilizado herramientas de IA como apoyo tecnico para acelerar tareas de redaccion, revision, depuracion y generacion de alternativas, pero la orquestacion del proyecto, la seleccion de tecnologias, la integracion final y los criterios de entrega son mios. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 En este documento resumo las tecnologias que he utilizado en el proyecto del aerogenerador 3D y para que uso cada una.
 
@@ -66,9 +66,9 @@ En este proyecto se usa para:
 - `Sparkles`: particulas ambientales.
 - `Text`: etiquetas 3D en espanol para las partes mecanicas.
 
-### @react-three/rapier
+### Animacion visual con Three.js y useFrame
 
-`@react-three/rapier` integra Rapier Physics dentro de React Three Fiber. Se usa para mejorar la dinamica visual del aerogenerador principal con un cuerpo rigido, masa, torque, rigidez y amortiguacion.
+Three.js y `useFrame` integra animacion visual con Three.js dentro de React Three Fiber. Se usa para mejorar la dinamica visual del aerogenerador principal con un cuerpo rigido, inercia, oscilacion y amortiguacion visual.
 
 En esta fase no calcula aerodinamica real ni datos SCADA industriales. Su funcion es convertir la carga derivada de ESIOS en una oscilacion visual con mas inercia y respuesta fisica.
 
@@ -128,7 +128,7 @@ Cuando se reactive como apoyo, esos datos no representaran produccion electrica 
 - Direccion equivalente.
 - Carga mecanica estimada desde la generacion real.
 
-En la interfaz visible, el ambito de generacion se muestra como `PenÃ­nsula`, porque el indicador ESIOS `551` devuelve ese `geo_name`.
+En la interfaz visible, el ambito de generacion se muestra como `Peninsula`, porque el indicador ESIOS `551` devuelve ese `geo_name`.
 
 ### Servicio local de datos
 
@@ -245,7 +245,7 @@ Archivos Blender anteriores utiles como historial:
 
 Dejo registrado que AeroGenerador tiene dos entregables vivos:
 
-- La aplicacion web que he desarrollado con Vite/React/Three.js, con dashboard SCADA, datos ESIOS/REData y fisica visual con Rapier.
+- La aplicacion web que he desarrollado con Vite/React/Three.js, con dashboard SCADA, datos ESIOS/REData y animacion visual con Three.js.
 - El archivo Blender `aerogenerador_modelado_escala_real_base_rectangular_nubes_azules.blend`, como modelo 3D de referencia fuera del navegador.
 
 Ambos pertenecen al mismo proyecto y deben mantenerse documentados juntos para no perder el avance web ni el avance de modelado.
@@ -258,17 +258,17 @@ Se actualiza la capa de datos para mejorar la precision de la entrega final:
 - Tarjeta energetica `Factor carga` cuando ESIOS aporta solo generacion eolica y `Mix` cuando REData aporta porcentaje del sistema.
 - Turbina tipo de `5 MW` para curva de potencia y paneles SCADA.
 - Rango de rpm, temperaturas y vibracion ajustado para evitar valores poco defendibles.
-- Documento `resumeen para tutor.md` ampliado con el proceso de API key, refresco cada cinco minutos y estimaciones matematicas.
+- Documento `resumen_para_tutor.md` ampliado con el proceso de API key, refresco cada cinco minutos y estimaciones matematicas.
 
 ### 27 de mayo de 2026
 
 Dejo registrado que el proyecto ya incluye:
 
 - Servidor de desarrollo en puerto `5177` para evitar conflictos con otras aplicaciones.
-- Integracion de `@react-three/rapier` para fisica visual del aerogenerador principal.
+- Integracion de Three.js y `useFrame` para fisica visual del aerogenerador principal.
 - Proxies Vite para REData, ESIOS y Open-Meteo opcional.
 - Token de ESIOS configurado en `.env` mediante `VITE_ESIOS_API_KEY`; prueba local correcta contra indicador `551`.
-- La API ESIOS devuelve `geo_name: PenÃ­nsula` para el indicador usado, por lo que el dashboard ya no presenta Tarifa como lugar de generacion.
+- La API ESIOS devuelve `geo_name: Peninsula` para el indicador usado, por lo que el dashboard ya no presenta Tarifa como lugar de generacion.
 - Servicio de datos con normalizacion de generacion eolica, equivalentes derivados, carga mecanica y metricas SCADA derivadas.
 - Hook `useWindData` con polling, refresco manual, manejo de errores, simulacion local e historico corto de carga.
 - Escena Three.js con aerogenerador, entorno, animacion vinculada a datos, vista interna y modo de analisis mecanico.
@@ -281,7 +281,7 @@ Dejo registrado que el proyecto ya incluye:
   - Temperaturas de gearbox, aceite y generador.
 - Cada panel tiene dimensiones comunes, animacion especifica y boton de cierre.
 - Documentacion de reversion por modulo para poder volver atras sin rehacer todo el proyecto.
-- Documento especifico `punto_retorno_pre_rapier.md` para volver a la animacion anterior si Rapier no convence.
+- Documento especifico `nota_animacion_threejs.md` para volver a la animacion anterior si Three.js no convence.
 
 La ultima verificacion tecnica realizada fue `npm run build`, con compilacion correcta y aviso esperado de bundle grande por dependencias 3D.
 
@@ -291,7 +291,7 @@ La ultima verificacion tecnica realizada fue `npm run build`, con compilacion co
 - REData queda como respaldo si ESIOS no responde.
 - Open-Meteo queda documentado como recurso opcional, no como fuente activa del dashboard principal.
 - Las variables de viento equivalente, variacion, yaw, pitch, temperaturas, vibracion, disponibilidad y alarmas se calculan desde la generacion real devuelta por ESIOS.
-- El dashboard ya no presenta Tarifa como lugar de datos; muestra `PenÃ­nsula`, que es el ambito devuelto por ESIOS.
+- El dashboard ya no presenta Tarifa como lugar de datos; muestra `Peninsula`, que es el ambito devuelto por ESIOS.
 
 ## Reversion de la capa SCADA
 
@@ -334,5 +334,7 @@ Para que el proyecto pueda escalarse o mantenerse mas adelante, dejo preparado e
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+
 

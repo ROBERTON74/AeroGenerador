@@ -1,7 +1,7 @@
-# Pendiente para manana
+﻿# Pendiente para manana
 
 Proyecto: **AeroGenerador**  
-Autor: **Robert Jesus Melendez Nuñez**  
+Autor: **Robert Jesus Melendez Nunez**  
 Destino academico: **Departamento de Robotica de la Universidad Complutense de Madrid**
 
 ## Estado en el que se deja el proyecto
@@ -130,7 +130,7 @@ Documentos principales a revisar:
 
 ```text
 documentacion/indice_documentacion_entrega.md
-documentacion/resumeen para tutor.md
+documentacion/resumen_para_tutor.md
 documentacion/explicacion_dashboard_esios_modelos_matematicos.md
 documentacion/manual_tecnico_codigo_mantenimiento.md
 documentacion/motivacion_y_justificacion_del_proyecto.md
@@ -184,4 +184,6 @@ Manana lo primero sera:
 5. Subir el proyecto.
 6. Abrir GitHub y comprobar que se ve bien el README y la carpeta `documentacion/`.
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+

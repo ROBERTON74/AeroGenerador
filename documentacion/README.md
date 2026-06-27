@@ -2,9 +2,9 @@
 
 He desarrollado **AeroGenerador** como una aplicacion web interactiva con un aerogenerador 3D animado en Three.js y un dashboard inferior con datos agregados de generacion eolica en Espana.
 
-## Autoria y apoyo de IA
+## Autoria y destino academico
 
-Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arquitectura general, la estructura de la aplicacion, la integracion de datos, el enfoque visual, la documentacion y las decisiones principales de desarrollo. He utilizado herramientas de IA como apoyo tecnico para acelerar tareas de redaccion, revision, depuracion y generacion de alternativas, pero la orquestacion del proyecto, la seleccion de tecnologias, la integracion final y los criterios de entrega son mios. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
+Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
 ## Que incluye
 
@@ -17,7 +17,7 @@ Este proyecto lo he planteado, organizado y dirigido yo. Yo he definido la arqui
 - Modo "Analisis mecanico" activable desde un checkbox.
 - Zonas de esfuerzo mecanico resaltadas en rojo/naranja.
 - Flechas animadas para representar oscilacion, flexion y torsion.
-- Fisica visual con Rapier Physics para dar mas inercia y amortiguacion a la oscilacion principal del aerogenerador.
+- Animacion visual con Three.js para dar mas inercia y amortiguacion a la oscilacion principal del aerogenerador.
 - Panel SCADA con modo operativo, curva de potencia, rosa de viento, yaw, pitch, disponibilidad, alarmas, temperaturas, vibracion, estado de componentes e historico de carga.
 - Detalle desplegable de potencia nominal/modo operativo, con medidor de carga, estados de operacion y flujo viento-rotor-red.
 - Detalle desplegable de curva de potencia, con grafica dinamica, punto operativo, zonas cut-in/nominal/cut-out y flujo de potencia.
@@ -80,7 +80,7 @@ VITE_ESIOS_API_KEY=tu_token_personal
 
 Sin token, la app cae automaticamente a REData publico diario y mantiene la animacion con datos reales agregados, pero con menor frecuencia temporal.
 
-Con el token configurado, la app consulta ESIOS cada cinco minutos mediante el indicador `551`. En el dashboard, el ambito visible de generacion se muestra como `PenÃ­nsula`, que es el `geo_name` devuelto por ESIOS. ESIOS no entrega ubicacion de parques ni datos SCADA de un aerogenerador individual; por eso rpm, viento equivalente, yaw, pitch, temperaturas, vibracion y cargas mecanicas se calculan como estimaciones derivadas de la generacion real.
+Con el token configurado, la app consulta ESIOS cada cinco minutos mediante el indicador `551`. En el dashboard, el ambito visible de generacion se muestra como `Peninsula`, que es el `geo_name` devuelto por ESIOS. ESIOS no entrega ubicacion de parques ni datos SCADA de un aerogenerador individual; por eso rpm, viento equivalente, yaw, pitch, temperaturas, vibracion y cargas mecanicas se calculan como estimaciones derivadas de la generacion real.
 
 La calibracion actual normaliza la generacion eolica real contra una referencia de potencia eolica instalada en Espana de `31.679 MW`. Asi se calcula un factor de carga agregado:
 
@@ -119,13 +119,13 @@ Estos indicadores son estimaciones visuales y didacticas derivadas de ESIOS. No 
 - La turbina tipo de las estimaciones SCADA se calibra a `5 MW`, coherente con la referencia Siemens Gamesa SG 5.0-145.
 - Las rpm estimadas se limitan a un rango mas realista para una turbina grande.
 - Temperaturas y vibracion pasan a rangos acotados y mas defendibles para una visualizacion tecnica: gearbox 35-82 C, generador 38-92 C, aceite 32-72 C y vibracion 0,35-3,2 mm/s.
-- Se crea y actualiza `resumeen para tutor.md` con la explicacion de ESIOS, API key, refresco cada cinco minutos y estimaciones matematicas.
+- Se crea y actualiza `resumen_para_tutor.md` con la explicacion de ESIOS, API key, refresco cada cinco minutos y estimaciones matematicas.
 
 ### 31 de mayo de 2026
 
 Queda documentado que el proyecto **AeroGenerador** tiene dos lineas de trabajo que deben conservarse juntas:
 
-- **Aplicacion web interactiva**: proyecto Vite/React/Three.js con dashboard SCADA inferior, datos reales agregados de ESIOS/REData, animacion vinculada a la generacion eolica, paneles desplegables y fisica visual con `@react-three/rapier`.
+- **Aplicacion web interactiva**: proyecto Vite/React/Three.js con dashboard SCADA inferior, datos reales agregados de ESIOS/REData, animacion vinculada a la generacion eolica, paneles desplegables y animacion visual con Three.js y `useFrame`.
 - **Modelo Blender de referencia**: archivo principal `aerogenerador_modelado_escala_real_base_rectangular_nubes_azules.blend`, guardado en la raiz del proyecto, con el aerogenerador a escala real aproximada y paisaje base.
 
 Estado consolidado de la aplicacion web:
@@ -155,12 +155,12 @@ Este registro sirve como punto de memoria del proyecto: el modelo web y el model
 ### 28 de mayo de 2026
 
 - Token de ESIOS configurado y probado mediante el proxy local `/esios-api`.
-- El dashboard queda definido como ESIOS-first: ESIOS indicador `551` es la fuente maestra para generacion eolica, fecha del dato, ambito `PenÃ­nsula` y estado de conexion.
+- El dashboard queda definido como ESIOS-first: ESIOS indicador `551` es la fuente maestra para generacion eolica, fecha del dato, ambito `Peninsula` y estado de conexion.
 - Se retira Tarifa/Open-Meteo como base visible del dashboard. Las variables que ESIOS no entrega directamente se muestran como equivalentes derivados de la generacion real.
 - `useWindData` mantiene el polling cada cinco minutos para refrescar los datos.
 - Las alarmas y paneles SCADA usan lenguaje de carga/equivalente derivado, no telemetria real de viento local.
-- Se integra `@react-three/rapier` para mejorar la fisica visual de la animacion principal: masa, torque, rigidez y amortiguacion en la oscilacion del aerogenerador.
-- Se crea [punto_retorno_pre_rapier.md](<./punto_retorno_pre_rapier.md>) para documentar como volver a la animacion anterior si el resultado no convence.
+- Se integra Three.js y `useFrame` para mejorar la fisica visual de la animacion principal: inercia, oscilacion y amortiguacion visual en la oscilacion del aerogenerador.
+- Se crea [nota_animacion_threejs.md](<./nota_animacion_threejs.md>) para documentar como volver a la animacion anterior si el resultado no convence.
 
 ### 27 de mayo de 2026
 
@@ -169,12 +169,12 @@ Estado actual del proyecto:
 - Aplicacion funcionando en Vite/React/Three.js con servidor local configurado en `http://localhost:5177/`.
 - Escena 3D completa con aerogenerador principal, terreno, cielo, nubes, arboles, turbinas de fondo, particulas de viento y animacion de aspas.
 - Sombras reforzadas en la escena principal, incluyendo sombra visible de las palas sobre el suelo.
-- Dashboard inferior con datos agregados de generacion eolica de `PenÃ­nsula`, equivalentes derivados, rpm, punta de pala, ultimo dato y fuente de datos.
+- Dashboard inferior con datos agregados de generacion eolica de `Peninsula`, equivalentes derivados, rpm, punta de pala, ultimo dato y fuente de datos.
 - Fuentes de datos configuradas:
   - ESIOS como fuente preferente para generacion eolica en tiempo real si se configura `VITE_ESIOS_API_KEY`.
   - REData como respaldo publico sin token.
   - Open-Meteo queda como recurso opcional disponible por proxy, pero no como fuente maestra del dashboard actual.
-- Confirmado con el token de ESIOS: el indicador `551` devuelve `geo_name: PenÃ­nsula`; no devuelve parques eolicos ni aerogeneradores concretos.
+- Confirmado con el token de ESIOS: el indicador `551` devuelve `geo_name: Peninsula`; no devuelve parques eolicos ni aerogeneradores concretos.
 - Proxies locales configurados en Vite para `/ree-api`, `/esios-api` y `/open-meteo-api`.
 - Modo de simulacion local si las APIs fallan, para que la experiencia visual no quede bloqueada.
 - Capa de analisis mecanico activable desde el dashboard, con zonas de esfuerzo, flechas, oscilacion, torsion, flexion y vista interna de gondola.
@@ -203,13 +203,13 @@ Si el panel SCADA nuevo no convence, los cambios estan concentrados en estos arc
 - `src/hooks/useWindData.js`: historico local y union de datos SCADA al objeto `windData`.
 - `src/components/Dashboard.jsx`: componentes visuales `AlarmList`, `PowerCurve`, `WindRose`, `HistoryLine`, `ComponentMatrix` y bloque `<section className="scada-panel">`.
 - `src/components/Dashboard.jsx`: componentes `GearboxThermalPanel`, `PitchConditionPanel`, `WindYawPanel`, `PowerCurvePanel` y `OperationModePanel` si se quieren retirar solo los detalles desplegables.
-- `src/components/WindTurbineScene.jsx`: envoltorio `<Physics>` de Rapier alrededor de la escena.
-- `src/components/WindTurbine.jsx`: `RigidBody`, `CuboidCollider` y controlador de torque para la oscilacion fisica.
+- `src/components/WindTurbineScene.jsx`: estructura principal de la escena 3D y entorno visual.
+- `src/components/WindTurbine.jsx`: control del rotor, oscilacion de torre, torsion y flexion visual con `useFrame`.
 - `src/styles/index.css`: estilos de `.dashboard-collapse-toggle`, `.dashboard.collapsed`, `.scada-panel`, `.scada-card`, `.thermal-panel`, `.operation-*`, `.gauge-*`, `.power-*`, `.yaw-*`, `.pitch-*`, `.gearbox-*`, alarmas, curva, rosa de viento, componentes e historico.
 
 Para volver a una version mas simple, elimina el bloque `scada-panel` del dashboard, quita la llamada a `deriveScadaMetrics` en `useWindData.js` y elimina los estilos SCADA. ESIOS y REData seguiran funcionando como fuentes electricas.
 
-Para volver solo a la animacion anterior sin Rapier, seguir el documento [punto_retorno_pre_rapier.md](<./punto_retorno_pre_rapier.md>).
+Para simplificar la animacion visual, seguir el documento [nota_animacion_threejs.md](<./nota_animacion_threejs.md>).
 
 Para retirar solo la ventana termica, elimina `GearboxThermalPanel`, vuelve a cambiar el boton `thermal-trigger` por una tarjeta `div.scada-card` normal y borra los estilos `.thermal-*`, `.gearbox-*`, `.gear`, `.shaft`, `.bearing`, `.oil-*` y `.friction-*`.
 
@@ -252,5 +252,7 @@ Para mantenimiento, escalabilidad y explicacion del codigo creado, consulta [man
 
 ---
 
-**Autor:** Robert Jesus Melendez Nuñez
+**Autor:** Robert Jesus Melendez Nunez
+
+
 

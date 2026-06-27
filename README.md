@@ -1,4 +1,4 @@
-# AeroGenerador
+﻿# AeroGenerador
 
 Aplicacion web interactiva desarrollada para representar un aerogenerador 3D en funcionamiento con Three.js, React y datos reales agregados de generacion eolica procedentes de ESIOS / Red Electrica.
 
@@ -68,4 +68,6 @@ npm run preview
 
 ## Autor
 
-Robert Jesus Melendez Nuñez
+Robert Jesus Melendez Nunez
+
+

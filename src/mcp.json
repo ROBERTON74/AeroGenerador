@@ -1,4 +1,4 @@
-{
+﻿{
   "servers": {
     "blender": {
       "type": "stdio",
@@ -7,3 +7,4 @@
     }
   }
 }
+

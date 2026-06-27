@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { ChevronsDown, ChevronsUp, MapPin, RefreshCw, Signal, Wind } from 'lucide-react';
 
 const numberFormatter = new Intl.NumberFormat('es-ES', {
@@ -335,7 +335,7 @@ function WindYawPanel({ scada, open, onClose }) {
         <Stat label="Viento" value={formatDirection(windDirection)} detail="Direccion derivada" />
         <Stat label="Gondola" value={formatDirection(nacelleDirection)} detail="Orientacion yaw" />
         <Stat label="Error yaw" value={formatDecimal(yawError, ' deg')} detail="Desalineacion" />
-        <Stat label="Velocidad" value={formatDecimal(windSpeed, ' m/s')} detail={`Derivado ESIOS · Disp. ${formatDecimal(availability, '%')}`} />
+        <Stat label="Velocidad" value={formatDecimal(windSpeed, ' m/s')} detail={`Derivado ESIOS  - Disp. ${formatDecimal(availability, '%')}`} />
       </div>
 
       <div className="thermal-note">
@@ -521,7 +521,7 @@ export default function Dashboard({
   const bladeRootFlexDeg = mechanical?.bladeRootFlexDeg ?? 0;
   const scada = windData?.scada;
   const history = windData?.history ?? [];
-  const generationArea = windData?.geoName ?? 'Península';
+  const generationArea = windData?.geoName ?? 'Peninsula';
   const dataBasis = windData?.dataBasis ?? 'ESIOS';
 
   return (
@@ -563,7 +563,7 @@ export default function Dashboard({
       </div>
 
       <div className="stats-grid">
-        <Stat label="Eólica" value={`${numberFormatter.format(windMw)} MW`} detail={generationArea} />
+        <Stat label="Eolica" value={`${numberFormatter.format(windMw)} MW`} detail={generationArea} />
         <Stat
           label={hasMixShare ? 'Mix' : 'Factor carga'}
           value={`${percentFormatter.format(share)}%`}
@@ -575,11 +575,11 @@ export default function Dashboard({
           detail={`Derivado ${dataBasis}`}
         />
         <Stat
-          label="Variación"
+          label="Variacion"
           value={formatDecimal(windSpread, ' km/h')}
           detail="Equivalente carga"
         />
-        <Stat label="Rotor" value={`${rpm} rpm`} detail="Animación vinculada" />
+        <Stat label="Rotor" value={`${rpm} rpm`} detail="Animacion vinculada" />
         <Stat
           label="Punta pala"
           value={`${decimalFormatter.format(tipSpeedKmh)} km/h`}
@@ -587,7 +587,7 @@ export default function Dashboard({
         />
         <Stat
           className="last-update-stat"
-          label="Último dato"
+          label="Ultimo dato"
           value={formatDate(windData?.datetime)}
           detail={windData?.source ?? '--'}
         />
@@ -595,22 +595,22 @@ export default function Dashboard({
 
       <div className="mechanics-grid">
         <Stat
-          label="Oscilación torre"
-          value={`${decimalFormatter.format(towerSwayDeg)}°`}
-          detail="Estimación visual"
+          label="Oscilacion torre"
+          value={`${decimalFormatter.format(towerSwayDeg)} deg`}
+          detail="Estimacion visual"
         />
         <Stat
-          label="Torsión torre"
-          value={`${decimalFormatter.format(towerTorsionDeg)}°`}
-          detail="Por variación de carga"
+          label="Torsion torre"
+          value={`${decimalFormatter.format(towerTorsionDeg)} deg`}
+          detail="Por variacion de carga"
         />
         <Stat
           label="Base pala"
-          value={`${decimalFormatter.format(bladeRootFlexDeg)}°`}
-          detail="Flexión estimada"
+          value={`${decimalFormatter.format(bladeRootFlexDeg)} deg`}
+          detail="Flexion estimada"
         />
         <Stat
-          label="Carga mecánica"
+          label="Carga mecanica"
           value={`${mechanicalLoad}%`}
           detail={mechanical?.state ?? 'Calculando'}
         />
@@ -674,7 +674,7 @@ export default function Dashboard({
         >
           <span>Rosa de viento / yaw</span>
           <strong>{formatDecimal(scada?.yawMisalignmentDeg, ' deg')}</strong>
-          <small>Dirección derivada {formatDirection(scada?.windDirectionDeg)} · Gondola {formatDirection(scada?.nacelleDirectionDeg)}</small>
+          <small>Direccion derivada {formatDirection(scada?.windDirectionDeg)}  - Gondola {formatDirection(scada?.nacelleDirectionDeg)}</small>
           <WindRose scada={scada} />
           <em>{showYawPanel ? 'Ocultar detalle' : 'Ver detalle'}</em>
         </button>
@@ -714,7 +714,7 @@ export default function Dashboard({
         >
           <span>Temperaturas</span>
           <strong>{formatDecimal(scada?.generatorTempC, ' C')}</strong>
-          <small>Gearbox {formatDecimal(scada?.gearboxTempC, ' C')} · Aceite {formatDecimal(scada?.oilTempC, ' C')}</small>
+          <small>Gearbox {formatDecimal(scada?.gearboxTempC, ' C')}  - Aceite {formatDecimal(scada?.oilTempC, ' C')}</small>
           <em>{showThermalPanel ? 'Ocultar detalle' : 'Ver detalle'}</em>
           <HistoryLine history={history} />
         </button>
@@ -729,8 +729,8 @@ export default function Dashboard({
           />
           <span className="stress-check" aria-hidden="true" />
           <span className="stress-copy">
-            <strong>Análisis mecánico</strong>
-            <small>Estrés y movimiento</small>
+            <strong>Analisis mecanico</strong>
+            <small>Estres y movimiento</small>
           </span>
         </label>
         <div className="power-core" aria-hidden="true">
@@ -738,7 +738,7 @@ export default function Dashboard({
         </div>
         <span className={error ? 'connection offline' : 'connection online'}>
           <Signal size={16} />
-          {error ? 'Simulación activa' : `Conectado a ${dataBasis}`}
+          {error ? 'Simulacion activa' : `Conectado a ${dataBasis}`}
         </span>
         <button type="button" onClick={onRefresh} disabled={loading} aria-label="Actualizar datos">
           <RefreshCw size={17} className={loading ? 'spin' : ''} />
@@ -755,3 +755,5 @@ export default function Dashboard({
     </>
   );
 }
+
+

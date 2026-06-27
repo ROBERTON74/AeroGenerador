@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import Dashboard from './components/Dashboard.jsx';
 import LoadingScreen from './components/LoadingScreen.jsx';
 import WindTurbineScene from './components/WindTurbineScene.jsx';
@@ -23,3 +23,5 @@ export default function App() {
     </main>
   );
 }
+
+

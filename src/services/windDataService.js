@@ -1,8 +1,8 @@
-const REE_API_BASE = '/ree-api';
+﻿const REE_API_BASE = '/ree-api';
 const ESIOS_API_BASE = '/esios-api';
 const SPANISH_WIND_INSTALLED_CAPACITY_MW = 31679;
 const REPRESENTATIVE_TURBINE_RATED_MW = 5.0;
-const ELECTRIC_SYSTEM_LABEL = 'Península';
+const ELECTRIC_SYSTEM_LABEL = 'Peninsula';
 
 function clamp01(value) {
   return Math.min(1, Math.max(0, value));
@@ -239,7 +239,7 @@ function applyEsiosDerivedOperationalContext(generationData) {
       source: 'Derivado de ESIOS 551',
       derived: true,
     },
-    status: `${generationData.status} · base ESIOS`,
+    status: `${generationData.status}  - base ESIOS`,
     dataBasis: generationData.source?.startsWith('ESIOS') ? 'ESIOS' : 'REData',
     estimateMethod:
       'Generacion eolica real normalizada contra potencia instalada eolica espanola y convertida a equivalentes de turbina tipo',
@@ -258,7 +258,7 @@ function normalizeGenerationResponse(payload) {
   const latestWind = getLatestValue(windIndicator?.attributes?.values);
 
   if (!windIndicator || !latestWind) {
-    throw new Error('No se encontró el indicador de generación eólica en REData.');
+    throw new Error('No se encontro el indicador de generacion eolica en REData.');
   }
 
   const totalMw = indicators.reduce((sum, item) => {
@@ -271,7 +271,7 @@ function normalizeGenerationResponse(payload) {
     totalMw,
     share: latestWind.percentage,
     datetime: latestWind.datetime,
-    source: 'Red Eléctrica de España - REData',
+    source: 'Red Electrica de Espana - REData',
     rawTitle: windIndicator.attributes.title,
     geoName: ELECTRIC_SYSTEM_LABEL,
   });
@@ -282,15 +282,15 @@ function normalizeEsiosResponse(payload) {
   const latest = getLatestValue(values);
 
   if (!latest) {
-    throw new Error('ESIOS no devolvió valores recientes para el indicador 551.');
+    throw new Error('ESIOS no devolvio valores recientes para el indicador 551.');
   }
 
   return createWindMetrics({
     windMw: latest.value,
     datetime: latest.datetime,
-    source: 'ESIOS indicador 551 - Generación T.Real eólica',
+    source: 'ESIOS indicador 551 - Generacion T.Real eolica',
     statusPrefix: 'Tiempo real ESIOS',
-    rawTitle: payload?.indicator?.name ?? 'Generación T.Real eólica',
+    rawTitle: payload?.indicator?.name ?? 'Generacion T.Real eolica',
     geoName: latest.geo_name ?? ELECTRIC_SYSTEM_LABEL,
   });
 }
@@ -311,7 +311,7 @@ async function fetchEsiosRealtimeWind() {
   });
 
   if (!response.ok) {
-    throw new Error(`ESIOS respondió con HTTP ${response.status}. Revisa VITE_ESIOS_API_KEY.`);
+    throw new Error(`ESIOS respondio con HTTP ${response.status}. Revisa VITE_ESIOS_API_KEY.`);
   }
 
   return normalizeEsiosResponse(await response.json());
@@ -339,7 +339,7 @@ async function fetchReeDailyWind() {
   );
 
   if (!response.ok) {
-    throw new Error(`REData respondió con HTTP ${response.status}.`);
+    throw new Error(`REData respondio con HTTP ${response.status}.`);
   }
 
   const data = normalizeGenerationResponse(await response.json());
@@ -389,9 +389,11 @@ export function createFallbackWindData() {
     installedCapacityMw: SPANISH_WIND_INSTALLED_CAPACITY_MW,
     meteorology,
     datetime: new Date().toISOString(),
-    source: 'Simulación local mientras responde REData/ESIOS',
+    source: 'Simulacion local mientras responde REData/ESIOS',
     geoName: ELECTRIC_SYSTEM_LABEL,
-    status: 'Modo simulación',
-    rawTitle: 'Eólica',
+    status: 'Modo simulacion',
+    rawTitle: 'Eolica',
   };
 }
+
+
