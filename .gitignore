@@ -1,0 +1,27 @@
+node_modules/
+dist/
+
+.env
+.env - copia.*
+.env.local
+.env.*.local
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+
+*.blend1
+*.blend
+!aerogenerador_modelado_escala_real_base_rectangular_nubes_azules.blend
+
+benchmark_frame_*.png
+render_torre_metalica_precisa_preview*.png
+review_offshore_base_render.png
