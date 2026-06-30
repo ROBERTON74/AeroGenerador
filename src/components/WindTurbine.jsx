@@ -92,7 +92,7 @@ function Blade({ rotation = 0, flex = 0 }) {
 
   return (
     <group rotation={[0, 0, rotation]}>
-      <mesh position={[0.42, 0, -0.016]} rotation={[0, 0.04 + flex, 0]} castShadow receiveShadow>
+      <mesh position={[0.3, 0, -0.016]} rotation={[0, 0.04 + flex, 0]} castShadow receiveShadow>
         <extrudeGeometry args={[shape, extrudeSettings]} />
         <meshPhysicalMaterial
           color={TURBINE_WHITE}
@@ -104,12 +104,12 @@ function Blade({ rotation = 0, flex = 0 }) {
           emissiveIntensity={0.025}
         />
       </mesh>
-      <mesh position={[1.74, 0.004, 0.024]} rotation={[0, flex * 0.7, 0.01]} castShadow>
-        <boxGeometry args={[2.42, 0.012, 0.01]} />
+      <mesh position={[1.66, 0.004, 0.024]} rotation={[0, flex * 0.7, 0.01]} castShadow>
+        <boxGeometry args={[2.54, 0.012, 0.01]} />
         <meshStandardMaterial color="#ffffff" roughness={0.24} metalness={0.04} />
       </mesh>
-      <mesh position={[1.68, 0.058, 0.046]} rotation={[0, flex * 0.5, 0.012]} castShadow={false}>
-        <boxGeometry args={[2.16, 0.009, 0.006]} />
+      <mesh position={[1.6, 0.058, 0.046]} rotation={[0, flex * 0.5, 0.012]} castShadow={false}>
+        <boxGeometry args={[2.28, 0.009, 0.006]} />
         <meshStandardMaterial color="#d8e1df" roughness={0.32} metalness={0.06} />
       </mesh>
     </group>
@@ -784,16 +784,8 @@ export default function WindTurbine({
         ) : null}
 
         <mesh castShadow>
-          <sphereGeometry args={[0.33, 48, 24]} />
+          <sphereGeometry args={[0.36, 48, 24]} />
           <meshPhysicalMaterial color={TURBINE_WHITE} roughness={0.18} metalness={0.16} clearcoat={0.4} />
-        </mesh>
-        <mesh position={[0, 0, 0.1]} castShadow>
-          <cylinderGeometry args={[0.16, 0.23, 0.32, 36]} />
-          <meshPhysicalMaterial color={TURBINE_WHITE} roughness={0.22} metalness={0.14} clearcoat={0.35} />
-        </mesh>
-        <mesh position={[0, 0, 0.275]} castShadow>
-          <sphereGeometry args={[0.08, 24, 12]} />
-          <meshPhysicalMaterial color={TURBINE_WHITE} roughness={0.2} metalness={0.08} clearcoat={0.3} />
         </mesh>
       </group>
 
