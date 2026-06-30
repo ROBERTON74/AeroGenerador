@@ -92,7 +92,7 @@ function Blade({ rotation = 0, flex = 0 }) {
 
   return (
     <group rotation={[0, 0, rotation]}>
-      <mesh position={[0.25, 0, -0.016]} rotation={[0, 0.04 + flex, 0]} castShadow receiveShadow>
+      <mesh position={[0.42, 0, -0.016]} rotation={[0, 0.04 + flex, 0]} castShadow receiveShadow>
         <extrudeGeometry args={[shape, extrudeSettings]} />
         <meshPhysicalMaterial
           color={TURBINE_WHITE}
@@ -104,13 +104,27 @@ function Blade({ rotation = 0, flex = 0 }) {
           emissiveIntensity={0.025}
         />
       </mesh>
-      <mesh position={[1.58, 0.004, 0.024]} rotation={[0, flex * 0.7, 0.01]} castShadow>
-        <boxGeometry args={[2.56, 0.012, 0.01]} />
+      <mesh position={[1.74, 0.004, 0.024]} rotation={[0, flex * 0.7, 0.01]} castShadow>
+        <boxGeometry args={[2.42, 0.012, 0.01]} />
         <meshStandardMaterial color="#ffffff" roughness={0.24} metalness={0.04} />
       </mesh>
-      <mesh position={[1.54, 0.058, 0.046]} rotation={[0, flex * 0.5, 0.012]} castShadow={false}>
-        <boxGeometry args={[2.34, 0.009, 0.006]} />
+      <mesh position={[1.68, 0.058, 0.046]} rotation={[0, flex * 0.5, 0.012]} castShadow={false}>
+        <boxGeometry args={[2.16, 0.009, 0.006]} />
         <meshStandardMaterial color="#d8e1df" roughness={0.32} metalness={0.06} />
+      </mesh>
+      <mesh position={[0.29, 0, 0.018]} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
+        <cylinderGeometry args={[0.105, 0.15, 0.36, 32]} />
+        <meshPhysicalMaterial
+          color={TURBINE_SOFT_WHITE}
+          roughness={0.2}
+          metalness={0.12}
+          clearcoat={0.38}
+          clearcoatRoughness={0.28}
+        />
+      </mesh>
+      <mesh position={[0.47, 0, 0.02]} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
+        <torusGeometry args={[0.105, 0.014, 10, 40]} />
+        <meshStandardMaterial color="#d8e1df" roughness={0.28} metalness={0.18} />
       </mesh>
     </group>
   );
