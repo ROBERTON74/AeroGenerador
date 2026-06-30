@@ -112,20 +112,6 @@ function Blade({ rotation = 0, flex = 0 }) {
         <boxGeometry args={[2.16, 0.009, 0.006]} />
         <meshStandardMaterial color="#d8e1df" roughness={0.32} metalness={0.06} />
       </mesh>
-      <mesh position={[0.29, 0, 0.018]} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.105, 0.15, 0.36, 32]} />
-        <meshPhysicalMaterial
-          color={TURBINE_SOFT_WHITE}
-          roughness={0.2}
-          metalness={0.12}
-          clearcoat={0.38}
-          clearcoatRoughness={0.28}
-        />
-      </mesh>
-      <mesh position={[0.47, 0, 0.02]} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
-        <torusGeometry args={[0.105, 0.014, 10, 40]} />
-        <meshStandardMaterial color="#d8e1df" roughness={0.28} metalness={0.18} />
-      </mesh>
     </group>
   );
 }
@@ -798,11 +784,11 @@ export default function WindTurbine({
         ) : null}
 
         <mesh castShadow>
-          <sphereGeometry args={[0.28, 48, 24]} />
+          <sphereGeometry args={[0.33, 48, 24]} />
           <meshPhysicalMaterial color={TURBINE_WHITE} roughness={0.18} metalness={0.16} clearcoat={0.4} />
         </mesh>
         <mesh position={[0, 0, 0.1]} castShadow>
-          <cylinderGeometry args={[0.14, 0.2, 0.3, 36]} />
+          <cylinderGeometry args={[0.16, 0.23, 0.32, 36]} />
           <meshPhysicalMaterial color={TURBINE_WHITE} roughness={0.22} metalness={0.14} clearcoat={0.35} />
         </mesh>
         <mesh position={[0, 0, 0.275]} castShadow>
