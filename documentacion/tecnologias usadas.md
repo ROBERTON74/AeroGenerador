@@ -36,6 +36,7 @@ Three.js es el motor 3D que me permite crear geometria, materiales, luces, sombr
 Se utiliza para:
 
 - Torre, base, buje, palas y gondola.
+- Union visual de palas con el buje central, sin saliente frontal del eje.
 - Materiales metalicos, translucidos y emisivos.
 - Sombras reales y sombra visual reforzada de las palas sobre el suelo.
 - Flechas, anillos y zonas de esfuerzo.

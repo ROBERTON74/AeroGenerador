@@ -1,6 +1,6 @@
 ﻿# Nota tecnica sobre la animacion Three.js
 
-Fecha de revision: 27 de junio de 2026.
+Fecha de revision: 30 de junio de 2026.
 
 ## Autoria y destino academico
 
@@ -17,6 +17,7 @@ La escena aplica una respuesta visual mecanica mediante calculos propios:
 - Oscilacion de torre con seno temporal y carga mecanica derivada.
 - Torsion visual de la estructura.
 - Flexion de pala calculada desde las metricas mecanicas estimadas.
+- Union visual refinada entre palas y buje, sin pieza frontal sobresaliente en el eje.
 - Sombras reforzadas, incluyendo sombra visual de palas sobre el suelo.
 - Vista interna de gondola y zonas de esfuerzo cuando activo el analisis mecanico.
 
@@ -32,6 +33,8 @@ La escena aplica una respuesta visual mecanica mediante calculos propios:
 He mantenido la animacion en Three.js porque es suficiente para la entrega actual, reduce dependencias externas y permite controlar directamente la relacion entre los datos derivados de ESIOS y la respuesta visual del modelo.
 
 La aplicacion no afirma simular aerodinamica industrial completa. El objetivo es mostrar una visualizacion tecnica coherente: ESIOS aporta generacion eolica real agregada y el proyecto la transforma en rpm, carga, oscilacion, torsion, flexion y estado visual estimado de una turbina tipo.
+
+El ajuste de palas y buje es solo de visualizacion. Lo he dejado asi para que el rotor se lea como una pieza continua y para evitar que las palas parezcan atravesar el buje o quedar separadas de el.
 
 ## Como simplificar la animacion
 

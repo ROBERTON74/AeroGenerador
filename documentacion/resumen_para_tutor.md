@@ -6,6 +6,8 @@ Este proyecto lo he planteado, organizado y desarrollado como autor. He definido
 
 He desarrollado la aplicacion web **AeroGenerador** como un aerogenerador 3D interactivo en movimiento, usando React, Vite y Three.js. La escena representa un molino eolico funcionando, con terreno, cielo, sombras, aspas animadas y un dashboard inferior tipo SCADA con informacion energetica y tecnica.
 
+En la version actual he pulido tambien la union visual entre palas y buje, eliminando el saliente frontal del eje para que el rotor se vea continuo durante la animacion.
+
 Los datos principales que muestro en la aplicacion vienen de **ESIOS**, la plataforma de informacion de Red Electrica / Redeia. Uso el indicador `551`, correspondiente a la **generacion eolica en tiempo real**. Este dato representa la produccion eolica agregada del sistema electrico, normalmente con ambito **Peninsula**, y lo muestro en MW junto con la hora del ultimo dato recibido y el estado de generacion.
 
 Para conectar la aplicacion con ESIOS consegui una **API key personal** solicitandola por correo electronico a ESIOS / Red Electrica. En la solicitud explique que el token se necesitaba para un trabajo academico destinado al Departamento de Robotica de la Universidad Complutense de Madrid, con el objetivo de consultar datos reales de generacion eolica y usarlos en una visualizacion tecnica.

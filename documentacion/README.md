@@ -9,6 +9,7 @@ Este proyecto lo he planteado, organizado y desarrollado como autor. He definido
 ## Que incluye
 
 - Aerogenerador 3D en movimiento con aspas animadas.
+- Union visual refinada entre palas y buje, sin pieza frontal sobresaliente en el eje del rotor.
 - Escena ambiental con terreno, cielo, arboles, turbinas de fondo, particulas de viento y efectos de iluminacion.
 - Dashboard inferior con datos de produccion eolica, factor de carga o porcentaje del mix cuando REData lo aporta, rpm estimadas, velocidad de punta de pala y ultimo dato recibido.
 - Boton para minimizar el dashboard hacia abajo y dejar visible el aerogenerador completo, con tirador para recuperarlo.
@@ -110,6 +111,12 @@ El dashboard incluye una capa de indicadores derivados para dar una lectura mas 
 Estos indicadores son estimaciones visuales y didacticas derivadas de ESIOS. No sustituyen datos SCADA reales de un aerogenerador fisico. Las temperaturas y vibraciones se mantienen acotadas en rangos prudentes: gearbox 35-82 C, generador 38-92 C, aceite 32-72 C y vibracion 0,35-3,2 mm/s.
 
 ## Registro de avance
+
+### 30 de junio de 2026
+
+- Reviso la union visual del rotor para que las palas no parezcan separadas del buje.
+- Elimino la pieza frontal sobresaliente del eje que podia confundirse con un elemento suelto.
+- Mantengo el cambio solo en la parte visual de la animacion; no modifica ESIOS, REData, el dashboard ni los modelos matematicos.
 
 ### 17 de junio de 2026
 

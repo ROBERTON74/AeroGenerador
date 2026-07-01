@@ -4,6 +4,8 @@ Aplicacion web interactiva desarrollada para representar un aerogenerador 3D en 
 
 El proyecto esta destinado al Departamento de Robotica de la Universidad Complutense de Madrid. La aplicacion combina una escena 3D tecnica con un dashboard inferior tipo SCADA que muestra generacion eolica real, factor de carga, rpm estimadas, viento equivalente, yaw, pitch, temperaturas, vibracion, disponibilidad y estado operativo.
 
+La version actual tambien deja refinada la union visual entre palas y buje: las palas quedan integradas en el rotor sin pieza frontal sobresaliente en el eje, para que la animacion se vea mas limpia.
+
 ## Como abrirlo en localhost
 
 1. Instalar dependencias:

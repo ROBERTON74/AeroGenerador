@@ -50,6 +50,14 @@ Los indicadores SCADA derivados son didacticos y estimados a partir de datos agr
 
 ## Registro de avance actual
 
+Fecha de registro: 30 de junio de 2026.
+
+Estado de revision visual del rotor:
+
+- Ajusto la union entre palas y buje en la animacion principal de Three.js.
+- Retiro la pieza frontal sobresaliente del eje para evitar que parezca un elemento separado.
+- Dejo claro que esta mejora es visual y no altera datos ESIOS/REData, dashboard SCADA ni modelos matematicos.
+
 Fecha de registro: 17 de junio de 2026.
 
 Estado de precision de datos para entrega:

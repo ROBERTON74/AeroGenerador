@@ -43,7 +43,7 @@ Finalidad:
 
 Documento general del proyecto. Explica que incluye la aplicacion, como abrirla en localhost, como funciona ESIOS, que contiene el panel SCADA y cual es el estado de avance.
 
-### 3. Explicacion de ESIOS y modelos matematicos
+### 3. Motivacion y justificacion del proyecto
 
 Archivo:
 
@@ -69,7 +69,7 @@ Finalidad:
 
 Documento clave para defender tecnicamente el dashboard. Explica que ESIOS aporta generacion eolica agregada y como, a partir de ese dato, calculo rpm, viento equivalente, yaw, pitch, temperaturas, aceite, gearbox, vibracion, disponibilidad y estado de componentes.
 
-### 5. Manual tecnico del codigo y mantenimiento
+### 5. Figura anotada del dashboard
 
 Archivo:
 
@@ -140,6 +140,8 @@ nota_animacion_threejs.md
 Finalidad:
 
 Documento tecnico que explica como esta implementada la animacion visual con Three.js y como simplificarla si hace falta.
+
+Estado actualizado: la version actual ya incluye la correccion visual del rotor, con las palas integradas en el buje y sin saliente frontal del eje. Esta mejora es solo visual y no cambia los datos ni los modelos matematicos.
 
 ### 11. AGENTS
 

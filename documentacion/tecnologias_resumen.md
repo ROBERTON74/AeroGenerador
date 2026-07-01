@@ -60,6 +60,7 @@ Configurados en `vite.config.js`:
 ## Funcionalidades implementadas
 
 - Aerogenerador 3D animado.
+- Rotor visualmente refinado, con palas integradas en el buje y sin saliente frontal del eje.
 - Escena con terreno, cielo, nubes, arboles, turbinas de fondo y particulas de viento.
 - Sombras reforzadas, incluyendo sombra visible de las palas sobre el suelo.
 - Animacion visual con Three.js para aportar masa, torque, inercia y amortiguacion a la oscilacion principal.
@@ -119,6 +120,12 @@ Fecha de registro: 17 de junio de 2026.
 - Normalizo la generacion real de ESIOS contra `31.679 MW` de potencia eolica instalada de referencia.
 - La interfaz que he desarrollado distingue entre `Factor carga` y `Mix` segun la fuente de datos disponible.
 - Actualizo `resumen_para_tutor.md` con la explicacion de API key, refresco cada cinco minutos e ingenieria inversa didactica.
+
+Fecha de registro: 30 de junio de 2026.
+
+- Ajusto la union visual de palas y buje en `src/components/WindTurbine.jsx`.
+- Elimino el saliente frontal del eje para que el rotor no parezca tener una pieza suelta.
+- Mantengo intactos los datos, el dashboard y las estimaciones matematicas.
 
 Fecha de registro: 28 de mayo de 2026.
 

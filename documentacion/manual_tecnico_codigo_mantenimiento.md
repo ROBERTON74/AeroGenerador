@@ -348,6 +348,7 @@ Incluye:
 - Gondola.
 - Buje.
 - Palas.
+- Union visual palas-buje sin pieza frontal sobresaliente en el eje.
 - Sombra proyectada de las palas.
 - Movimiento del rotor.
 - Movimiento de torre.
@@ -362,6 +363,8 @@ rpm -> velocidad angular -> rotation.z
 ```
 
 Actualmente mantengo las rpm reales en el dashboard, pero uso un refuerzo visual suave para que el giro se perciba mejor en pantalla sin cambiar el dato tecnico mostrado.
+
+En la version actual, las palas se colocan ligeramente integradas bajo el buje central. Asi evito huecos visibles entre pala y buje y retiro la pieza frontal independiente del eje, que podia verse como un saliente innecesario. Este ajuste no cambia ningun calculo de datos; solo mejora la lectura visual del rotor.
 
 ## Componente Dashboard.jsx
 
