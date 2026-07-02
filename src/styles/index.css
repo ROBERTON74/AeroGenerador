@@ -24,16 +24,19 @@ body,
   height: 100%;
   margin: 0;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 button {
   font: inherit;
+  touch-action: manipulation;
 }
 
 .app-shell {
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100svh;
   min-height: 640px;
   overflow: hidden;
   background:
@@ -57,9 +60,12 @@ button {
   right: clamp(16px, 3vw, 42px);
   bottom: clamp(16px, 3vw, 34px);
   display: grid;
-  grid-template-columns: minmax(210px, 0.8fr) minmax(620px, 2.6fr) auto;
+  grid-template-columns: minmax(190px, 0.72fr) minmax(0, 2.45fr) minmax(260px, 0.72fr);
   gap: 18px;
   align-items: center;
+  min-width: 0;
+  max-height: calc(100svh - 32px);
+  overflow: visible;
   padding: 16px;
   border: 1px solid rgba(137, 255, 218, 0.34);
   border-radius: 8px;
@@ -97,6 +103,7 @@ button {
 }
 
 .dashboard > :not(.dashboard-collapse-toggle) {
+  min-width: 0;
   transition:
     opacity 0.2s ease,
     transform 0.28s ease;
@@ -195,8 +202,9 @@ button {
 .stats-grid {
   display: grid;
   grid-column: 2;
-  grid-template-columns: repeat(6, minmax(0, 1fr)) minmax(148px, 1.16fr);
+  grid-template-columns: repeat(6, minmax(76px, 1fr)) minmax(124px, 1.08fr);
   gap: 10px;
+  min-width: 0;
 }
 
 .mechanics-grid {
@@ -220,8 +228,9 @@ button {
 .scada-panel {
   display: grid;
   grid-column: 1 / -1;
-  grid-template-columns: 1.15fr repeat(4, minmax(0, 1fr));
+  grid-template-columns: minmax(180px, 1.15fr) repeat(4, minmax(150px, 1fr));
   gap: 8px;
+  min-width: 0;
   padding-top: 4px;
 }
 
@@ -1840,9 +1849,11 @@ button.scada-card {
   display: flex;
   grid-column: 3;
   grid-row: 1 / 3;
+  flex-wrap: wrap;
   justify-content: flex-end;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 
 .stress-toggle {
@@ -1951,9 +1962,12 @@ button.scada-card {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  min-width: 145px;
+  min-width: 0;
+  max-width: 170px;
+  overflow: hidden;
   color: rgba(232, 246, 242, 0.82);
   font-size: 0.76rem;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -2209,13 +2223,44 @@ button.scada-card {
 }
 
 @media (max-width: 900px) {
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+
   .app-shell {
-    min-height: 720px;
+    height: 100svh;
+    min-height: 620px;
+  }
+
+  .scene-wrap {
+    inset: 0 0 34svh;
   }
 
   .dashboard {
+    left: max(10px, env(safe-area-inset-left));
+    right: max(10px, env(safe-area-inset-right));
+    bottom: max(10px, env(safe-area-inset-bottom));
     grid-template-columns: 1fr;
     align-items: stretch;
+    gap: 12px;
+    max-height: min(66svh, 620px);
+    padding: 14px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .dashboard-collapse-toggle {
+    top: 10px;
+    right: 10px;
+  }
+
+  .dashboard-title {
+    padding-right: 118px;
   }
 
   .dashboard-title,
@@ -2229,14 +2274,17 @@ button.scada-card {
 
   .stats-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .mechanics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .scada-panel {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
   }
 
   .stat {
@@ -2245,34 +2293,95 @@ button.scada-card {
   }
 
   .dashboard-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) repeat(2, minmax(88px, auto)) 42px;
     justify-content: space-between;
+    align-items: stretch;
+    gap: 8px;
   }
 
   .stress-toggle {
     min-width: 0;
+    min-height: 42px;
+  }
+
+  .dashboard-actions .detail-action {
+    min-width: 0;
+    min-height: 42px;
+  }
+
+  .power-core,
+  .connection {
+    display: none;
+  }
+
+  .scada-card {
+    min-height: 104px;
   }
 
   .thermal-panel {
-    top: 18px;
-    right: 18px;
-    bottom: 18px;
-    left: 18px;
+    top: max(12px, env(safe-area-inset-top));
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    left: max(12px, env(safe-area-inset-left));
     max-height: none;
     min-height: 0;
     width: auto;
     min-width: 0;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     transform: none;
+  }
+
+  .model-panel,
+  .mechanical-panel {
+    min-height: 0;
+    max-height: none;
+  }
+
+  .mechanical-variable-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 520px) {
   .app-shell {
-    min-height: 760px;
+    min-height: 100svh;
+  }
+
+  .scene-wrap {
+    inset: 0 0 42svh;
   }
 
   .dashboard {
+    left: max(8px, env(safe-area-inset-left));
+    right: max(8px, env(safe-area-inset-right));
+    bottom: max(8px, env(safe-area-inset-bottom));
+    max-height: 58svh;
     padding: 13px;
-    gap: 12px;
+    gap: 10px;
+  }
+
+  .dashboard.collapsed {
+    transform: translateY(calc(100% - 46px));
+  }
+
+  .dashboard-collapse-toggle {
+    top: 8px;
+    right: 8px;
+    min-height: 38px;
+  }
+
+  .dashboard-title {
+    align-items: flex-start;
+    padding-right: 86px;
+  }
+
+  .status-icon {
+    width: 42px;
+    height: 42px;
   }
 
   .stats-grid {
@@ -2285,17 +2394,46 @@ button.scada-card {
     grid-template-columns: 1fr;
   }
 
+  .dashboard-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .dashboard-actions > button:last-child {
+    min-height: 42px;
+  }
+
+  .stress-toggle {
+    grid-column: 1 / -1;
+  }
+
   .dashboard-title h1 {
     font-size: 1rem;
+  }
+
+  .stat,
+  .mechanics-grid .stat {
+    padding: 8px 10px;
+  }
+
+  .scada-card {
+    min-height: 92px;
+    padding: 10px;
   }
 
   .thermal-readouts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .mechanical-variable-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .model-param-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
   .gearbox-shell {
     transform: scale(0.82);
   }
 }
-
-

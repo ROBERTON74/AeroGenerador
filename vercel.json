@@ -1,0 +1,22 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/esios-api/:path*",
+      "destination": "/api/esios/:path*"
+    },
+    {
+      "source": "/ree-api/:path*",
+      "destination": "/api/ree/:path*"
+    },
+    {
+      "source": "/open-meteo-api/:path*",
+      "destination": "/api/open-meteo/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}
