@@ -21,6 +21,19 @@ Dejar registrado como volver atras si el despliegue en Vercel falla o si la app 
 - `api/open-meteo/[...path].js`: proxy para Open-Meteo.
 - `index.html`: metadatos moviles basicos.
 - `src/styles/index.css`: adaptacion responsive para movil, tablet y escritorio.
+- `.gitignore`: ignora la carpeta local `.vercel`.
+
+## Despliegue activo
+
+```text
+https://aerogenerador-robert.vercel.app
+```
+
+Deployment id:
+
+```text
+dpl_746xBqBvZLgQGTfqX569c1JRf2Vf
+```
 
 ## Variables necesarias en Vercel
 
