@@ -42,22 +42,35 @@ URL publica:
 https://aerogenerador-robert.vercel.app
 ```
 
-Deployment id:
+Deployment id inicial:
 
 ```text
 dpl_746xBqBvZLgQGTfqX569c1JRf2Vf
 ```
 
+Deployment id final verificado:
+
+```text
+dpl_C5UmzAnVCj8GoYZV6tMXByDkDTqE
+```
+
 URL de inspeccion:
 
 ```text
-https://vercel.com/roberton74s-projects/aerogenerador-robert/746xBqBvZLgQGTfqX569c1JRf2Vf
+https://vercel.com/roberton74s-projects/aerogenerador-robert/C5UmzAnVCj8GoYZV6tMXByDkDTqE
 ```
 
 Estado:
 
 ```text
 Ready
+```
+
+Comprobacion final:
+
+```text
+https://aerogenerador-robert.vercel.app -> HTTP 200
+/ree-api/... -> HTTP 200 con JSON de REData
 ```
 
 Nota: el despliegue manual funciono. La CLI no pudo conectar automaticamente el repositorio GitHub al proyecto Vercel. Para despliegues automaticos desde `main`, conectar el repositorio desde el panel web de Vercel en `Settings > Git`.

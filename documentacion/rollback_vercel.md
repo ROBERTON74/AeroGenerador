@@ -29,10 +29,10 @@ Dejar registrado como volver atras si el despliegue en Vercel falla o si la app 
 https://aerogenerador-robert.vercel.app
 ```
 
-Deployment id:
+Deployment id final verificado:
 
 ```text
-dpl_746xBqBvZLgQGTfqX569c1JRf2Vf
+dpl_C5UmzAnVCj8GoYZV6tMXByDkDTqE
 ```
 
 ## Variables necesarias en Vercel
