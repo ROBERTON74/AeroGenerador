@@ -104,6 +104,16 @@ Estado actual: pendiente de configurar en Vercel. Sin esta variable, ESIOS puede
 
 No usar un rewrite global `/:path* -> /index.html`, porque en Vercel puede capturar tambien `/api/...` y bloquear las funciones serverless.
 
+Las API se publican como funciones simples:
+
+```text
+api/esios.js
+api/ree.js
+api/open-meteo.js
+```
+
+Los rewrites pasan el path original como query `path`.
+
 ## Pasos
 
 1. Entrar en Vercel.

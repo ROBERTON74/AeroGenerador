@@ -12,11 +12,12 @@ function appendQueryParams(searchParams, query = {}) {
 }
 
 function buildTargetUrl(req, baseUrl) {
-  const pathParts = Array.isArray(req.query.path)
+  const rawPathParts = Array.isArray(req.query.path)
     ? req.query.path
     : typeof req.query.path === 'string'
       ? [req.query.path]
       : [];
+  const pathParts = rawPathParts.flatMap((part) => String(part).split('/')).filter(Boolean);
   const safePath = pathParts.map((part) => encodeURIComponent(part)).join('/');
   const targetUrl = new URL(safePath ? `${baseUrl}/${safePath}` : baseUrl);
   appendQueryParams(targetUrl.searchParams, req.query);

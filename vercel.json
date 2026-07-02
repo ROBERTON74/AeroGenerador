@@ -4,15 +4,15 @@
   "rewrites": [
     {
       "source": "/esios-api/:path*",
-      "destination": "/api/esios/:path*"
+      "destination": "/api/esios?path=:path*"
     },
     {
       "source": "/ree-api/:path*",
-      "destination": "/api/ree/:path*"
+      "destination": "/api/ree?path=:path*"
     },
     {
       "source": "/open-meteo-api/:path*",
-      "destination": "/api/open-meteo/:path*"
+      "destination": "/api/open-meteo?path=:path*"
     }
   ]
 }

@@ -16,9 +16,9 @@ Dejar registrado como volver atras si el despliegue en Vercel falla o si la app 
 
 - `vercel.json`: configuracion de build, carpeta `dist` y rutas publicas.
 - `api/_proxy.js`: helper comun para reenviar peticiones HTTP.
-- `api/esios/[...path].js`: proxy seguro para ESIOS.
-- `api/ree/[...path].js`: proxy para REData.
-- `api/open-meteo/[...path].js`: proxy para Open-Meteo.
+- `api/esios.js`: proxy seguro para ESIOS.
+- `api/ree.js`: proxy para REData.
+- `api/open-meteo.js`: proxy para Open-Meteo.
 - `index.html`: metadatos moviles basicos.
 - `src/styles/index.css`: adaptacion responsive para movil, tablet y escritorio.
 - `.gitignore`: ignora la carpeta local `.vercel`.
