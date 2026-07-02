@@ -92,7 +92,11 @@ function Blade({ rotation = 0, flex = 0 }) {
 
   return (
     <group rotation={[0, 0, rotation]}>
-      <mesh position={[0.3, 0, -0.016]} rotation={[0, 0.04 + flex, 0]} castShadow receiveShadow>
+      <mesh position={[0.4, 0, 0.004]} rotation={[0, Math.PI / 2, 0]} castShadow receiveShadow>
+        <capsuleGeometry args={[0.09, 0.32, 12, 24]} />
+        <meshPhysicalMaterial color={TURBINE_SOFT_WHITE} roughness={0.26} metalness={0.12} clearcoat={0.34} />
+      </mesh>
+      <mesh position={[0.58, 0, -0.016]} rotation={[0, 0.04 + flex, 0]} castShadow receiveShadow>
         <extrudeGeometry args={[shape, extrudeSettings]} />
         <meshPhysicalMaterial
           color={TURBINE_WHITE}
@@ -104,11 +108,11 @@ function Blade({ rotation = 0, flex = 0 }) {
           emissiveIntensity={0.025}
         />
       </mesh>
-      <mesh position={[1.66, 0.004, 0.024]} rotation={[0, flex * 0.7, 0.01]} castShadow>
+      <mesh position={[1.94, 0.004, 0.024]} rotation={[0, flex * 0.7, 0.01]} castShadow>
         <boxGeometry args={[2.54, 0.012, 0.01]} />
         <meshStandardMaterial color="#ffffff" roughness={0.24} metalness={0.04} />
       </mesh>
-      <mesh position={[1.6, 0.058, 0.046]} rotation={[0, flex * 0.5, 0.012]} castShadow={false}>
+      <mesh position={[1.88, 0.058, 0.046]} rotation={[0, flex * 0.5, 0.012]} castShadow={false}>
         <boxGeometry args={[2.28, 0.009, 0.006]} />
         <meshStandardMaterial color="#d8e1df" roughness={0.32} metalness={0.06} />
       </mesh>

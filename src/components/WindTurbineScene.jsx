@@ -6,7 +6,24 @@ import WindTurbine from './WindTurbine.jsx';
 
 function AnimatedSea() {
   const seaRef = useRef();
+  const foamRef = useRef();
   const basePositions = useRef(null);
+  const foamLines = useMemo(
+    () =>
+      Array.from({ length: 42 }).map((_, index) => {
+        const angle = index * 2.17;
+        const radius = 5 + ((index * 11) % 46);
+        return {
+          x: Math.cos(angle) * radius,
+          z: Math.sin(angle) * radius - 4,
+          rotation: angle + Math.PI / 2,
+          width: 0.75 + (index % 7) * 0.24,
+          opacity: 0.1 + (index % 5) * 0.035,
+          speed: 0.08 + (index % 6) * 0.018,
+        };
+      }),
+    [],
+  );
 
   useFrame((state) => {
     const geometry = seaRef.current?.geometry;
@@ -22,28 +39,58 @@ function AnimatedSea() {
       const x = basePositions.current[i * 3];
       const y = basePositions.current[i * 3 + 1];
       position.array[i * 3 + 2] =
-        Math.sin(x * 0.42 + elapsed * 0.8) * 0.045 +
-        Math.cos(y * 0.36 + elapsed * 0.55) * 0.035;
+        Math.sin(x * 0.34 + elapsed * 1.08) * 0.11 +
+        Math.cos(y * 0.29 + elapsed * 0.82) * 0.075 +
+        Math.sin((x + y) * 0.13 + elapsed * 0.46) * 0.045;
     }
     position.needsUpdate = true;
     geometry.computeVertexNormals();
+
+    if (foamRef.current) {
+      foamRef.current.children.forEach((line, index) => {
+        line.position.x += foamLines[index].speed * 0.018;
+        line.position.z += Math.sin(elapsed * 0.35 + index) * 0.0015;
+        if (line.position.x > 54) {
+          line.position.x = -54;
+        }
+      });
+    }
   });
 
   return (
-    <mesh ref={seaRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.06, 0]} receiveShadow>
-      <planeGeometry args={[115, 115, 132, 132]} />
-      <meshPhysicalMaterial
-        color="#176f8b"
-        roughness={0.24}
-        metalness={0.02}
-        transmission={0.04}
-        thickness={1.1}
-        transparent
-        opacity={0.94}
-        clearcoat={0.74}
-        clearcoatRoughness={0.18}
-      />
-    </mesh>
+    <group>
+      <mesh ref={seaRef} rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.08, 0]} receiveShadow>
+        <planeGeometry args={[115, 115, 156, 156]} />
+        <meshPhysicalMaterial
+          color="#0d6f83"
+          roughness={0.62}
+          metalness={0.02}
+          transmission={0}
+          thickness={0.45}
+          transparent
+          opacity={0.96}
+          clearcoat={0.28}
+          clearcoatRoughness={0.72}
+        />
+      </mesh>
+      <group ref={foamRef}>
+        {foamLines.map((line, index) => (
+          <mesh
+            key={`${line.x}-${line.z}`}
+            position={[line.x, 0.018, line.z]}
+            rotation={[-Math.PI / 2, 0, line.rotation]}
+          >
+            <planeGeometry args={[line.width, 0.035, 1, 1]} />
+            <meshBasicMaterial
+              color="#d7fbf4"
+              transparent
+              opacity={line.opacity}
+              depthWrite={false}
+            />
+          </mesh>
+        ))}
+      </group>
+    </group>
   );
 }
 
@@ -783,7 +830,7 @@ function SceneContent({ windData, showStressMap }) {
       />
       <directionalLight position={[-8, 4, -6]} intensity={0.32} color="#c7e6ff" />
       <WindTurbine rpm={rpm} power={power} showStressMap={showStressMap} mechanical={windData?.mechanical} />
-      <LandEnvironment />
+      <OffshoreEnvironment />
       <GroundDataGrid power={power} />
       <HolographicTelemetry power={power} />
       <WindFlowParticles power={power} />

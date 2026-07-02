@@ -489,6 +489,81 @@ function OperationModePanel({ scada, open, onClose }) {
   );
 }
 
+function ModelParametersPanel({ open, onClose }) {
+  if (!open) return null;
+
+  const parameters = [
+    ['Tipo de turbina', 'Eolica horizontal 3 palas'],
+    ['Potencia nominal', '5,0 MW'],
+    ['Diametro rotor', '145 m'],
+    ['Radio pala', '72,5 m'],
+    ['Altura al eje', '100 m aprox.'],
+    ['Velocidad nominal rotor', '12,8 rpm'],
+    ['Cut-in / nominal / cut-out', '3 / 12 / 25 m/s'],
+    ['Caja de engranes', 'Relacion aprox. 1:97'],
+    ['Base de datos', 'ESIOS 551 + modelos matematicos'],
+  ];
+
+  return (
+    <section className="thermal-panel model-panel" aria-label="Parametros del modelo de turbina">
+      <div className="thermal-panel-head">
+        <div>
+          <span>Referencia tecnica</span>
+          <strong>Parametros del modelo</strong>
+        </div>
+        <button type="button" onClick={onClose} aria-label="Cerrar parametros del modelo">
+          x
+        </button>
+      </div>
+      <div className="model-param-list">
+        {parameters.map(([label, value]) => (
+          <div className="model-param-row" key={label}>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </div>
+        ))}
+      </div>
+      <div className="thermal-note">
+        <span className="hot-dot model-dot" />
+        <p>Valores representativos de una turbina moderna de 5 MW usados para escalar la visualizacion y los calculos didacticos.</p>
+      </div>
+    </section>
+  );
+}
+
+function MechanicalVariablesPanel({ mechanical, scada, rpm, open, onClose }) {
+  if (!open) return null;
+
+  return (
+    <section className="thermal-panel mechanical-panel" aria-label="Variables mecanicas numericas">
+      <div className="thermal-panel-head">
+        <div>
+          <span>Monitorizacion mecanica</span>
+          <strong>Variables estimadas del modelo</strong>
+        </div>
+        <button type="button" onClick={onClose} aria-label="Cerrar variables mecanicas">
+          x
+        </button>
+      </div>
+      <div className="mechanical-variable-grid">
+        <Stat label="Empuje rotor" value={formatDecimal(mechanical?.thrustKN, ' kN')} detail="Carga axial estimada" />
+        <Stat label="Momento raiz" value={formatDecimal(mechanical?.bladeRootMomentMNm, ' MNm')} detail="Base de pala" />
+        <Stat label="Torque tren" value={formatDecimal(mechanical?.drivetrainTorqueMNm, ' MNm')} detail="Eje principal" />
+        <Stat label="Torre frontal" value={formatDecimal(mechanical?.towerForeAftMm, ' mm')} detail="Desplazamiento fore-aft" />
+        <Stat label="Torre lateral" value={formatDecimal(mechanical?.towerLateralMm, ' mm')} detail="Desplazamiento side-side" />
+        <Stat label="Aceleracion nacelle" value={formatDecimal(mechanical?.nacelleAccelerationMS2, ' m/s2')} detail="Respuesta estimada" />
+        <Stat label="Deflexion punta" value={formatDecimal(mechanical?.bladeTipDeflectionM, ' m')} detail="Pala bajo carga" />
+        <Stat label="Vibracion" value={formatDecimal(scada?.vibrationMmS, ' mm/s')} detail="Eje principal" />
+        <Stat label="Rotor" value={`${rpm} rpm`} detail={`Gearbox out ${formatDecimal(mechanical?.gearboxOutputRpm, ' rpm')}`} />
+      </div>
+      <div className="thermal-note">
+        <span className="hot-dot mechanical-dot" />
+        <p>Estas variables son estimaciones calculadas desde generacion ESIOS, factor de carga, rpm equivalente y variacion operativa.</p>
+      </div>
+    </section>
+  );
+}
+
 export default function Dashboard({
   windData,
   error,
@@ -502,6 +577,8 @@ export default function Dashboard({
   const [showYawPanel, setShowYawPanel] = useState(false);
   const [showPowerPanel, setShowPowerPanel] = useState(false);
   const [showOperationPanel, setShowOperationPanel] = useState(false);
+  const [showModelPanel, setShowModelPanel] = useState(false);
+  const [showMechanicalPanel, setShowMechanicalPanel] = useState(false);
   const [isDashboardCollapsed, setIsDashboardCollapsed] = useState(false);
   const windMw = windData?.windMw ?? 0;
   const share = (windData?.share ?? 0) * 100;
@@ -539,6 +616,8 @@ export default function Dashboard({
             setShowYawPanel(false);
             setShowPowerPanel(false);
             setShowOperationPanel(false);
+            setShowModelPanel(false);
+            setShowMechanicalPanel(false);
           }
         }}
         aria-expanded={!isDashboardCollapsed}
@@ -733,6 +812,38 @@ export default function Dashboard({
             <small>Estres y movimiento</small>
           </span>
         </label>
+        <button
+          type="button"
+          className="detail-action"
+          onClick={() => {
+            setShowThermalPanel(false);
+            setShowPitchPanel(false);
+            setShowYawPanel(false);
+            setShowPowerPanel(false);
+            setShowOperationPanel(false);
+            setShowMechanicalPanel(false);
+            setShowModelPanel((current) => !current);
+          }}
+          aria-label="Mostrar parametros del modelo"
+        >
+          Modelo
+        </button>
+        <button
+          type="button"
+          className="detail-action"
+          onClick={() => {
+            setShowThermalPanel(false);
+            setShowPitchPanel(false);
+            setShowYawPanel(false);
+            setShowPowerPanel(false);
+            setShowOperationPanel(false);
+            setShowModelPanel(false);
+            setShowMechanicalPanel((current) => !current);
+          }}
+          aria-label="Mostrar variables mecanicas"
+        >
+          Mecanica
+        </button>
         <div className="power-core" aria-hidden="true">
           <span style={{ transform: `scaleX(${Math.max(0.08, powerPercent / 100)})` }} />
         </div>
@@ -752,6 +863,14 @@ export default function Dashboard({
     <WindYawPanel scada={scada} open={showYawPanel} onClose={() => setShowYawPanel(false)} />
     <PowerCurvePanel scada={scada} open={showPowerPanel} onClose={() => setShowPowerPanel(false)} />
     <OperationModePanel scada={scada} open={showOperationPanel} onClose={() => setShowOperationPanel(false)} />
+    <ModelParametersPanel open={showModelPanel} onClose={() => setShowModelPanel(false)} />
+    <MechanicalVariablesPanel
+      mechanical={mechanical}
+      scada={scada}
+      rpm={rpm}
+      open={showMechanicalPanel}
+      onClose={() => setShowMechanicalPanel(false)}
+    />
     </>
   );
 }

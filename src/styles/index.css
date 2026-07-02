@@ -37,9 +37,9 @@ button {
   min-height: 640px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 42%, rgba(96, 255, 205, 0.13), transparent 28%),
-    linear-gradient(180deg, rgba(155, 190, 211, 0.42), rgba(71, 97, 75, 0.5) 72%),
-    #9fbfd1;
+    radial-gradient(circle at 50% 42%, rgba(120, 216, 255, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(150, 197, 222, 0.5), rgba(18, 98, 118, 0.58) 74%),
+    #7fb4cc;
 }
 
 .scene-wrap {
@@ -1723,6 +1723,70 @@ button.scada-card {
   margin: 0;
 }
 
+.model-panel,
+.mechanical-panel {
+  height: auto;
+  min-height: 330px;
+  max-height: min(520px, calc(100vh - 44px));
+}
+
+.model-param-list {
+  display: grid;
+  gap: 7px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.model-param-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.92fr) minmax(0, 1.08fr);
+  gap: 10px;
+  align-items: center;
+  padding: 9px 10px;
+  border: 1px solid rgba(132, 255, 222, 0.12);
+  border-radius: 8px;
+  background: rgba(116, 255, 212, 0.055);
+}
+
+.model-param-row span {
+  color: rgba(229, 244, 240, 0.64);
+  font-size: 0.72rem;
+}
+
+.model-param-row strong {
+  color: #f7fffc;
+  font-size: 0.82rem;
+  line-height: 1.2;
+}
+
+.mechanical-variable-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.mechanical-variable-grid .stat {
+  min-height: 72px;
+  padding: 9px 10px;
+  border: 1px solid rgba(120, 216, 255, 0.15);
+  border-radius: 8px;
+  background: rgba(82, 165, 255, 0.062);
+}
+
+.mechanical-variable-grid .stat strong {
+  font-size: clamp(0.84rem, 1vw, 1.02rem);
+}
+
+.model-dot {
+  background: #79ffd6;
+  box-shadow: 0 0 16px rgba(121, 255, 214, 0.82);
+}
+
+.mechanical-dot {
+  background: #78d8ff;
+  box-shadow: 0 0 16px rgba(120, 216, 255, 0.82);
+}
+
 .hot-dot {
   width: 10px;
   height: 10px;
@@ -1911,6 +1975,15 @@ button.scada-card {
   color: #f4fffb;
   background: rgba(122, 255, 219, 0.1);
   cursor: pointer;
+}
+
+.dashboard-actions .detail-action {
+  width: auto;
+  min-width: 82px;
+  padding: 0 10px;
+  color: rgba(235, 255, 248, 0.9);
+  font-size: 0.72rem;
+  font-weight: 760;
 }
 
 .dashboard-actions button:disabled {

@@ -116,6 +116,20 @@ export function estimateMechanicalLoads(currentData, previousData) {
   const mechanicalLoadPercent = Math.round(
     Math.min(100, loadFactor * 72 + variationFactor * 22 + shareFactor * 6),
   );
+  const rpm = currentData?.rpm ?? estimateRepresentativeRotorRpm(loadFactor);
+  const ratedPowerMw = REPRESENTATIVE_TURBINE_RATED_MW;
+  const estimatedPowerMw = ratedPowerMw * loadFactor;
+  const angularVelocityRadS = Math.max(0.18, (rpm * Math.PI * 2) / 60);
+  const torqueMNm = estimatedPowerMw / angularVelocityRadS;
+  const thrustKN = Math.round(180 + loadFactor * 720 + variationFactor * 210);
+  const bladeRootMomentMNm = Number((4.2 + loadFactor * 10.8 + variationFactor * 2.6).toFixed(2));
+  const towerForeAftMm = Number((18 + loadFactor * 74 + variationFactor * 24).toFixed(1));
+  const towerLateralMm = Number((10 + loadFactor * 42 + variationFactor * 30).toFixed(1));
+  const nacelleAccelerationMS2 = Number((0.018 + loadFactor * 0.18 + variationFactor * 0.11).toFixed(3));
+  const bladeTipDeflectionM = Number((1.2 + loadFactor * 5.8 + variationFactor * 1.4).toFixed(2));
+  const drivetrainTorqueMNm = Number(torqueMNm.toFixed(2));
+  const gearboxInputRpm = rpm;
+  const gearboxOutputRpm = Math.round(rpm * 97);
 
   return {
     loadFactor,
@@ -124,6 +138,15 @@ export function estimateMechanicalLoads(currentData, previousData) {
     towerTorsionDeg,
     bladeRootFlexDeg,
     mechanicalLoadPercent,
+    thrustKN,
+    bladeRootMomentMNm,
+    towerForeAftMm,
+    towerLateralMm,
+    nacelleAccelerationMS2,
+    bladeTipDeflectionM,
+    drivetrainTorqueMNm,
+    gearboxInputRpm,
+    gearboxOutputRpm,
     state:
       variationFactor > 0.55
         ? 'Carga variable'
