@@ -2371,12 +2371,29 @@ button.scada-card {
   .dashboard-collapse-toggle {
     top: 8px;
     right: 8px;
+    z-index: 8;
+    width: 42px;
     min-height: 38px;
+    padding: 7px;
+    justify-content: center;
+    background: rgba(5, 18, 20, 0.96);
+    box-shadow:
+      0 10px 28px rgba(4, 13, 11, 0.32),
+      inset 0 0 18px rgba(122, 255, 219, 0.12);
+  }
+
+  .dashboard-collapse-toggle span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 
   .dashboard-title {
     align-items: flex-start;
-    padding-right: 86px;
+    padding-right: 48px;
   }
 
   .status-icon {
