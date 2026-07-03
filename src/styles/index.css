@@ -2239,6 +2239,10 @@ button.scada-card {
     inset: 0 0 34svh;
   }
 
+  .app-shell:has(.dashboard.collapsed) .scene-wrap {
+    inset: 0;
+  }
+
   .dashboard {
     left: max(10px, env(safe-area-inset-left));
     right: max(10px, env(safe-area-inset-right));
@@ -2365,7 +2369,15 @@ button.scada-card {
   }
 
   .dashboard.collapsed {
+    border-color: transparent;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
     transform: translateY(calc(100% - 46px));
+  }
+
+  .dashboard.collapsed::before {
+    opacity: 0;
   }
 
   .dashboard-collapse-toggle {
