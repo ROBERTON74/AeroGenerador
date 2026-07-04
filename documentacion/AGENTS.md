@@ -18,7 +18,7 @@ La persona que abra la aplicacion vera en pantalla:
 
 - Un aerogenerador 3D realista.
 - Aspas girando de forma suave.
-- Terreno, cielo y ambiente visual.
+- Mar, cielo, barco, turbinas de fondo y ambiente visual offshore.
 - Un dashboard pequeno en la parte inferior.
 - Un control para minimizar el dashboard hacia abajo y recuperar la vista completa del aerogenerador.
 - Datos reales actualizados sobre produccion eolica.
@@ -49,6 +49,17 @@ La animacion del aerogenerador sera una representacion visual basada en esos dat
 Los indicadores SCADA derivados son didacticos y estimados a partir de datos agregados de ESIOS/REData. No deben presentarse como telemetria real de un aerogenerador individual.
 
 ## Registro de avance actual
+
+Fecha de registro: 4 de julio de 2026.
+
+Estado de despliegue y documentacion:
+
+- Aplicacion publicada en Vercel en `https://aerogenerador-robert.vercel.app`.
+- Repositorio GitHub sincronizado en `https://github.com/ROBERTON74/AeroGenerador.git`.
+- Escena principal actualizada a entorno offshore con aerogenerador en el mar.
+- Dashboard responsive revisado para escritorio, tablet y movil.
+- Al minimizar el dashboard en movil, la escena 3D ocupa toda la pantalla y se ve el mar animado.
+- Documentacion de Vercel, rollback, tecnologias y progreso final actualizada.
 
 Fecha de registro: 30 de junio de 2026.
 
@@ -90,7 +101,7 @@ Estado alcanzado:
 - Ventanas desplegables uniformes para potencia nominal, curva de potencia, rosa de viento/yaw, pitch/condicion y temperaturas.
 - Cada ventana tiene animacion propia y se puede cerrar o abrir desde su tarjeta.
 - El dashboard puede minimizarse hacia abajo para ver el aerogenerador completo.
-- La escena principal muestra sombras reforzadas, incluida la sombra visible de las palas sobre el suelo.
+- La escena principal se reviso posteriormente hacia un entorno offshore con mar animado, barco y turbinas de fondo.
 - La animacion principal integra Three.js y `useFrame` para mejorar la respuesta fisica visual. El punto de retorno anterior queda documentado en `nota_animacion_threejs.md`.
 - La documentacion principal incluye instrucciones de reversion por modulo y tareas pendientes.
 - Se creo el archivo raiz `tecnologias_resumen.md` como resumen directo de lenguajes, tecnologias, APIs, scripts, componentes y estado del proyecto.
@@ -149,14 +160,13 @@ Frontend:
 - @react-three/fiber
 - @react-three/drei
 - Animacion visual con Three.js y `useFrame`
-- Tailwind CSS
+- Tailwind CSS como dependencia de estilos base
 
 Backend opcional:
 
 - Node.js
-- Express
-- Axios
-- WebSocket o polling
+- Funciones serverless de Vercel para proxies HTTP en produccion
+- Polling cada cinco minutos para refresco de datos
 
 API de datos:
 
@@ -192,6 +202,5 @@ wind-turbine-dashboard/
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 
 

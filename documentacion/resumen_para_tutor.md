@@ -4,7 +4,7 @@
 
 Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
-He desarrollado la aplicacion web **AeroGenerador** como un aerogenerador 3D interactivo en movimiento, usando React, Vite y Three.js. La escena representa un molino eolico funcionando, con terreno, cielo, sombras, aspas animadas y un dashboard inferior tipo SCADA con informacion energetica y tecnica.
+He desarrollado la aplicacion web **AeroGenerador** como un aerogenerador 3D interactivo en movimiento, usando React, Vite y Three.js. La version actual representa un aerogenerador offshore funcionando en el mar, con entorno marino, aspas animadas y un dashboard inferior tipo SCADA con informacion energetica y tecnica.
 
 En la version actual he pulido tambien la union visual entre palas y buje, eliminando el saliente frontal del eje para que el rotor se vea continuo durante la animacion.
 
@@ -85,6 +85,5 @@ Para revisar la arquitectura del codigo, mantenimiento futuro y posibles ampliac
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 
 

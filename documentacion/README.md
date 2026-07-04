@@ -217,8 +217,8 @@ Este registro sirve como punto de memoria del proyecto: el modelo web y el model
 Estado actual del proyecto:
 
 - Aplicacion funcionando en Vite/React/Three.js con servidor local configurado en `http://localhost:5177/`.
-- Escena 3D completa con aerogenerador principal, terreno, cielo, nubes, arboles, turbinas de fondo, particulas de viento y animacion de aspas.
-- Sombras reforzadas en la escena principal, incluyendo sombra visible de las palas sobre el suelo.
+- Escena 3D completa con aerogenerador principal offshore, mar animado, espuma, cielo, barco, turbinas de fondo, particulas de viento y animacion de aspas.
+- Entorno marino revisado para que el mar no parezca una superficie de cristal y para que el dashboard movil minimizado deje ver la escena completa.
 - Dashboard inferior con datos agregados de generacion eolica de `Peninsula`, equivalentes derivados, rpm, punta de pala, ultimo dato y fuente de datos.
 - Fuentes de datos configuradas:
   - ESIOS como fuente preferente para generacion eolica en tiempo real si se configura `VITE_ESIOS_API_KEY`.
@@ -303,5 +303,4 @@ Para mantenimiento, escalabilidad y explicacion del codigo creado, consulta [man
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 

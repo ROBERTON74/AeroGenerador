@@ -4,8 +4,6 @@
 
 Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
-Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**, dentro de un contexto academico y de laboratorio de ingenieria.
-
 ## Motivacion principal
 
 La razon principal por la que he desarrollado esta aplicacion web es mi interes por unir tres areas que considero fundamentales dentro de la ingenieria actual: las energias renovables, la visualizacion 3D interactiva y los sistemas de monitorizacion tecnica. Un aerogenerador no es solamente una maquina que gira; es un sistema electromecanico complejo en el que intervienen aerodinamica, control, generacion electrica, mantenimiento, sensores, cargas mecanicas, vibraciones, orientacion, temperatura y conexion con la red.
@@ -139,5 +137,4 @@ Por este motivo considero que el proyecto tiene sentido dentro del **Departament
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 

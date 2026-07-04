@@ -1,25 +1,50 @@
-﻿# Pendiente para manana
+# Estado actual y pendientes
 
-Proyecto: **AeroGenerador**  
-Autor: **Robert Jesus Melendez Nunez**  
+Proyecto: **AeroGenerador**
+Autor: **Robert Jesus Melendez Nunez**
 Destino academico: **Departamento de Robotica de la Universidad Complutense de Madrid**
+Ultima revision: **2026-07-04**
 
-## Estado en el que se deja el proyecto
+## Estado actual del proyecto
 
-La aplicacion ya esta preparada para continuar con la entrega y la subida a GitHub. El proyecto tiene:
+La aplicacion ya esta preparada como prototipo academico web y esta subida a GitHub.
 
-- Aplicacion web Vite / React / Three.js.
-- Dashboard SCADA con datos ESIOS y metricas derivadas.
+Repositorio:
+
+```text
+https://github.com/ROBERTON74/AeroGenerador.git
+```
+
+Rama principal:
+
+```text
+main
+```
+
+URL publica:
+
+```text
+https://aerogenerador-robert.vercel.app
+```
+
+## Lo que ya esta hecho
+
+- Aplicacion Vite / React / Three.js funcionando.
+- Escena principal offshore con aerogenerador en el mar.
+- Mar animado, espuma, barco y turbinas de fondo.
+- Dashboard SCADA con datos de ESIOS/REData y metricas derivadas.
+- Paneles `Modelo` y `Mecanica` documentados.
+- Responsive revisado para escritorio, tablet y movil.
+- Dashboard movil minimizado mostrando la escena del mar por detras.
+- Build comprobada con `npm run build`.
+- Despliegue en Vercel documentado.
+- Rollback de Vercel documentado.
 - Documentacion principal agrupada en `documentacion/`.
 - Imagen anotada del dashboard en `documentacion/assets/dashboard_anotado_flechas.png`.
-- README principal en la raiz del proyecto.
-- Git inicializado localmente.
-- `.gitignore` creado para evitar subir archivos sensibles o innecesarios.
-- Build comprobada correctamente con `npm run build`.
 
-## Cosas importantes que ya quedan protegidas
+## Archivos que no se deben subir
 
-No se debe subir a GitHub:
+No subir nunca:
 
 - `.env`
 - `.env - copia.robert`
@@ -27,84 +52,43 @@ No se debe subir a GitHub:
 - `dist/`
 - archivos `.blend1`
 - logs temporales
-- versiones antiguas pesadas de Blender
+- tokens personales
 
-La API key real de ESIOS debe mantenerse solamente en `.env`.
-
-El archivo que si se puede subir es:
+El archivo permitido para explicar variables es:
 
 ```text
 .env.example
 ```
 
-Ese archivo solo contiene un ejemplo para que otra persona pueda configurar su propio token.
+Ese archivo solo debe contener ejemplos, nunca el token real.
 
-## Pendiente principal para manana
+## Pendientes reales antes de entregar
 
-### 1. Crear repositorio en GitHub
+### 1. Revisar la web publica
 
-Entrar en GitHub y crear un repositorio nuevo, preferiblemente privado, por ejemplo:
-
-```text
-AeroGenerador
-```
-
-No hace falta crear README desde GitHub, porque ya existe un `README.md` en la raiz del proyecto.
-
-Despues copiar el enlace del repositorio, por ejemplo:
+Abrir:
 
 ```text
-https://github.com/usuario/AeroGenerador.git
+https://aerogenerador-robert.vercel.app
 ```
 
-### 2. Conectar el repositorio local con GitHub
+Comprobar:
 
-Cuando ya exista el repositorio remoto, habra que ejecutar:
+- La web abre en ordenador.
+- La web abre en movil.
+- El aerogenerador aparece en el mar.
+- El mar se ve animado y no como cristal fijo.
+- Las aspas giran.
+- El dashboard se puede minimizar.
+- En movil, al minimizar el dashboard, se ve el mar de la escena.
+- Los paneles `Modelo` y `Mecanica` abren correctamente.
 
-```bash
-git remote add origin https://github.com/usuario/AeroGenerador.git
-git branch -M main
-```
-
-### 3. Revisar que archivos se van a subir
-
-Antes del primer commit:
-
-```bash
-git status
-```
-
-Hay que comprobar especialmente que no aparezcan:
-
-- `.env`
-- `.env - copia.robert`
-- `node_modules/`
-- `dist/`
-
-### 4. Hacer el primer commit
-
-Cuando este todo revisado:
-
-```bash
-git add .
-git commit -m "Entrega inicial AeroGenerador"
-```
-
-### 5. Subir a GitHub
-
-```bash
-git push -u origin main
-```
-
-Si GitHub pide iniciar sesion, hacerlo desde el navegador o con GitHub CLI. No se deben escribir contrasenas ni tokens personales dentro de la documentacion ni en el chat.
-
-## Pendiente de revision antes de enviar al tutor
-
-### Revisar la aplicacion en localhost
+### 2. Revisar la app en local
 
 Ejecutar:
 
 ```bash
+npm install
 npm run dev
 ```
 
@@ -114,76 +98,71 @@ Abrir:
 http://localhost:5177/
 ```
 
-Comprobar:
+Comprobar lo mismo que en produccion.
 
-- El aerogenerador carga correctamente.
-- Las aspas giran.
-- El dashboard aparece abajo.
-- El dashboard se puede minimizar.
-- Las tarjetas desplegables funcionan.
-- La conexion con ESIOS aparece correctamente si la API key esta configurada.
-- La actualizacion esta planteada cada cinco minutos.
+### 3. Revisar datos reales
 
-### Revisar documentacion
-
-Documentos principales a revisar:
-
-```text
-documentacion/indice_documentacion_entrega.md
-documentacion/resumen_para_tutor.md
-documentacion/explicacion_dashboard_esios_modelos_matematicos.md
-documentacion/manual_tecnico_codigo_mantenimiento.md
-documentacion/motivacion_y_justificacion_del_proyecto.md
-documentacion/figura_dashboard_anotado.md
-```
-
-Tambien revisar:
-
-```text
-README.md
-```
-
-## Que enviar al tutor
-
-Lo recomendable es enviar:
-
-- Enlace al repositorio de GitHub.
-- Explicacion breve de como abrirlo:
-
-```bash
-npm install
-npm run dev
-```
-
-- URL local:
-
-```text
-http://localhost:5177/
-```
-
-- Aviso de que para usar ESIOS con datos reales hace falta crear `.env` con:
+Si se quiere usar ESIOS en local, crear `.env` con:
 
 ```bash
 VITE_ESIOS_API_KEY=token_personal
 ```
 
-- Indicar que la documentacion esta dentro de:
+Si se quiere usar ESIOS en Vercel, configurar en el panel de Vercel:
 
 ```text
-documentacion/
+ESIOS_API_KEY=token_personal
 ```
 
-## Nota para retomar manana
+Si ESIOS no esta configurado, la app puede seguir funcionando con REData o simulacion local.
 
-Manana lo primero sera:
+### 4. Preparar entrega para tutor
 
-1. Crear el repositorio privado en GitHub.
-2. Pasar el enlace del repositorio remoto.
-3. Revisar `git status`.
-4. Hacer el primer commit.
-5. Subir el proyecto.
-6. Abrir GitHub y comprobar que se ve bien el README y la carpeta `documentacion/`.
+Enviar o presentar:
+
+- URL publica de Vercel.
+- Enlace al repositorio GitHub.
+- Carpeta `documentacion/`.
+- Documento `resumen_para_tutor.md`.
+- Documento `explicacion_dashboard_esios_modelos_matematicos.md`.
+- Documento `manual_tecnico_codigo_mantenimiento.md`.
+- Documento `despliegue_vercel.md`.
+- Documento `rollback_vercel.md`.
+
+## Comando rapido de comprobacion
+
+Antes de entregar, ejecutar:
+
+```bash
+npm run build
+git status
+```
+
+Resultado esperado:
+
+```text
+Build correcta
+Git sin cambios pendientes, salvo cambios nuevos de documentacion que se quieran confirmar
+```
+
+## Nota de rollback
+
+Si algo falla en la version publica, revisar:
+
+```text
+documentacion/rollback_vercel.md
+```
+
+El punto base antes de preparar Vercel quedo registrado como:
+
+```text
+a948b1d
+```
+
+El ultimo commit documentado de despliegue responsive fue:
+
+```text
+674e9cb Show full sea scene when mobile dashboard is collapsed
+```
 
 **Autor:** Robert Jesus Melendez Nunez
-
-

@@ -38,7 +38,7 @@ Se utiliza para:
 - Torre, base, buje, palas y gondola.
 - Union visual de palas con el buje central, sin saliente frontal del eje.
 - Materiales metalicos, translucidos y emisivos.
-- Sombras reales y sombra visual reforzada de las palas sobre el suelo.
+- Entorno offshore con mar animado, espuma, barco y turbinas de fondo.
 - Flechas, anillos y zonas de esfuerzo.
 - Vista interna de la gondola con eje, rodamientos, engranajes y generador.
 - Movimiento de rotor, aspas, engranajes y bobinas.
@@ -439,5 +439,4 @@ Para que el proyecto pueda escalarse o mantenerse mas adelante, dejo preparado e
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 

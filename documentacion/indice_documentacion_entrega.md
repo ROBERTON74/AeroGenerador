@@ -4,8 +4,6 @@
 
 Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
-Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**, dentro de un contexto academico y de laboratorio de ingenieria.
-
 ## Objetivo del indice
 
 Este indice organiza la documentacion de **AeroGenerador** como una entrega tecnica de nivel alto, cercana a una memoria de trabajo final o proyecto academico avanzado. La idea es que cualquier tutor, profesor o tecnico del laboratorio pueda entender:
@@ -191,9 +189,21 @@ Finalidad:
 
 Registra el progreso final de publicacion, responsive movil/escritorio, proxies serverless, verificaciones realizadas y estado final de la URL publica.
 
+### 15. Revision de documentacion
+
+Archivo:
+
+```text
+revision_documentacion_2026-07-04.md
+```
+
+Finalidad:
+
+Registra la revision general de la carpeta `documentacion/`, las correcciones realizadas y los documentos clave que se recomiendan para entregar.
+
 ## Documentos principales para entregar
 
-Para una entrega academica formal, considero principales estos cuatro:
+Para una entrega academica formal, considero principales estos documentos:
 
 ```text
 README.md
@@ -205,6 +215,7 @@ manual_tecnico_codigo_mantenimiento.md
 despliegue_vercel.md
 rollback_vercel.md
 progreso_despliegue_responsive_2026-07-03.md
+revision_documentacion_2026-07-04.md
 ```
 
 Los demas documentos funcionan como anexos tecnicos o material de apoyo.
@@ -223,5 +234,4 @@ Esta separacion entre dato real y dato derivado es esencial para que el proyecto
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 

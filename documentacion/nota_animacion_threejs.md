@@ -18,7 +18,7 @@ La escena aplica una respuesta visual mecanica mediante calculos propios:
 - Torsion visual de la estructura.
 - Flexion de pala calculada desde las metricas mecanicas estimadas.
 - Union visual refinada entre palas y buje, sin pieza frontal sobresaliente en el eje.
-- Sombras reforzadas, incluyendo sombra visual de palas sobre el suelo.
+- Integracion visual del rotor y animacion principal con el entorno 3D actual.
 - Vista interna de gondola y zonas de esfuerzo cuando activo el analisis mecanico.
 
 ## Archivos implicados
@@ -58,5 +58,4 @@ La build debe compilar correctamente. El aviso de bundle grande es esperable por
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 

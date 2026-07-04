@@ -101,8 +101,8 @@ El token no debe mostrarse en el video, ni subirse a repositorios.
 ## Que se ve en pantalla
 
 - Aerogenerador 3D con aspas en movimiento.
-- Escena ambiental con terreno, cielo, nubes, turbinas de fondo y particulas de viento.
-- Sombra de torre y palas sobre el suelo.
+- Escena offshore con mar animado, espuma, cielo, barco, turbinas de fondo y particulas de viento.
+- Aerogenerador integrado visualmente en un entorno marino.
 - Dashboard inferior con datos electricos reales y valores derivados.
 - Boton para minimizar el dashboard y ver el molino completo.
 - Panel de analisis mecanico con zonas de tension y vista interna.
@@ -203,6 +203,5 @@ No es telemetria de una turbina individual: es un prototipo de visualizacion tec
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 
 

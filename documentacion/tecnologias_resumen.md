@@ -82,8 +82,8 @@ ESIOS_API_KEY
 
 - Aerogenerador 3D animado.
 - Rotor visualmente refinado, con palas integradas en el buje y sin saliente frontal del eje.
-- Escena con terreno, cielo, nubes, arboles, turbinas de fondo y particulas de viento.
-- Sombras reforzadas, incluyendo sombra visible de las palas sobre el suelo.
+- Escena offshore con mar animado, espuma, barco, cielo, turbinas de fondo y particulas de viento.
+- Entorno visual preparado para que el aerogenerador aparezca integrado en el mar.
 - Animacion visual con Three.js para aportar masa, torque, inercia y amortiguacion a la oscilacion principal.
 - Dashboard con datos de generacion eolica ESIOS, equivalentes derivados, rpm, punta de pala y fuente del dato.
 - Calibracion energetica mediante factor de carga: generacion eolica ESIOS dividida entre `31.679 MW` de potencia eolica instalada de referencia.
@@ -180,5 +180,4 @@ Fecha de registro: 28 de mayo de 2026.
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 

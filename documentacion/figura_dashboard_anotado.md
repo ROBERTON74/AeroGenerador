@@ -4,8 +4,6 @@
 
 Este proyecto lo he planteado, organizado y desarrollado como autor. He definido la arquitectura general, la integracion de datos, la escena 3D, el dashboard, la documentacion y los criterios tecnicos de entrega. Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**.
 
-Este trabajo esta destinado al **Departamento de Robotica de la Universidad Complutense de Madrid**, dentro de un contexto academico y de laboratorio de ingenieria.
-
 ## Figura general
 
 ![Dashboard anotado de AeroGenerador](<./assets/dashboard_anotado_flechas.png>)
@@ -74,5 +72,4 @@ La figura tambien ayuda a defender que existe una separacion clara entre dato re
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 
