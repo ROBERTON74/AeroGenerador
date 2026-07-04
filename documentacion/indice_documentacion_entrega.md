@@ -155,6 +155,42 @@ Finalidad:
 
 Registro interno de objetivos, decisiones y estado del proyecto. Sirve como memoria de contexto para futuras sesiones de desarrollo.
 
+### 12. Despliegue en Vercel
+
+Archivo:
+
+```text
+despliegue_vercel.md
+```
+
+Finalidad:
+
+Documenta como se publico la aplicacion en Vercel, que URL publica se usa, que proyecto de Vercel se creo, que variables de entorno hacen falta y como se comprobaron la web y los proxies.
+
+### 13. Rollback de Vercel
+
+Archivo:
+
+```text
+rollback_vercel.md
+```
+
+Finalidad:
+
+Explica como volver atras si el despliegue publico falla, tanto desde Git como desde el panel de Vercel.
+
+### 14. Progreso final de despliegue y responsive
+
+Archivo:
+
+```text
+progreso_despliegue_responsive_2026-07-03.md
+```
+
+Finalidad:
+
+Registra el progreso final de publicacion, responsive movil/escritorio, proxies serverless, verificaciones realizadas y estado final de la URL publica.
+
 ## Documentos principales para entregar
 
 Para una entrega academica formal, considero principales estos cuatro:
@@ -166,6 +202,9 @@ motivacion_y_justificacion_del_proyecto.md
 explicacion_dashboard_esios_modelos_matematicos.md
 figura_dashboard_anotado.md
 manual_tecnico_codigo_mantenimiento.md
+despliegue_vercel.md
+rollback_vercel.md
+progreso_despliegue_responsive_2026-07-03.md
 ```
 
 Los demas documentos funcionan como anexos tecnicos o material de apoyo.
@@ -184,6 +223,5 @@ Esta separacion entre dato real y dato derivado es esencial para que el proyecto
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 
 

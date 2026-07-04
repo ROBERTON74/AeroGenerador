@@ -85,17 +85,102 @@ El CSS propio se usa para:
 - Botones, estados, checkbox y barra de potencia.
 - Adaptacion responsive para pantallas pequenas.
 
+### CSS responsive propio
+
+La mayor parte del responsive final esta implementado en `src/styles/index.css`.
+
+Se usa para adaptar la misma aplicacion a:
+
+- escritorio
+- portatil
+- tablet
+- movil
+- ventanas estrechas
+
+En movil, el dashboard se comporta como un panel inferior con scroll interno. Cuando el dashboard se minimiza, se vuelve transparente y la escena 3D ocupa toda la pantalla para que se vea el mar animado detras.
+
+Regla clave:
+
+```css
+.app-shell:has(.dashboard.collapsed) .scene-wrap {
+  inset: 0;
+}
+```
+
+Tambien se usan zonas seguras de dispositivos moviles:
+
+```css
+env(safe-area-inset-top)
+env(safe-area-inset-right)
+env(safe-area-inset-bottom)
+env(safe-area-inset-left)
+```
+
 ### Lucide React
 
 `lucide-react` proporciona iconos SVG para la interfaz. Se usa en el dashboard para iconos como viento, ubicacion, estado de conexion y refresco de datos.
 
 ## Datos y servicios
 
+### Vercel
+
+Vercel se usa para publicar la aplicacion en internet con HTTPS y una URL publica:
+
+```text
+https://aerogenerador-robert.vercel.app
+```
+
+El despliegue se realiza como aplicacion Vite:
+
+```text
+Build command: npm run build
+Output directory: dist
+```
+
+Esto permite que la app se abra desde ordenadores, moviles y tablets sin depender de que el Mac mini este encendido.
+
+### Funciones serverless de Vercel
+
+En produccion, las APIs externas se consultan mediante funciones serverless de Vercel:
+
+```text
+api/_proxy.js
+api/esios.js
+api/ree.js
+api/open-meteo.js
+```
+
+Estas funciones permiten mantener las rutas internas:
+
+```text
+/ree-api
+/esios-api
+/open-meteo-api
+```
+
+En Vercel, `vercel.json` reescribe esas rutas hacia las funciones:
+
+```text
+/ree-api/:path* -> /api/ree?path=:path*
+/esios-api/:path* -> /api/esios?path=:path*
+/open-meteo-api/:path* -> /api/open-meteo?path=:path*
+```
+
+La variable recomendada para ESIOS en produccion es:
+
+```text
+ESIOS_API_KEY
+```
+
+De esta forma, el token queda en servidor y no se escribe dentro del codigo fuente.
+
 ### ESIOS API
 
 Uso ESIOS como fuente preferente para datos de generacion eolica en tiempo real, mediante el indicador `551`.
 
 Si configuro `VITE_ESIOS_API_KEY`, la aplicacion intenta consultar datos recientes de generacion eolica y vincularlos a la animacion del aerogenerador.
+
+En produccion con Vercel, la variable preferida es `ESIOS_API_KEY`. `VITE_ESIOS_API_KEY` queda como opcion de desarrollo local.
 
 La API key no da acceso a sensores de un aerogenerador individual. Permite consultar el dato real agregado del sistema electrico. En este proyecto se usa el indicador `551`, que devuelve generacion eolica en tiempo real en MW y ambito `Peninsula`.
 
@@ -242,6 +327,24 @@ Archivos Blender anteriores utiles como historial:
 
 ## Registro tecnico de avance
 
+### 3 de julio de 2026
+
+- La app queda publicada en Vercel con URL publica `https://aerogenerador-robert.vercel.app`.
+- Se verifica que la web responde `HTTP 200`.
+- Se verifica que REData responde por el proxy `/ree-api` usando peticiones `GET`.
+- Se documenta que las funciones serverless finales son simples: `api/ree.js`, `api/esios.js` y `api/open-meteo.js`.
+- Se ajusta el responsive movil para que, al minimizar el dashboard, la escena 3D ocupe toda la pantalla.
+- Se corrige el caso en que el dashboard minimizado dejaba una franja de otro color; ahora debe verse el mar animado detras.
+- Se registra el ultimo commit responsive: `674e9cb Show full sea scene when mobile dashboard is collapsed`.
+
+### 2 de julio de 2026
+
+- Se prepara el despliegue Vercel con `vercel.json`.
+- Se crean proxies serverless para REData, ESIOS y Open-Meteo.
+- Se documenta rollback en `rollback_vercel.md`.
+- Se documentan pasos de despliegue en `despliegue_vercel.md`.
+- Se ajusta el layout responsive de dashboard para escritorio, tablet y movil.
+
 ### 31 de mayo de 2026
 
 Dejo registrado que AeroGenerador tiene dos entregables vivos:
@@ -336,6 +439,5 @@ Para que el proyecto pueda escalarse o mantenerse mas adelante, dejo preparado e
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 
 

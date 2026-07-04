@@ -10,9 +10,11 @@ Este proyecto lo he planteado, organizado y desarrollado como autor. He definido
 
 - Aerogenerador 3D en movimiento con aspas animadas.
 - Union visual refinada entre palas y buje, sin pieza frontal sobresaliente en el eje del rotor.
-- Escena ambiental con terreno, cielo, arboles, turbinas de fondo, particulas de viento y efectos de iluminacion.
+- Escena offshore con aerogenerador en el mar, barco, mar animado, espuma, turbinas de fondo, particulas de viento y efectos de iluminacion.
 - Dashboard inferior con datos de produccion eolica, factor de carga o porcentaje del mix cuando REData lo aporta, rpm estimadas, velocidad de punta de pala y ultimo dato recibido.
+- Paneles desplegables `Modelo` y `Mecanica`, con parametros de la turbina y variables mecanicas estimadas.
 - Boton para minimizar el dashboard hacia abajo y dejar visible el aerogenerador completo, con tirador para recuperarlo.
+- Adaptacion responsive para escritorio, tablet y movil. En movil, al minimizar el dashboard, se ve el mar de la escena completa en lugar de un fondo separado.
 - Conexion a datos reales mediante ESIOS, con respaldo publico de REData si ESIOS no responde.
 - Modo de simulacion local si las APIs no responden.
 - Modo "Analisis mecanico" activable desde un checkbox.
@@ -34,6 +36,26 @@ Este proyecto lo he planteado, organizado y desarrollado como autor. He definido
 npm install
 npm run dev
 ```
+
+## Version publicada
+
+La version publica para abrir desde cualquier ordenador o movil esta desplegada en Vercel:
+
+```text
+https://aerogenerador-robert.vercel.app
+```
+
+Vercel sirve la aplicacion React compilada y usa funciones serverless para mantener los proxies de datos:
+
+- `/ree-api` hacia REData / Red Electrica.
+- `/esios-api` hacia ESIOS, usando la variable privada `ESIOS_API_KEY` cuando se configure en Vercel.
+- `/open-meteo-api` hacia Open-Meteo, disponible como respaldo tecnico opcional.
+
+La publicacion en Vercel esta documentada en:
+
+- [despliegue_vercel.md](<./despliegue_vercel.md>)
+- [rollback_vercel.md](<./rollback_vercel.md>)
+- [progreso_despliegue_responsive_2026-07-03.md](<./progreso_despliegue_responsive_2026-07-03.md>)
 
 ## Abrir en localhost
 
@@ -111,6 +133,27 @@ El dashboard incluye una capa de indicadores derivados para dar una lectura mas 
 Estos indicadores son estimaciones visuales y didacticas derivadas de ESIOS. No sustituyen datos SCADA reales de un aerogenerador fisico. Las temperaturas y vibraciones se mantienen acotadas en rangos prudentes: gearbox 35-82 C, generador 38-92 C, aceite 32-72 C y vibracion 0,35-3,2 mm/s.
 
 ## Registro de avance
+
+### 3 de julio de 2026
+
+- Se publica la aplicacion en Vercel para poder abrirla desde ordenador, movil o tablet sin depender del Mac mini encendido.
+- URL publica verificada: `https://aerogenerador-robert.vercel.app`.
+- Se configuran proxies serverless para REData, ESIOS y Open-Meteo.
+- Se verifica que REData responde correctamente en produccion mediante GET.
+- Se deja preparada la variable privada `ESIOS_API_KEY` para datos ESIOS en Vercel, sin escribir el token real en el repositorio.
+- Se mejora la vista movil: el dashboard se adapta a pantallas estrechas y, al minimizarlo, la escena del mar ocupa toda la pantalla.
+- Se documenta el rollback: version local anterior, commits importantes y despliegues de Vercel a los que se puede volver.
+- Se crea el documento [progreso_despliegue_responsive_2026-07-03.md](<./progreso_despliegue_responsive_2026-07-03.md>) como registro final de despliegue, verificacion y responsive.
+
+### 2 de julio de 2026
+
+- La escena principal pasa de entorno terrestre a entorno offshore.
+- El aerogenerador queda situado en el mar con entorno marino, barco, turbinas de fondo, mar animado y espuma.
+- Se ajusta visualmente el buje y la raiz de las palas para que no parezcan atravesar el rotor.
+- Se anaden los paneles `Modelo` y `Mecanica` al dashboard.
+- Se incorporan calculos mecanicos estimados: empuje, torque, momento en raiz de pala, movimiento frontal/lateral de torre, aceleracion, deflexion y rpm de gearbox.
+- Se conserva una copia de rollback del entorno anterior en tierra: `src/components/WindTurbineScene.rollback_land.jsx`.
+- Se anaden videos de referencia en la raiz del proyecto para comparar visualmente el avance.
 
 ### 30 de junio de 2026
 
@@ -260,6 +303,5 @@ Para mantenimiento, escalabilidad y explicacion del codigo creado, consulta [man
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 
 

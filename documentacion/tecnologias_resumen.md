@@ -30,6 +30,7 @@ Resumen de las tecnologias, lenguajes, librerias, APIs y herramientas que he usa
 - ESIOS API: fuente preferente para generacion eolica si se configura `VITE_ESIOS_API_KEY`.
 - REData / Red Electrica de Espana: respaldo publico sin token para datos agregados de generacion electrica.
 - Open-Meteo API: recurso meteorologico opcional sin token; no alimenta el dashboard principal en el estado actual.
+- Vercel Serverless Functions: proxies de produccion para consultar ESIOS, REData y Open-Meteo desde la URL publica.
 
 ## Proxies locales configurados
 
@@ -38,6 +39,26 @@ Configurados en `vite.config.js`:
 - `/ree-api` hacia `https://apidatos.ree.es`.
 - `/esios-api` hacia `https://api.esios.ree.es`.
 - `/open-meteo-api` hacia `https://api.open-meteo.com`.
+
+## Proxies de produccion en Vercel
+
+Configurados con `vercel.json` y funciones en `api/`:
+
+- `/ree-api/:path*` hacia `api/ree.js`.
+- `/esios-api/:path*` hacia `api/esios.js`.
+- `/open-meteo-api/:path*` hacia `api/open-meteo.js`.
+
+La URL publica actual es:
+
+```text
+https://aerogenerador-robert.vercel.app
+```
+
+En produccion, la variable recomendada para ESIOS es:
+
+```text
+ESIOS_API_KEY
+```
 
 ## Scripts npm
 
@@ -75,6 +96,7 @@ Configurados en `vite.config.js`:
   - Pitch y condicion.
   - Temperaturas de gearbox, aceite y generador.
 - Boton para minimizar el dashboard y dejar visible el aerogenerador completo.
+- En movil, al minimizar el dashboard, el panel se vuelve transparente y la escena 3D ocupa toda la pantalla para que se vea el mar animado.
 - Documentacion de reversion para poder quitar modulos concretos si el resultado no convence.
 - Documento `nota_animacion_threejs.md` para explicar como simplificar la animacion visual si hace falta.
 
@@ -105,6 +127,21 @@ Si Blender abre una escena vacia o una version anterior, cargo explicitamente es
 - ESIOS requiere token personal para consultar datos con mayor frecuencia; el token se guarda en `.env` como `VITE_ESIOS_API_KEY`.
 
 ## Estado registrado
+
+Fecha de registro: 3 de julio de 2026.
+
+- Proyecto desplegado en Vercel con URL publica `https://aerogenerador-robert.vercel.app`.
+- Verificada respuesta `HTTP 200` de la web publica.
+- Verificada consulta `GET` de REData por `/ree-api` con respuesta `HTTP 200`.
+- Ajustado responsive movil para que el dashboard minimizado no deje una franja de color y permita ver el mar animado.
+- Ultimo commit de esta fase: `674e9cb Show full sea scene when mobile dashboard is collapsed`.
+
+Fecha de registro: 2 de julio de 2026.
+
+- Preparado despliegue Vercel con `vercel.json`.
+- Creadas funciones serverless de proxy para ESIOS, REData y Open-Meteo.
+- Documentado rollback de Vercel.
+- Documentados pasos de despliegue y variables de entorno.
 
 Fecha de registro: 31 de mayo de 2026.
 
@@ -143,6 +180,5 @@ Fecha de registro: 28 de mayo de 2026.
 ---
 
 **Autor:** Robert Jesus Melendez Nunez
-
 
 

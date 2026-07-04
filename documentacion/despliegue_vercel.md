@@ -1,6 +1,8 @@
 # Despliegue en Vercel
 
-Fecha: 2026-07-02
+Fecha inicial: 2026-07-02
+
+Ultima actualizacion: 2026-07-03
 
 ## Repositorio
 
@@ -51,13 +53,13 @@ dpl_746xBqBvZLgQGTfqX569c1JRf2Vf
 Deployment id final verificado:
 
 ```text
-dpl_C5UmzAnVCj8GoYZV6tMXByDkDTqE
+dpl_9vE8Ert6aZXE1WkUvfAxiNd6aS7A
 ```
 
 URL de inspeccion:
 
 ```text
-https://vercel.com/roberton74s-projects/aerogenerador-robert/C5UmzAnVCj8GoYZV6tMXByDkDTqE
+https://vercel.com/roberton74s-projects/aerogenerador-robert/9vE8Ert6aZXE1WkUvfAxiNd6aS7A
 ```
 
 Estado:
@@ -72,6 +74,14 @@ Comprobacion final:
 https://aerogenerador-robert.vercel.app -> HTTP 200
 /ree-api/... -> HTTP 200 con JSON de REData
 ```
+
+Ultimo ajuste desplegado:
+
+```text
+674e9cb - Show full sea scene when mobile dashboard is collapsed
+```
+
+Este ajuste hace que, en movil, al minimizar el dashboard se vea la escena completa del mar y no una franja de color del panel.
 
 Nota: el despliegue manual funciono. La CLI no pudo conectar automaticamente el repositorio GitHub al proyecto Vercel. Para despliegues automaticos desde `main`, conectar el repositorio desde el panel web de Vercel en `Settings > Git`.
 

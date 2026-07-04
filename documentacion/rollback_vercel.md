@@ -1,6 +1,8 @@
 # Rollback despliegue Vercel
 
-Fecha: 2026-07-02
+Fecha inicial: 2026-07-02
+
+Ultima actualizacion: 2026-07-03
 
 Commit base antes de preparar Vercel:
 
@@ -32,7 +34,13 @@ https://aerogenerador-robert.vercel.app
 Deployment id final verificado:
 
 ```text
-dpl_C5UmzAnVCj8GoYZV6tMXByDkDTqE
+dpl_9vE8Ert6aZXE1WkUvfAxiNd6aS7A
+```
+
+Ultimo commit responsive desplegado:
+
+```text
+674e9cb - Show full sea scene when mobile dashboard is collapsed
 ```
 
 ## Variables necesarias en Vercel
