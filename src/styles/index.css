@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Base visual global: tipografia, suavizado y fondo inicial antes de cargar el canvas. */
 :root {
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -32,6 +33,7 @@ button {
   touch-action: manipulation;
 }
 
+/* Contenedor principal: la escena ocupa pantalla completa y el dashboard flota encima. */
 .app-shell {
   position: relative;
   width: 100vw;
@@ -45,6 +47,7 @@ button {
     #7fb4cc;
 }
 
+/* Canvas Three.js de la escena offshore. */
 .scene-wrap {
   position: absolute;
   inset: 0;
@@ -54,6 +57,7 @@ button {
   display: block;
 }
 
+/* Dashboard inferior de escritorio: datos energeticos, SCADA y controles. */
 .dashboard {
   position: absolute;
   left: clamp(16px, 3vw, 42px);
@@ -83,6 +87,7 @@ button {
     box-shadow 0.24s ease;
 }
 
+/* Estado minimizado: baja el panel y deja solo el tirador visible. */
 .dashboard.collapsed {
   box-shadow:
     0 10px 34px rgba(4, 13, 11, 0.2),
@@ -151,6 +156,7 @@ button {
   white-space: nowrap;
 }
 
+/* Titulo, icono de estado y zona de ubicacion/fuente de datos. */
 .dashboard-title {
   display: flex;
   grid-column: 1;
@@ -199,6 +205,7 @@ button {
   white-space: nowrap;
 }
 
+/* Tarjetas principales de generacion, viento equivalente, rpm y ultimo dato. */
 .stats-grid {
   display: grid;
   grid-column: 2;
@@ -207,6 +214,7 @@ button {
   min-width: 0;
 }
 
+/* Tarjetas mecanicas compactas: oscilacion, torsion, flexion y carga. */
 .mechanics-grid {
   display: grid;
   grid-column: 2;
@@ -225,6 +233,7 @@ button {
   font-size: clamp(0.88rem, 1.2vw, 1.02rem);
 }
 
+/* Panel SCADA compacto con botones que abren detalles tecnicos. */
 .scada-panel {
   display: grid;
   grid-column: 1 / -1;
@@ -512,6 +521,7 @@ button.scada-card {
   height: 42px;
 }
 
+/* Paneles desplegables flotantes: termico, pitch, yaw, curva, modo, modelo y mecanica. */
 .thermal-panel {
   position: fixed;
   top: 50%;
@@ -670,6 +680,7 @@ button.scada-card {
   background: rgba(159, 245, 198, 0.1);
 }
 
+/* Animacion del gearbox y circuito de aceite dentro del panel termico. */
 .gearbox-stage {
   position: relative;
   display: grid;
@@ -684,6 +695,7 @@ button.scada-card {
     rgba(8, 28, 31, 0.72);
 }
 
+/* Medidor de modo operativo y flujo viento-rotor-red. */
 .operation-stage {
   position: relative;
   display: grid;
@@ -869,6 +881,7 @@ button.scada-card {
   box-shadow: 0 0 16px rgba(159, 245, 198, 0.82);
 }
 
+/* Grafica grande de curva de potencia. */
 .power-stage {
   position: relative;
   display: grid;
@@ -1027,6 +1040,7 @@ button.scada-card {
   box-shadow: 0 0 16px rgba(245, 214, 110, 0.82);
 }
 
+/* Rosa de viento ampliada y control yaw. */
 .yaw-stage {
   position: relative;
   display: grid;
@@ -1294,6 +1308,7 @@ button.scada-card {
   box-shadow: 0 0 16px rgba(120, 216, 255, 0.82);
 }
 
+/* Visualizacion de pitch, raiz de pala y condicion de componentes. */
 .pitch-stage {
   position: relative;
   display: grid;
@@ -1732,6 +1747,7 @@ button.scada-card {
   margin: 0;
 }
 
+/* Paneles numericos nuevos: parametros de modelo y variables mecanicas. */
 .model-panel,
 .mechanical-panel {
   height: auto;
@@ -1805,6 +1821,7 @@ button.scada-card {
   box-shadow: 0 0 16px rgba(255, 81, 61, 0.82);
 }
 
+/* Tarjeta numerica reutilizable usada en todo el dashboard. */
 .stat {
   min-width: 0;
   padding: 10px 12px;
@@ -1845,6 +1862,7 @@ button.scada-card {
   text-overflow: clip;
 }
 
+/* Barra inferior de acciones: analisis mecanico, modelo, mecanica, conexion y refresco. */
 .dashboard-actions {
   display: flex;
   grid-column: 3;
@@ -2222,6 +2240,7 @@ button.scada-card {
   }
 }
 
+/* Adaptacion tablet/movil ancho: dashboard en una columna con scroll interno. */
 @media (max-width: 900px) {
   html,
   body,
@@ -2351,6 +2370,7 @@ button.scada-card {
 }
 
 @media (max-width: 520px) {
+  /* En movil, la escena mantiene una franja visible aunque el dashboard este abierto. */
   .app-shell {
     min-height: 100svh;
   }
@@ -2369,6 +2389,7 @@ button.scada-card {
   }
 
   .dashboard.collapsed {
+    /* Al minimizar en movil, el panel se vuelve transparente para ver el mar real de la escena. */
     border-color: transparent;
     background: transparent;
     box-shadow: none;

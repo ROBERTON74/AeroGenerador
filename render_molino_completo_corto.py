@@ -4,16 +4,19 @@ from pathlib import Path
 import bpy
 from mathutils import Vector
 
+# Render corto con camara ortografica animada para mostrar el aerogenerador completo.
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT = BASE_DIR / "aerogenerador_animacion_4s_molino_completo.mp4"
 
 
 def look_at(obj, target):
+    # Orienta la camara hacia un punto objetivo usando el eje -Z de Blender.
     direction = Vector(target) - obj.location
     obj.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
 
 
 scene = bpy.context.scene
+# Video de 4 segundos a 24 fps.
 scene.frame_start = 1
 scene.frame_end = 96
 scene.frame_set(1)
@@ -38,6 +41,7 @@ scene.render.filepath = str(OUTPUT)
 
 camera = bpy.data.objects.get("CAM_molino_completo_corto")
 if camera is None:
+    # Crea la camara si el archivo Blender todavia no la contiene.
     camera_data = bpy.data.cameras.new("CAM_molino_completo_corto")
     camera = bpy.data.objects.new("CAM_molino_completo_corto", camera_data)
     bpy.context.collection.objects.link(camera)
@@ -63,6 +67,7 @@ camera.keyframe_insert(data_path="rotation_euler", frame=96)
 camera.data.keyframe_insert(data_path="ortho_scale", frame=96)
 
 for block in (camera.animation_data.action.fcurves if camera.animation_data and camera.animation_data.action else []):
+    # Interpolacion suave para que el movimiento de camara no sea brusco.
     for keyframe in block.keyframe_points:
         keyframe.interpolation = "SINE"
 

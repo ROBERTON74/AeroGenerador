@@ -18,6 +18,7 @@ const decimalFormatter = new Intl.NumberFormat('es-ES', {
 const REPRESENTATIVE_ROTOR_RADIUS_METERS = 72.5;
 
 function formatDate(value) {
+  // Formatea la fecha de ESIOS/REData en formato legible para Espana.
   if (!value) return '--';
   const date = new Date(value);
   const pad = (part) => String(part).padStart(2, '0');
@@ -27,6 +28,7 @@ function formatDate(value) {
 }
 
 function formatDecimal(value, suffix = '') {
+  // Evita mostrar NaN o undefined cuando una API no devuelve algun campo.
   if (typeof value !== 'number') return '--';
   return `${decimalFormatter.format(value)}${suffix}`;
 }
@@ -42,6 +44,7 @@ function formatDirection(value) {
 }
 
 function Stat({ label, value, detail, className = '' }) {
+  // Tarjeta numerica reutilizable para energia, mecanica y paneles desplegables.
   return (
     <div className={`stat ${className}`}>
       <span>{label}</span>
@@ -52,6 +55,7 @@ function Stat({ label, value, detail, className = '' }) {
 }
 
 function AlarmList({ alarms = [] }) {
+  // Muestra hasta cuatro alarmas estimadas; si no hay ninguna, indica estado normal.
   if (!alarms.length) {
     return <span className="alarm-pill normal">Sin alarmas activas</span>;
   }
@@ -64,6 +68,7 @@ function AlarmList({ alarms = [] }) {
 }
 
 function PowerCurve({ scada }) {
+  // Mini curva de potencia para la tarjeta compacta del dashboard.
   const windMs = scada?.windSpeedMs ?? 0;
   const powerRatio = scada?.ratedPowerMw ? Math.min(1, (scada?.expectedPowerMw ?? 0) / scada.ratedPowerMw) : 0;
   const x = Math.min(96, Math.max(4, (windMs / 25) * 100));
@@ -82,6 +87,7 @@ function PowerCurve({ scada }) {
 }
 
 function WindRose({ scada }) {
+  // Rosa compacta: compara direccion equivalente de viento y orientacion de gondola.
   const direction = scada?.windDirectionDeg ?? 0;
   const nacelle = scada?.nacelleDirectionDeg ?? direction;
 
@@ -96,6 +102,7 @@ function WindRose({ scada }) {
 }
 
 function HistoryLine({ history = [] }) {
+  // Linea historica de carga mecanica dentro de la tarjeta de temperaturas.
   const points = history.length ? history : [{ load: 0 }, { load: 0 }];
   const maxLoad = Math.max(100, ...points.map((point) => point.load ?? 0));
   const path = points
@@ -114,6 +121,7 @@ function HistoryLine({ history = [] }) {
 }
 
 function ComponentMatrix({ components = [] }) {
+  // Chips de estado para palas, buje, gearbox, generador y torre.
   return (
     <div className="component-matrix">
       {components.map((component) => (
@@ -126,6 +134,7 @@ function ComponentMatrix({ components = [] }) {
 }
 
 function GearboxThermalPanel({ scada, open, onClose }) {
+  // Panel ampliado de temperaturas: gearbox, aceite, generador y vibracion.
   if (!open) return null;
 
   const gearboxTemp = scada?.gearboxTempC;
@@ -191,6 +200,7 @@ function GearboxThermalPanel({ scada, open, onClose }) {
 }
 
 function PitchConditionPanel({ scada, open, onClose }) {
+  // Panel ampliado de pitch: muestra angulo de pala y condicion de componentes.
   if (!open) return null;
 
   const pitchAngle = scada?.pitchAngleDeg ?? 0;
@@ -268,6 +278,7 @@ function PitchConditionPanel({ scada, open, onClose }) {
 }
 
 function WindYawPanel({ scada, open, onClose }) {
+  // Panel ampliado de yaw: explica viento equivalente, orientacion de gondola y error.
   if (!open) return null;
 
   const windDirection = scada?.windDirectionDeg ?? 0;
@@ -347,6 +358,7 @@ function WindYawPanel({ scada, open, onClose }) {
 }
 
 function PowerCurvePanel({ scada, open, onClose }) {
+  // Panel ampliado de curva de potencia para defender la relacion viento-potencia.
   if (!open) return null;
 
   const windMs = scada?.windSpeedMs ?? 0;
@@ -423,6 +435,7 @@ function PowerCurvePanel({ scada, open, onClose }) {
 }
 
 function OperationModePanel({ scada, open, onClose }) {
+  // Panel ampliado del modo operativo calculado desde carga, viento equivalente y disponibilidad.
   if (!open) return null;
 
   const mode = scada?.operationMode ?? 'Calculando';
@@ -490,6 +503,7 @@ function OperationModePanel({ scada, open, onClose }) {
 }
 
 function ModelParametersPanel({ open, onClose }) {
+  // Panel de referencia: parametros fijos de la turbina tipo usada en los calculos.
   if (!open) return null;
 
   const parameters = [
@@ -532,6 +546,7 @@ function ModelParametersPanel({ open, onClose }) {
 }
 
 function MechanicalVariablesPanel({ mechanical, scada, rpm, open, onClose }) {
+  // Panel numerico de variables mecanicas estimadas desde ESIOS/REData.
   if (!open) return null;
 
   return (
@@ -572,6 +587,7 @@ export default function Dashboard({
   onStressMapChange,
   onRefresh,
 }) {
+  // Cada boolean controla un panel desplegable; se cierran entre si para evitar solapamientos.
   const [showThermalPanel, setShowThermalPanel] = useState(false);
   const [showPitchPanel, setShowPitchPanel] = useState(false);
   const [showYawPanel, setShowYawPanel] = useState(false);
@@ -607,8 +623,9 @@ export default function Dashboard({
       <button
         type="button"
         className="dashboard-collapse-toggle"
-        onClick={() => {
-          const nextCollapsed = !isDashboardCollapsed;
+          onClick={() => {
+            // Al minimizar, cerramos paneles abiertos para que en movil quede visible el mar completo.
+            const nextCollapsed = !isDashboardCollapsed;
           setIsDashboardCollapsed(nextCollapsed);
           if (nextCollapsed) {
             setShowPitchPanel(false);
@@ -700,6 +717,7 @@ export default function Dashboard({
           type="button"
           className={`scada-card operation-card operation-trigger ${showOperationPanel ? 'active' : ''}`}
           onClick={() => {
+            // Solo queda abierto un detalle SCADA principal cada vez.
             setShowPitchPanel(false);
             setShowThermalPanel(false);
             setShowYawPanel(false);
@@ -722,6 +740,7 @@ export default function Dashboard({
           type="button"
           className={`scada-card chart-card power-trigger ${showPowerPanel ? 'active' : ''}`}
           onClick={() => {
+            // Abre el panel de curva y cierra los demas detalles grandes.
             setShowPitchPanel(false);
             setShowThermalPanel(false);
             setShowYawPanel(false);
@@ -742,6 +761,7 @@ export default function Dashboard({
           type="button"
           className={`scada-card rose-card yaw-trigger ${showYawPanel ? 'active' : ''}`}
           onClick={() => {
+            // Abre la vista de yaw/rosa de viento.
             setShowPitchPanel(false);
             setShowThermalPanel(false);
             setShowPowerPanel(false);
@@ -762,6 +782,7 @@ export default function Dashboard({
           type="button"
           className={`scada-card pitch-trigger ${showPitchPanel ? 'active' : ''}`}
           onClick={() => {
+            // Abre la vista de pitch y condicion de componentes.
             setShowThermalPanel(false);
             setShowYawPanel(false);
             setShowPowerPanel(false);
@@ -782,6 +803,7 @@ export default function Dashboard({
           type="button"
           className={`scada-card thermal-trigger ${showThermalPanel ? 'active' : ''}`}
           onClick={() => {
+            // Abre la vista termica del gearbox y cierra los otros paneles SCADA.
             setShowPitchPanel(false);
             setShowYawPanel(false);
             setShowPowerPanel(false);
@@ -816,6 +838,7 @@ export default function Dashboard({
           type="button"
           className="detail-action"
           onClick={() => {
+            // Muestra parametros fijos del modelo de turbina.
             setShowThermalPanel(false);
             setShowPitchPanel(false);
             setShowYawPanel(false);
@@ -832,6 +855,7 @@ export default function Dashboard({
           type="button"
           className="detail-action"
           onClick={() => {
+            // Muestra variables mecanicas numericas estimadas.
             setShowThermalPanel(false);
             setShowPitchPanel(false);
             setShowYawPanel(false);
@@ -874,5 +898,4 @@ export default function Dashboard({
     </>
   );
 }
-
 

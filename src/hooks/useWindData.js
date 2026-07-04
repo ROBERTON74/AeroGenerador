@@ -10,6 +10,7 @@ const POLL_INTERVAL = 5 * 60 * 1000;
 const HISTORY_LIMIT = 18;
 
 function appendHistory(history, nextData) {
+  // Guarda solo los puntos necesarios para dibujar la mini grafica historica del dashboard.
   const scada = nextData?.scada;
   const point = {
     time: nextData?.meteorology?.datetime ?? nextData?.datetime ?? new Date().toISOString(),
@@ -23,6 +24,7 @@ function appendHistory(history, nextData) {
 }
 
 export function useWindData() {
+  // Estados consumidos por App y Dashboard: dato actual, error visible y estado de carga.
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,14 +34,17 @@ export function useWindData() {
   const refresh = useCallback(async () => {
     setLoading(true);
     try {
+      // Flujo principal: intenta ESIOS, cae a REData y despues enriquece el dato con mecanica/SCADA.
       const nextData = await fetchWindGeneration();
       setData((currentData) => ({
         ...(() => {
+          // Las cargas mecanicas usan el dato anterior para estimar variaciones bruscas.
           const mechanical = estimateMechanicalLoads(nextData, currentData);
           const enrichedData = {
             ...nextData,
             mechanical,
           };
+          // Las metricas SCADA se derivan de la potencia real agregada, no de sensores reales.
           const scada = deriveScadaMetrics(enrichedData, currentData);
           const withScada = {
             ...enrichedData,
@@ -55,6 +60,7 @@ export function useWindData() {
       setError(null);
     } catch (requestError) {
       setData((currentData) => {
+        // Si fallan las APIs, mantenemos la experiencia viva con el ultimo dato o simulacion local.
         const fallbackData = currentData ?? createFallbackWindData();
         const enrichedData = {
           ...fallbackData,
@@ -78,6 +84,7 @@ export function useWindData() {
   }, []);
 
   useEffect(() => {
+    // Primera carga inmediata y refresco automatico cada cinco minutos.
     refresh();
     timerRef.current = window.setInterval(refresh, POLL_INTERVAL);
     return () => window.clearInterval(timerRef.current);
@@ -85,5 +92,4 @@ export function useWindData() {
 
   return { data, loading, error, refresh };
 }
-
 

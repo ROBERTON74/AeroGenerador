@@ -1,4 +1,6 @@
-﻿import { Cloud, Clouds, Environment, OrbitControls, Sky, Sparkles } from '@react-three/drei';
+﻿// Copia de rollback del entorno anterior en tierra.
+// No se usa como escena principal actual; se conserva para poder volver atras o comparar.
+import { Cloud, Clouds, Environment, OrbitControls, Sky, Sparkles } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Suspense, useMemo, useRef } from 'react';
 import * as THREE from 'three';
@@ -820,5 +822,4 @@ export default function WindTurbineScene({ windData, showStressMap = false }) {
     </section>
   );
 }
-
 

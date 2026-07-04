@@ -1,11 +1,13 @@
 import bpy
 
+# Imprime un resumen de la escena Blender: nombre, camara, rango de frames y objetos grandes.
 print("SCENE", bpy.context.scene.name)
 print("FRAME_RANGE", bpy.context.scene.frame_start, bpy.context.scene.frame_end)
 print("CAMERA", bpy.context.scene.camera.name if bpy.context.scene.camera else "None")
 
 objects = []
 for obj in bpy.context.scene.objects:
+    # Solo interesan mallas; luces/camaras no aportan dimensiones del modelo.
     if obj.type != "MESH":
         continue
     center = obj.matrix_world.translation
@@ -13,6 +15,7 @@ for obj in bpy.context.scene.objects:
     objects.append((obj.name, center.x, center.y, center.z, dims.x, dims.y, dims.z))
 
 objects.sort(key=lambda item: item[6], reverse=True)
+# Ordena por altura Z para ver primero torre, rotor, nubes u objetos dominantes.
 for item in objects[:60]:
     print(
         "OBJ",

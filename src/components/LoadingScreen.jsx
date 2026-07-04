@@ -1,4 +1,5 @@
 ﻿export default function LoadingScreen() {
+  // Capa sencilla de espera mientras se obtiene el primer dato de viento/generacion.
   return (
     <div className="loading-screen">
       <div className="loading-mark" />
@@ -6,5 +7,4 @@
     </div>
   );
 }
-
 

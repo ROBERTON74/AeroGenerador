@@ -1,5 +1,6 @@
 import bpy
 
+# Inspecciona objetos cercanos al suelo dentro del corredor donde antes podia verse el camino.
 for obj in bpy.context.scene.objects:
     if obj.type != "MESH":
         continue

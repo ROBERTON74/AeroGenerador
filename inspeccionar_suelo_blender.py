@@ -1,8 +1,10 @@
 import bpy
 
+# Palabras clave para localizar suelo, cesped, camino o terreno dentro del archivo Blender.
 keywords = ("path", "road", "camino", "sendero", "grass", "cesped", "césped", "ground", "terrain", "soil", "dirt")
 
 for obj in bpy.context.scene.objects:
+    # Une nombre de objeto y materiales para detectar elementos relacionados con el suelo.
     name = obj.name.lower()
     mat_names = [slot.material.name.lower() for slot in obj.material_slots if slot.material]
     haystack = " ".join([name, *mat_names])

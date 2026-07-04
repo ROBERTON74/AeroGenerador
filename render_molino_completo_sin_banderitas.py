@@ -2,18 +2,21 @@ from pathlib import Path
 
 import bpy
 
+# Genera una version limpia sin bandas rojas en las puntas de las palas.
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_BLEND = BASE_DIR / "aerogenerador_molino_completo_sin_banderitas.blend"
 OUTPUT_VIDEO = BASE_DIR / "aerogenerador_animacion_4s_molino_completo_sin_banderitas.mp4"
 
 removed = []
 for obj in list(bpy.context.scene.objects):
+    # Busca objetos de bandas rojas asociados a palas y los elimina.
     name = obj.name.lower()
     if name.startswith("banda_roja_pala") or ("banda_roja" in name and "pala" in name):
         removed.append(obj.name)
         bpy.data.objects.remove(obj, do_unlink=True)
 
 bpy.context.scene.render.filepath = str(OUTPUT_VIDEO)
+# Parametros del video de salida.
 bpy.context.scene.frame_start = 1
 bpy.context.scene.frame_end = 96
 bpy.context.scene.render.fps = 24

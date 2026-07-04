@@ -1,7 +1,9 @@
 import bpy
 
+# Herramienta de inspeccion: busca restos de camino marron y localiza nubes en la escena Blender.
 print("POSSIBLE PATH / BROWN OBJECTS")
 for obj in bpy.context.scene.objects:
+    # Revisa nombre, materiales y color base para detectar objetos marrones tipo camino.
     mat_names = [slot.material.name.lower() for slot in obj.material_slots if slot.material]
     name = obj.name.lower()
     loc = obj.matrix_world.translation
@@ -47,6 +49,7 @@ for obj in bpy.context.scene.objects:
 
 print("CLOUD OBJECTS")
 for obj in bpy.context.scene.objects:
+    # Lista objetos de nube por nombre o material para recolocarlos cerca del aerogenerador.
     if "cloud" in obj.name.lower() or any("cloud" in (slot.material.name.lower() if slot.material else "") for slot in obj.material_slots):
         loc = obj.matrix_world.translation
         dims = obj.dimensions

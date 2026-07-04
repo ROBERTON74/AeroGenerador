@@ -4,6 +4,7 @@ from pathlib import Path
 
 import bpy
 
+# Limpia el modelo Blender terrestre: elimina camino/bandas rojas y acerca nubes al aerogenerador.
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_BLEND = BASE_DIR / "aerogenerador_modelado_sin_camino_nubes_cerca.blend"
 
@@ -11,6 +12,7 @@ random.seed(141)
 
 
 def material(name, color, roughness=0.96):
+    # Crea o reutiliza materiales con nodos Principled para mantener aspecto consistente.
     mat = bpy.data.materials.get(name) or bpy.data.materials.new(name)
     mat.diffuse_color = color
     mat.use_nodes = True
@@ -26,6 +28,7 @@ grass_dark = material("cesped_verde_profundo_sin_camino", (0.10, 0.27, 0.09, 1))
 
 removed_path = []
 for obj in list(bpy.context.scene.objects):
+    # Borra objetos cuyo nombre o material indiquen camino, grava o pista.
     name = obj.name.lower()
     mats = " ".join(slot.material.name.lower() for slot in obj.material_slots if slot.material)
     if (
@@ -50,6 +53,7 @@ for obj in list(bpy.context.scene.objects):
         bpy.data.objects.remove(obj, do_unlink=True)
 
 for i in range(130):
+    # Replanta hierba sobre la zona del antiguo camino para ocultar cualquier rastro visual.
     t = random.random()
     x = -54 + t * 86 + random.uniform(-3.6, 3.6)
     y = -36 + t * 26 + random.uniform(-4.8, 4.8)
@@ -72,6 +76,7 @@ for i in range(130):
 
 removed_red_blades = []
 for obj in list(bpy.context.scene.objects):
+    # Elimina marcas rojas en puntas de pala para una entrega visual mas limpia.
     name = obj.name.lower()
     if name.startswith("banda_roja_pala_") or "blade_tip_warning" in name or "punta_roja" in name or "banderita" in name:
         removed_red_blades.append(obj.name)
@@ -86,6 +91,7 @@ cloud_targets = {
 cloud_counts = {key: 0 for key in cloud_targets}
 
 for obj in bpy.context.scene.objects:
+    # Recoloca grupos de nubes conocidos cerca del rotor sin taparlo.
     lower = obj.name.lower()
     if "integrated_cloud" not in lower:
         continue

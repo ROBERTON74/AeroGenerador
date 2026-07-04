@@ -1,6 +1,7 @@
 const DEFAULT_CACHE_SECONDS = 60;
 
 function appendQueryParams(searchParams, query = {}) {
+  // Copia los parametros originales salvo `path`, que se usa solo para reconstruir la URL destino.
   Object.entries(query).forEach(([key, value]) => {
     if (key === 'path' || typeof value === 'undefined') return;
     if (Array.isArray(value)) {
@@ -12,6 +13,7 @@ function appendQueryParams(searchParams, query = {}) {
 }
 
 function buildTargetUrl(req, baseUrl) {
+  // Convierte /api/ree?path=... en una URL segura hacia el servicio externo real.
   const rawPathParts = Array.isArray(req.query.path)
     ? req.query.path
     : typeof req.query.path === 'string'
@@ -25,12 +27,14 @@ function buildTargetUrl(req, baseUrl) {
 }
 
 function applyCors(res) {
+  // Permite que la app desplegada pueda llamar a estas funciones serverless desde el navegador.
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
 }
 
 export async function proxyGet(req, res, { baseUrl, headers = {}, cacheSeconds = DEFAULT_CACHE_SECONDS }) {
+  // Proxy comun: valida metodo, reenvia la peticion y devuelve el cuerpo original al cliente.
   applyCors(res);
 
   if (req.method === 'OPTIONS') {

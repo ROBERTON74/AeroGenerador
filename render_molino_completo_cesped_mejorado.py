@@ -4,6 +4,7 @@ from pathlib import Path
 
 import bpy
 
+# Genera una version de render con cesped continuo, variaciones naturales y flores sutiles.
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_BLEND = BASE_DIR / "aerogenerador_molino_completo_cesped_mejorado.blend"
 OUTPUT_VIDEO = BASE_DIR / "aerogenerador_animacion_4s_molino_completo_cesped_mejorado.mp4"
@@ -12,6 +13,7 @@ random.seed(42)
 
 
 def make_mat(name, color, roughness=0.9):
+    # Crea materiales de Blender con color base y rugosidad controlada.
     mat = bpy.data.materials.get(name) or bpy.data.materials.new(name)
     mat.use_nodes = True
     bsdf = mat.node_tree.nodes.get("Principled BSDF")
@@ -28,6 +30,7 @@ flower_mat = make_mat("flores_silvestres_blancas_sutiles", (0.92, 0.93, 0.78, 1)
 
 removed = []
 for obj in list(bpy.context.scene.objects):
+    # Quita restos del camino para que el terreno se lea como cesped continuo.
     lower = obj.name.lower()
     mat_names = " ".join(slot.material.name.lower() for slot in obj.material_slots if slot.material)
     if lower.startswith("path_camino") or "camino grava" in mat_names:
@@ -45,6 +48,7 @@ ground.data.materials.clear()
 ground.data.materials.append(grass_mat)
 
 for i in range(36):
+    # Manchas suaves de cesped para que la base no sea un color plano.
     radius = random.uniform(16, 105)
     angle = random.uniform(0, math.tau)
     x = math.cos(angle) * radius
@@ -65,6 +69,7 @@ for i in range(36):
     patch.data.materials.append(grass_light if i % 3 else grass_dark)
 
 for i in range(120):
+    # Hierba alta decorativa repartida alrededor del aerogenerador.
     radius = random.uniform(8, 92)
     angle = random.uniform(0, math.tau)
     x = math.cos(angle) * radius
@@ -85,6 +90,7 @@ for i in range(120):
     blade.data.materials.append(grass_light if i % 2 else grass_dark)
 
 for i in range(48):
+    # Flores pequenas para dar escala y textura sin distraer del modelo tecnico.
     radius = random.uniform(18, 86)
     angle = random.uniform(0, math.tau)
     x = math.cos(angle) * radius
@@ -101,6 +107,7 @@ for i in range(48):
     flower.data.materials.append(flower_mat)
 
 scene = bpy.context.scene
+# Ajustes de render de video corto.
 scene.render.filepath = str(OUTPUT_VIDEO)
 scene.frame_start = 1
 scene.frame_end = 96

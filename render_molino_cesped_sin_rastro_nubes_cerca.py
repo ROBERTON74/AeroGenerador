@@ -4,6 +4,7 @@ from pathlib import Path
 
 import bpy
 
+# Prepara una version renderizable: cubre camino con cesped, acerca nubes y genera video corto.
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_BLEND = BASE_DIR / "aerogenerador_cesped_sin_rastro_nubes_cerca.blend"
 OUTPUT_VIDEO = BASE_DIR / "aerogenerador_animacion_4s_cesped_sin_rastro_nubes_cerca.mp4"
@@ -12,6 +13,7 @@ random.seed(73)
 
 
 def material(name, color, roughness=0.96):
+    # Material reutilizable para cesped y variaciones de color.
     mat = bpy.data.materials.get(name) or bpy.data.materials.new(name)
     mat.use_nodes = True
     bsdf = mat.node_tree.nodes.get("Principled BSDF")
@@ -27,6 +29,7 @@ grass_dark = material("cesped_verde_profundo_cubre_rastro", (0.10, 0.27, 0.09, 1
 
 removed = []
 for obj in list(bpy.context.scene.objects):
+    # Elimina objetos del camino antiguo antes de cubrir la zona con cesped.
     name = obj.name.lower()
     mats = " ".join(slot.material.name.lower() for slot in obj.material_slots if slot.material)
     if (
@@ -110,6 +113,7 @@ for obj in bpy.context.scene.objects:
             break
 
 scene = bpy.context.scene
+# Configuracion de salida de video academico corto.
 scene.render.filepath = str(OUTPUT_VIDEO)
 scene.frame_start = 1
 scene.frame_end = 96

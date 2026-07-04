@@ -14,6 +14,7 @@ const MAX_TORSION_RAD = THREE.MathUtils.degToRad(0.12);
 const ROTOR_VISUAL_SPEED_GAIN = 1.65;
 
 function MechanicalLabel({ text, position, width = 1.36 }) {
+  // Etiqueta flotante dentro de la escena para explicar zonas mecanicas al usuario.
   return (
     <group position={position}>
       <mesh position={[0, 0, -0.012]} renderOrder={9}>
@@ -37,6 +38,7 @@ function MechanicalLabel({ text, position, width = 1.36 }) {
 }
 
 function RedCalloutArrow({ start, end, head = true }) {
+  // Flecha 3D entre dos puntos: se orienta con quaternion para apuntar exactamente al destino.
   const { midpoint, length, quaternion, conePosition } = useMemo(() => {
     const startVector = new THREE.Vector3(...start);
     const endVector = new THREE.Vector3(...end);
@@ -69,6 +71,7 @@ function RedCalloutArrow({ start, end, head = true }) {
 }
 
 function Blade({ rotation = 0, flex = 0 }) {
+  // Pala generada por codigo: una forma 2D extruida para parecer fina y aerodinamica.
   const shape = useMemo(() => {
     const bladeShape = new THREE.Shape();
     bladeShape.moveTo(0, -0.062);
@@ -117,6 +120,7 @@ function Blade({ rotation = 0, flex = 0 }) {
 }
 
 function RotorMotionDisc({ power }) {
+  // Disco sutil de movimiento: ayuda a percibir giro aunque las palas roten despacio.
   const discRef = useRef();
 
   useFrame((state) => {
@@ -134,6 +138,7 @@ function RotorMotionDisc({ power }) {
 }
 
 function BladeProjectedShadow({ rotorRef, power }) {
+  // Sombra visual simplificada que sigue el giro del rotor.
   const shadowRef = useRef();
 
   useFrame(() => {
@@ -168,6 +173,7 @@ function BladeProjectedShadow({ rotorRef, power }) {
 }
 
 function StressRing({ position, rotation = [0, 0, 0], radius = 0.5, tube = 0.018, intensity = 0.5 }) {
+  // Anillo luminoso para marcar zonas de esfuerzo en torre, buje o raiz de pala.
   const ringRef = useRef();
 
   useFrame((state) => {
@@ -195,6 +201,7 @@ function StressRing({ position, rotation = [0, 0, 0], radius = 0.5, tube = 0.018
 }
 
 function StressPatch({ position, rotation = [0, 0, 0], scale = [1, 1, 1], intensity = 0.5 }) {
+  // Mancha de esfuerzo: se usa donde interesa mostrar carga distribuida, no solo un anillo.
   const patchRef = useRef();
 
   useFrame((state) => {
@@ -228,6 +235,7 @@ function MechanicalArrow({
   phase = 0,
   travel = 0.08,
 }) {
+  // Flecha animada de movimiento/carga mecanica; pulsa para indicar direccion de esfuerzo.
   const arrowRef = useRef();
 
   useFrame((state) => {
@@ -275,6 +283,7 @@ function MechanicalArrow({
 }
 
 function TorsionArrow({ intensity }) {
+  // Indicador circular de torsion alrededor del buje/gondola.
   const arrowRef = useRef();
 
   useFrame((state) => {
@@ -311,6 +320,7 @@ function TorsionArrow({ intensity }) {
 }
 
 function StressMotionArrows({ intensity }) {
+  // Conjunto de flechas y etiquetas para explicar oscilacion, flexion lateral y base.
   return (
     <>
       <MechanicalArrow
@@ -347,6 +357,7 @@ function StressMotionArrows({ intensity }) {
 }
 
 function BladeFlexArrows({ intensity }) {
+  // Flechas repetidas en cada pala para visualizar flexion en funcionamiento.
   return (
     <>
       {[0, 1, 2].map((blade) => (
@@ -366,6 +377,7 @@ function BladeFlexArrows({ intensity }) {
 }
 
 function BladeRootStressMarkers({ intensity }) {
+  // Marcadores de carga en la raiz de cada pala, donde se concentran esfuerzos.
   return (
     <>
       {[0, 1, 2].map((blade) => (
@@ -390,6 +402,7 @@ function BladeRootStressMarkers({ intensity }) {
 }
 
 function StressMap({ intensity }) {
+  // Capa completa de analisis mecanico que se activa desde el dashboard.
   return (
     <>
       <StressRing position={[0, 0.66, 0]} rotation={[Math.PI / 2, 0, 0]} radius={0.52} tube={0.022} intensity={intensity} />
@@ -407,6 +420,7 @@ function StressMap({ intensity }) {
 }
 
 function GearWheel({ radius = 0.18, teeth = 14, color = '#d8e0dc', speed = 1, position, scale = 1 }) {
+  // Engranaje procedural para la vista interna de la gondola.
   const gearRef = useRef();
   const teethPositions = useMemo(
     () =>
@@ -458,6 +472,7 @@ function GearWheel({ radius = 0.18, teeth = 14, color = '#d8e0dc', speed = 1, po
 }
 
 function CoilPack({ angle, color = '#ff8f35' }) {
+  // Bobina visual del generador; el color ayuda a distinguir fases/zonas.
   const x = Math.cos(angle) * 0.33;
   const y = Math.sin(angle) * 0.33;
 
@@ -476,6 +491,7 @@ function CoilPack({ angle, color = '#ff8f35' }) {
 }
 
 function BearingHousing({ position, radius = 0.18 }) {
+  // Rodamiento simplificado que situa visualmente el eje principal.
   return (
     <group position={position}>
       <mesh rotation={[Math.PI / 2, 0, 0]} renderOrder={3}>
@@ -491,6 +507,7 @@ function BearingHousing({ position, radius = 0.18 }) {
 }
 
 function SupportFrame() {
+  // Bastidor interno que da lectura industrial al corte de la gondola.
   return (
     <group>
       <mesh position={[-0.22, -0.22, -0.2]} rotation={[Math.PI / 2, 0, 0]} renderOrder={2}>
@@ -512,6 +529,7 @@ function SupportFrame() {
 }
 
 function RemovedNacelleCover() {
+  // Carcasa translucida separada para sugerir que la gondola se ha abierto.
   return (
     <group position={[0, 5.82, -0.38]} rotation={[0.24, 0, 0]}>
       <mesh rotation={[Math.PI / 2, 0, 0]} castShadow>
@@ -533,6 +551,7 @@ function RemovedNacelleCover() {
 }
 
 function GeneratorCutaway({ rpm, power, intensity }) {
+  // Vista interna: eje, rodamientos, gearbox y generador animados con las rpm estimadas.
   const shaftRef = useRef();
   const generatorRotorRef = useRef();
   const torquePulseRef = useRef();
@@ -673,6 +692,7 @@ export default function WindTurbine({
   showStressMap = false,
   mechanical,
 }) {
+  // Modelo principal de aerogenerador: combina geometria, animacion y capa mecanica opcional.
   const turbineRef = useRef();
   const rotorRef = useRef();
   const targetSpeedRef = useRef(0);
@@ -683,6 +703,7 @@ export default function WindTurbine({
   const towerTorsion = THREE.MathUtils.degToRad(mechanical?.towerTorsionDeg ?? power * 0.03);
 
   useFrame((state, delta) => {
+    // Suaviza la velocidad del rotor para que los cambios de datos no produzcan saltos bruscos.
     targetSpeedRef.current = THREE.MathUtils.clamp(
       (rpm / 60) * Math.PI * 2 * ROTOR_VISUAL_SPEED_GAIN,
       0,
@@ -699,6 +720,7 @@ export default function WindTurbine({
     }
 
     if (turbineRef.current) {
+      // Oscilacion visual de torre/gondola basada en carga mecanica estimada.
       const windPulse = Math.sin(state.clock.elapsedTime * 0.72);
       const gustPulse = Math.sin(state.clock.elapsedTime * 1.46 + power * 2.8);
       const targetZ = THREE.MathUtils.clamp(
@@ -800,5 +822,3 @@ export default function WindTurbine({
     </group>
   );
 }
-
-

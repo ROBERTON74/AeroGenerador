@@ -5,6 +5,7 @@ const REPRESENTATIVE_TURBINE_RATED_MW = 5.0;
 const ELECTRIC_SYSTEM_LABEL = 'Peninsula';
 
 function clamp01(value) {
+  // Limita factores normalizados para evitar valores visuales imposibles.
   return Math.min(1, Math.max(0, value));
 }
 
@@ -30,6 +31,7 @@ function toIsoDate(date) {
 }
 
 function deriveEquivalentWindFromPower(rotorPower = 0) {
+  // Convierte el factor de carga agregado en un viento equivalente didactico.
   const load = clamp01(rotorPower);
   if (load <= 0.01) return 0;
   if (load <= 0.92) return 3 + Math.cbrt(load) * 9;
@@ -37,6 +39,7 @@ function deriveEquivalentWindFromPower(rotorPower = 0) {
 }
 
 function estimateRepresentativeRotorRpm(loadFactor = 0) {
+  // Aproxima rpm de una turbina grande: lento en baja carga y acotado cerca de nominal.
   const load = clamp01(loadFactor);
   if (load <= 0.01) return 0;
   return Math.round(clamp(4.5 + Math.sqrt(load) * 7.8, 4.5, 12.8));
@@ -73,6 +76,7 @@ function getSeverityLabel(score) {
 }
 
 function createWindMetrics({ windMw, totalMw = 0, share, datetime, source, statusPrefix, rawTitle, geoName }) {
+  // Objeto base comun para ESIOS y REData antes de anadir contexto mecanico/SCADA.
   const normalizedPower = clamp01(windMw / SPANISH_WIND_INSTALLED_CAPACITY_MW);
   const computedShare = share ?? (totalMw > 0 ? windMw / totalMw : normalizedPower);
   const rpm = estimateRepresentativeRotorRpm(normalizedPower);
@@ -96,6 +100,7 @@ function createWindMetrics({ windMw, totalMw = 0, share, datetime, source, statu
 }
 
 export function estimateMechanicalLoads(currentData, previousData) {
+  // Estimaciones mecanicas: no son sensores reales, salen del factor de carga y la variacion temporal.
   const loadFactor = clamp01(currentData?.rotorPower ?? currentData?.normalizedPower ?? 0);
   const shareFactor = clamp01(currentData?.share ?? loadFactor);
   const windMw = currentData?.windMw ?? 0;
@@ -110,6 +115,7 @@ export function estimateMechanicalLoads(currentData, previousData) {
   const gustFactor = clamp01(gustSpreadKmh / 28);
   const variationFactor = Math.max(clamp01(variationMw / variationReference), gustFactor);
 
+  // Valores estructurales equivalentes usados por el dashboard y la animacion 3D.
   const towerSwayDeg = 0.03 + loadFactor * 0.28 + variationFactor * 0.14;
   const towerTorsionDeg = 0.008 + loadFactor * 0.035 + variationFactor * 0.16;
   const bladeRootFlexDeg = 0.18 + loadFactor * 1.35 + variationFactor * 0.28;
@@ -159,6 +165,7 @@ export function estimateMechanicalLoads(currentData, previousData) {
 }
 
 export function deriveScadaMetrics(currentData, previousData) {
+  // Capa SCADA didactica: traduce el dato electrico agregado a indicadores industriales estimados.
   const meteorology = currentData?.meteorology ?? {};
   const windSpeedKmh = meteorology.windSpeed80mKmh ?? meteorology.windSpeed10mKmh ?? 0;
   const windSpeedMs = windSpeedKmh / 3.6;
@@ -185,6 +192,7 @@ export function deriveScadaMetrics(currentData, previousData) {
   const vibrationMmS = clamp(0.45 + rotorPower * 1.25 + Math.min(1.15, gustSpread / 22), 0.35, 3.2);
 
   const alarms = [
+    // Alarmas visuales calculadas desde equivalentes de viento, yaw y carga mecanica.
     gustSpread > 28
       ? {
           level: 'warning',
@@ -240,6 +248,7 @@ export function deriveScadaMetrics(currentData, previousData) {
 }
 
 function applyEsiosDerivedOperationalContext(generationData) {
+  // ESIOS aporta MW reales; aqui se crean los equivalentes de viento para mover la turbina.
   const rotorPower = clamp01(generationData.rotorPower ?? generationData.normalizedPower ?? 0);
   const equivalentWindMs = deriveEquivalentWindFromPower(rotorPower);
   const equivalentWindKmh = equivalentWindMs * 3.6;
@@ -270,6 +279,7 @@ function applyEsiosDerivedOperationalContext(generationData) {
 }
 
 function normalizeGenerationResponse(payload) {
+  // REData devuelve muchos indicadores; se busca el de eolica y se calcula su peso dentro del total.
   const indicators = payload?.included ?? [];
   const windIndicator = indicators.find((item) =>
     item?.attributes?.title
@@ -301,6 +311,7 @@ function normalizeGenerationResponse(payload) {
 }
 
 function normalizeEsiosResponse(payload) {
+  // ESIOS indicador 551 devuelve una serie temporal; usamos el ultimo valor disponible.
   const values = payload?.indicator?.values ?? [];
   const latest = getLatestValue(values);
 
@@ -319,6 +330,7 @@ function normalizeEsiosResponse(payload) {
 }
 
 async function fetchEsiosRealtimeWind() {
+  // Consulta las ultimas seis horas para obtener un valor reciente de generacion eolica.
   const end = new Date();
   const start = new Date(end.getTime() - 6 * 60 * 60 * 1000);
   const params = new URLSearchParams({
@@ -341,6 +353,7 @@ async function fetchEsiosRealtimeWind() {
 }
 
 async function fetchReeDailyWind() {
+  // Respaldo publico sin token: dato diario agregado de REData.
   const end = new Date();
   const start = new Date(end.getTime() - 7 * 24 * 60 * 60 * 1000);
   const params = new URLSearchParams({
@@ -375,6 +388,7 @@ async function fetchReeDailyWind() {
 }
 
 export async function fetchWindGeneration() {
+  // Prioridad de datos: ESIOS en tiempo real, despues REData publico.
   const generationData = await fetchEsiosRealtimeWind().catch(async (esiosError) => {
     try {
       return await fetchReeDailyWind();
@@ -387,6 +401,7 @@ export async function fetchWindGeneration() {
 }
 
 export function createFallbackWindData() {
+  // Simulacion local para que la interfaz no quede vacia si fallan los servicios externos.
   const phase = (Date.now() / 1000) % 60;
   const normalizedPower = 0.38 + Math.sin(phase / 7) * 0.08;
   const fallbackSpeed = 22 + Math.sin(phase / 6) * 5;
@@ -418,5 +433,4 @@ export function createFallbackWindData() {
     rawTitle: 'Eolica',
   };
 }
-
 

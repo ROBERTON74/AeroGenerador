@@ -5,6 +5,7 @@ import * as THREE from 'three';
 import WindTurbine from './WindTurbine.jsx';
 
 function AnimatedSea() {
+  // Mar procedural: mueve vertices de la malla para evitar que parezca una placa de cristal.
   const seaRef = useRef();
   const foamRef = useRef();
   const basePositions = useRef(null);
@@ -26,6 +27,7 @@ function AnimatedSea() {
   );
 
   useFrame((state) => {
+    // Cada frame modifica la altura de cada vertice y recalcula normales para reflejos suaves.
     const geometry = seaRef.current?.geometry;
     if (!geometry) return;
 
@@ -95,6 +97,7 @@ function AnimatedSea() {
 }
 
 function DistantTurbine({ position, scale = 1, rotation = 0 }) {
+  // Turbina de fondo simplificada para dar escala al parque offshore.
   return (
     <group position={position} scale={scale} rotation={[0, rotation, 0]}>
       <mesh position={[0, 1.2, 0]} castShadow>
@@ -118,6 +121,7 @@ function DistantTurbine({ position, scale = 1, rotation = 0 }) {
 }
 
 function HorizonTurbine({ position, scale = 1, rotation = 0 }) {
+  // Variante que reutiliza el aerogenerador completo cuando se necesita mas detalle en horizonte.
   return (
     <group position={position} scale={scale} rotation={[0, rotation, 0]}>
       <WindTurbine rpm={5} power={0.18} />
@@ -126,6 +130,7 @@ function HorizonTurbine({ position, scale = 1, rotation = 0 }) {
 }
 
 function OffshoreFoundation() {
+  // Plataforma y cimentacion marina que integran la torre principal con el agua.
   const railPosts = useMemo(
     () =>
       Array.from({ length: 16 }).map((_, index) => {
@@ -196,6 +201,7 @@ function OffshoreFoundation() {
 }
 
 function MaintenanceWorker() {
+  // Figura pequena de operario para reforzar escala humana y contexto de mantenimiento.
   return (
     <group position={[0.72, 0.48, 0.5]} rotation={[0, -0.88, 0]} scale={0.19}>
       <mesh position={[0, 1.74, 0]} castShadow>
@@ -243,6 +249,7 @@ function MaintenanceWorker() {
 }
 
 function Cable({ points, color = '#b45b43', radius = 0.025, dashed = false }) {
+  // Cable curvo generado con CatmullRom para lineas submarinas o amarres.
   const curve = useMemo(() => new THREE.CatmullRomCurve3(points.map((point) => new THREE.Vector3(...point))), [points]);
 
   return (
@@ -255,6 +262,7 @@ function Cable({ points, color = '#b45b43', radius = 0.025, dashed = false }) {
 }
 
 function SegmentedFloatCable({ side = 'left' }) {
+  // Cable flotante con segmentos alternos para que se lea visualmente sobre el mar.
   const direction = side === 'left' ? -1 : 1;
   const points = useMemo(
     () =>
@@ -292,6 +300,7 @@ function SegmentedFloatCable({ side = 'left' }) {
 }
 
 function UnderwaterCutaway() {
+  // Corte submarino didactico: muestra fondo, agua translucida, cables y referencias de escala.
   const sandMarkers = useMemo(
     () =>
       Array.from({ length: 44 }).map((_, index) => ({
@@ -374,6 +383,7 @@ function UnderwaterCutaway() {
 }
 
 function ServiceBoat() {
+  // Barco de servicio que aporta contexto offshore y movimiento visual mediante estela.
   return (
     <group position={[18.5, 0.05, -24]} rotation={[0, -0.72, 0]} scale={0.42}>
       <mesh position={[0, 0.08, 0]} castShadow>
@@ -409,6 +419,7 @@ function ServiceBoat() {
 }
 
 function OffshoreEnvironment() {
+  // Entorno principal actual: mar, cimentacion, barco, cables, espuma y turbinas lejanas.
   const foamBands = useMemo(
     () =>
       Array.from({ length: 28 }).map((_, index) => {
@@ -477,6 +488,7 @@ function OffshoreEnvironment() {
 }
 
 function RealisticTree({ position, scale = 1, variant = 0 }) {
+  // Recurso del entorno terrestre anterior; se conserva por compatibilidad/rollback visual.
   const foliageColors = ['#254d35', '#315f40', '#3b7049', '#496f42', '#2f5a3d'];
   const trunkColor = variant % 2 === 0 ? '#6b4b34' : '#59412f';
 
@@ -507,6 +519,7 @@ function RealisticTree({ position, scale = 1, variant = 0 }) {
 }
 
 function GrassTuft({ position, scale = 1, color = '#617b4b' }) {
+  // Hierba procedural del rollback terrestre.
   return (
     <group position={position} scale={scale}>
       {[0, 1, 2].map((blade) => (
@@ -520,6 +533,7 @@ function GrassTuft({ position, scale = 1, color = '#617b4b' }) {
 }
 
 function GroundDataGrid({ power }) {
+  // Rejilla holografica tenue que refuerza lectura tecnica sin tapar el mar.
   const gridRef = useRef();
 
   useFrame(() => {
@@ -546,6 +560,7 @@ function GroundDataGrid({ power }) {
 }
 
 function HolographicTelemetry({ power }) {
+  // Aros tecnicos alrededor de la turbina para dar sensacion de monitorizacion SCADA.
   const groupRef = useRef();
   const pulseRef = useRef();
 
@@ -584,6 +599,7 @@ function HolographicTelemetry({ power }) {
 }
 
 function WindFlowParticles({ power }) {
+  // Particulas de viento: su velocidad aumenta con la potencia normalizada.
   const pointsRef = useRef();
   const particles = useMemo(
     () =>
@@ -609,6 +625,7 @@ function WindFlowParticles({ power }) {
   }, [particles]);
 
   useFrame((state) => {
+    // Mueve las particulas en X para simular flujo continuo atravesando el rotor.
     const position = pointsRef.current?.geometry.attributes.position;
     if (!position) return;
 
@@ -631,6 +648,7 @@ function WindFlowParticles({ power }) {
 }
 
 function SafetyBeacons({ power }) {
+  // Baliza de seguridad en gondola con pulso visual dependiente de la potencia.
   const beaconRef = useRef();
 
   useFrame((state) => {
@@ -652,6 +670,7 @@ function SafetyBeacons({ power }) {
 }
 
 function LandEnvironment() {
+  // Entorno terrestre anterior: no se monta en la escena actual, queda como referencia/rollback.
   const trees = useMemo(
     () =>
       Array.from({ length: 120 })
@@ -752,6 +771,7 @@ function LandEnvironment() {
 }
 
 function ProfessionalClouds() {
+  // Nubes ligeras de Drei para profundidad atmosferica sin cargar demasiado la escena.
   return (
     <Clouds material={THREE.MeshBasicMaterial} limit={120}>
       <Cloud
@@ -786,6 +806,7 @@ function ProfessionalClouds() {
 }
 
 function Atmosphere({ power }) {
+  // Capa de bruma suave: da distancia y cambia ligeramente con la potencia.
   const hazeRef = useRef();
 
   useFrame((state) => {
@@ -804,6 +825,7 @@ function Atmosphere({ power }) {
 }
 
 function SceneContent({ windData, showStressMap }) {
+  // Une datos, luces, entorno offshore, aerogenerador y controles de camara.
   const power = windData?.rotorPower ?? windData?.normalizedPower ?? 0.4;
   const rpm = windData?.rpm ?? 12;
 
@@ -852,6 +874,7 @@ function SceneContent({ windData, showStressMap }) {
 }
 
 export default function WindTurbineScene({ windData, showStressMap = false }) {
+  // Canvas principal de Three.js; queda dentro de scene-wrap para que CSS controle responsive.
   return (
     <section className="scene-wrap">
       <Canvas
@@ -867,5 +890,3 @@ export default function WindTurbineScene({ windData, showStressMap = false }) {
     </section>
   );
 }
-
-
