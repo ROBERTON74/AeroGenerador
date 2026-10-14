@@ -239,3 +239,8 @@ Esta separacion entre dato real y dato derivado es esencial para que el proyecto
 ## Último avance guardado
 
 [14 de octubre de 2026: aplicación renovada y laboratorio animado del portal](progreso_2026-10-14.md).
+
+## Investigación preparada para el 15 de octubre de 2026
+
+- [Tendencias offshore: desgaste, fatiga, corrosión y mantenimiento](tendencias_offshore_desgaste_2026-10-15.md).
+- [Agenda para retomar mañana](para_manana_2026-10-15.md).

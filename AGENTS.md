@@ -7,3 +7,7 @@ Hay dos proyectos distintos: esta carpeta contiene la aplicación 3D React (puer
 El usuario pidió guardar los avances y conservar el laboratorio animado de su captura. Los cambios globales de interactividad del portal se deshicieron; únicamente se recuperó ese bloque de simulación. No confundir una petición para el portal con otra para la aplicación 3D.
 
 Mantener las credenciales ESIOS en archivos de entorno ignorados. Registrar las decisiones finales y verificaciones de nuevas sesiones en notas de progreso.
+
+## Próxima sesión · 15 de octubre de 2026
+
+El usuario pidió investigar y guardar tendencias de desgaste offshore para mañana. La búsqueda ya está hecha: leer `documentacion/para_manana_2026-10-15.md` y `documentacion/tendencias_offshore_desgaste_2026-10-15.md`. No hay búsqueda automática programada. Esta investigación no autoriza cambiar la interfaz ni reintroducir las modificaciones deshechas. La subida a GitHub continúa pendiente de autorización expresa.

@@ -1,0 +1,107 @@
+{
+  "searched_on": "2026-10-14",
+  "prepared_for": "2026-10-15",
+  "timezone": "Europe/Madrid",
+  "scope": "Offshore wind turbine degradation, fatigue, corrosion and maintenance",
+  "sources": [
+    {
+      "id": "S1",
+      "authors": "Barfknecht y von Terzi",
+      "title": "Drop-size-dependent effects in leading-edge rain erosion and their impact on erosion-safe mode operation",
+      "date": "2025-01-30",
+      "type": "Artículo de investigación revisado por pares",
+      "url": "https://wes.copernicus.org/articles/10/315/2025/",
+      "doi": "10.5194/wes-10-315-2025"
+    },
+    {
+      "id": "S2",
+      "authors": "Cubillas et al.",
+      "title": "Semi-analytical methodology for fretting wear evaluation of unlubricated pitch bearing raceways under operative and non-operative periods",
+      "date": "2025-02-05",
+      "type": "Artículo de investigación revisado por pares",
+      "url": "https://wes.copernicus.org/articles/10/401/2025/",
+      "doi": "10.5194/wes-10-401-2025"
+    },
+    {
+      "id": "S3",
+      "authors": "Kestel et al.",
+      "title": "Condition monitoring of wind turbine drivetrains: state-of-the-art technologies, recent trends, and future outlook",
+      "date": "2026-06-18",
+      "type": "Artículo de revisión; síntesis, no un nuevo experimento",
+      "url": "https://wes.copernicus.org/articles/11/2103/2026/",
+      "doi": "10.5194/wes-11-2103-2026"
+    },
+    {
+      "id": "S4",
+      "authors": "Consorcio WILLOW / Comisión Europea",
+      "title": "WILLOW — informe periódico del proyecto",
+      "date": "2026-01-14",
+      "type": "Informe oficial; periodo estudiado 2023-10-01 a 2025-03-31",
+      "url": "https://cordis.europa.eu/project/id/101122184/reporting",
+      "doi": "10.3030/101122184"
+    },
+    {
+      "id": "S5",
+      "authors": "Tamaro et al.",
+      "title": "Scaled testing of maximum-reserve active power control",
+      "date": "2026-05-08",
+      "type": "Investigación experimental en túnel de viento, revisada por pares",
+      "url": "https://wes.copernicus.org/articles/11/1607/2026/",
+      "doi": "10.5194/wes-11-1607-2026"
+    },
+    {
+      "id": "S6",
+      "authors": "Bellini et al.",
+      "title": "Data-Driven Surrogate-Model for Real-Time Loads Prediction in Floating Wind Farms",
+      "date": "2026-10-13",
+      "type": "Preprint arXiv v1; no revisión por pares verificada",
+      "url": "https://arxiv.org/abs/2610.18264",
+      "doi": "10.48550/arXiv.2610.18264"
+    },
+    {
+      "id": "S7",
+      "authors": "Sirkis, Lozon y Hall",
+      "title": "Reference floating wind array designs for three representative regions",
+      "date": "2026-04-28",
+      "type": "Artículo de descripción de datos y diseños de referencia, revisado por pares",
+      "url": "https://wes.copernicus.org/articles/11/1429/2026/",
+      "doi": "10.5194/wes-11-1429-2026"
+    },
+    {
+      "id": "S8",
+      "authors": "Consorcio DTWO / Comisión Europea",
+      "title": "Federated Digital Twins for Wind-Offshore — informe periódico",
+      "date": "2026-05-04",
+      "type": "Informe oficial; periodo estudiado 2024-06-01 a 2025-11-30",
+      "url": "https://cordis.europa.eu/project/id/101146689/reporting",
+      "doi": "10.3030/101146689"
+    },
+    {
+      "id": "S9",
+      "authors": "Consorcio Romain / Comisión Europea",
+      "title": "Development of a robotic maintenance system for wind turbine blades — informe periódico",
+      "date": "2024-09-25",
+      "type": "Informe oficial anterior; contexto de proyecto con fin registrado en mayo de 2026",
+      "url": "https://cordis.europa.eu/project/id/101070320/reporting",
+      "doi": "10.3030/101070320"
+    },
+    {
+      "id": "S10",
+      "authors": "Ribeiro et al.",
+      "title": "FLOAT: Fatigue-Aware Design Optimization of Floating Offshore Wind Turbine Towers",
+      "date": "2026-01-04",
+      "type": "Preprint arXiv v1; no revisión por pares verificada",
+      "url": "https://arxiv.org/abs/2601.01657",
+      "doi": "10.48550/arXiv.2601.01657"
+    },
+    {
+      "id": "S11",
+      "authors": "Micheletto, Fransson y Segalini",
+      "title": "Wind-tunnel analysis of wake-steering control strategies on a multi-column model wind farm",
+      "date": "2026-08-12",
+      "type": "Investigación experimental revisada por pares",
+      "url": "https://wes.copernicus.org/articles/11/2895/2026/",
+      "doi": "10.5194/wes-11-2895-2026"
+    }
+  ]
+}
