@@ -1,4 +1,4 @@
-﻿# AeroGenerador
+# AeroGenerador
 
 Aplicacion web interactiva desarrollada para representar un aerogenerador 3D en funcionamiento con Three.js, React y datos reales agregados de generacion eolica procedentes de ESIOS / Red Electrica.
 
@@ -60,6 +60,12 @@ Tambien se incluye una figura anotada del dashboard en:
 documentacion/assets/dashboard_anotado_flechas.png
 ```
 
+## Experiencia visual
+
+La interfaz incluye una cabecera de observatorio eolico, generacion agregada destacada y un centro de control con tarjetas SCADA. Los controles de la escena permiten volver a la vista general, acercarse al rotor y activar o detener un recorrido automatico. La camara cambia de vista con una transicion suave y respeta la preferencia de movimiento reducido del sistema.
+
+El dashboard se puede minimizar y los paneles de detalle se cierran con Escape. En movil, los datos se organizan en tarjetas con desplazamiento interno. La generacion procede de las fuentes energeticas; las variables mecanicas siguen siendo estimaciones didacticas del modelo.
+
 ## Scripts principales
 
 ```bash
@@ -73,3 +79,7 @@ npm run preview
 Robert Jesus Melendez Nunez
 
 
+
+## Avances guardados
+
+Estado de la aplicación y del portal Angular: [14 de octubre de 2026](documentacion/progreso_2026-10-14.md). Incluye las rutas correctas, las decisiones del usuario y la copia de respaldo del portal.

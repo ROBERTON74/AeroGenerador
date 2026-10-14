@@ -1,6 +1,6 @@
 ﻿import { Cloud, Clouds, Environment, OrbitControls, Sky, Sparkles } from '@react-three/drei';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Suspense, useMemo, useRef } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Suspense, useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import WindTurbine from './WindTurbine.jsx';
 
@@ -824,7 +824,36 @@ function Atmosphere({ power }) {
   );
 }
 
-function SceneContent({ windData, showStressMap }) {
+function CameraControls({ cameraView, cameraRevision, autoRotate, reducedMotion }) {
+  const controls = useRef();
+  const transition = useRef(null);
+  const { camera } = useThree();
+  useEffect(() => {
+    const position = new THREE.Vector3(...(cameraView === 'rotor' ? [5.3, 7.5, 5.3] : [8.2, 5.15, 8.4]));
+    const target = new THREE.Vector3(...(cameraView === 'rotor' ? [0, 6.24, 0.46] : [0, 3.25, 0.1]));
+    if (reducedMotion && controls.current) {
+      camera.position.copy(position);
+      controls.current.target.copy(target);
+      controls.current.update();
+    } else transition.current = { position, target, remaining: 1.8 };
+  }, [cameraView, cameraRevision, reducedMotion, camera]);
+  useFrame((_, delta) => {
+    if (!transition.current || !controls.current) return;
+    const { position, target } = transition.current;
+    const blend = 1 - Math.exp(-delta * 5);
+    camera.position.lerp(position, blend);
+    controls.current.target.lerp(target, blend);
+    controls.current.update();
+    transition.current.remaining -= delta;
+    if (camera.position.distanceTo(position) < 0.01 || transition.current.remaining <= 0) transition.current = null;
+  });
+  return <OrbitControls ref={controls} enablePan={false} enableDamping dampingFactor={0.06}
+    autoRotate={autoRotate} autoRotateSpeed={0.65} minDistance={4.5} maxDistance={17}
+    minPolarAngle={Math.PI / 3.7} maxPolarAngle={Math.PI / 2.02} target={[0, 3.25, 0.1]}
+    onStart={() => { transition.current = null; }} />;
+}
+
+function SceneContent({ windData, showStressMap, ...cameraProps }) {
   // Une datos, luces, entorno offshore, aerogenerador y controles de camara.
   const power = windData?.rotorPower ?? windData?.normalizedPower ?? 0.4;
   const rpm = windData?.rpm ?? 12;
@@ -861,19 +890,12 @@ function SceneContent({ windData, showStressMap }) {
       <Atmosphere power={power} />
       <Sparkles count={10} scale={[24, 5, 18]} size={0.65} speed={0.025} opacity={0.06} color="#eef8f4" />
       <Environment preset="dawn" />
-      <OrbitControls
-        enablePan={false}
-        minDistance={7.5}
-        maxDistance={17}
-        minPolarAngle={Math.PI / 3.7}
-        maxPolarAngle={Math.PI / 2.02}
-        target={[0, 3.25, 0.1]}
-      />
+      <CameraControls {...cameraProps} />
     </>
   );
 }
 
-export default function WindTurbineScene({ windData, showStressMap = false }) {
+export default function WindTurbineScene({ windData, showStressMap = false, ...cameraProps }) {
   // Canvas principal de Three.js; queda dentro de scene-wrap para que CSS controle responsive.
   return (
     <section className="scene-wrap">
@@ -884,7 +906,7 @@ export default function WindTurbineScene({ windData, showStressMap = false }) {
         gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping }}
       >
         <Suspense fallback={null}>
-          <SceneContent windData={windData} showStressMap={showStressMap} />
+          <SceneContent windData={windData} showStressMap={showStressMap} {...cameraProps} />
         </Suspense>
       </Canvas>
     </section>

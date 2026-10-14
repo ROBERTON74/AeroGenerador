@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 ## Autoria y destino academico
 
@@ -49,6 +49,11 @@ La animacion del aerogenerador sera una representacion visual basada en esos dat
 Los indicadores SCADA derivados son didacticos y estimados a partir de datos agregados de ESIOS/REData. No deben presentarse como telemetria real de un aerogenerador individual.
 
 ## Registro de avance actual
+
+Fecha de registro: 14 de octubre de 2026.
+
+Consultar `progreso_2026-10-14.md`. La aplicación React tiene una interfaz renovada. La web con varias secciones que el usuario quiere es el portal Angular en `../AeroGenerador_Entrega_Completa/blender_portal_renderizaciones/portal_aerogenerador_angular` (puerto 4200). Conservar específicamente el bloque de laboratorio animado de su captura; el resto de la petición global de interactividad se deshizo. El usuario pidió guardar los avances. Copia del código Angular en `../respaldos/portal_angular_2026-10-14.zip` respecto a esta documentación.
+
 
 Fecha de registro: 4 de julio de 2026.
 

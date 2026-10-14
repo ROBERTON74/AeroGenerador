@@ -1,4 +1,5 @@
 ﻿import { useState } from 'react';
+import { useEffect } from 'react';
 import { ChevronsDown, ChevronsUp, MapPin, RefreshCw, Signal, Wind } from 'lucide-react';
 
 const numberFormatter = new Intl.NumberFormat('es-ES', {
@@ -596,6 +597,20 @@ export default function Dashboard({
   const [showModelPanel, setShowModelPanel] = useState(false);
   const [showMechanicalPanel, setShowMechanicalPanel] = useState(false);
   const [isDashboardCollapsed, setIsDashboardCollapsed] = useState(false);
+  useEffect(() => {
+    const closeDetails = (event) => {
+      if (event.key !== 'Escape') return;
+      setShowThermalPanel(false);
+      setShowPitchPanel(false);
+      setShowYawPanel(false);
+      setShowPowerPanel(false);
+      setShowOperationPanel(false);
+      setShowModelPanel(false);
+      setShowMechanicalPanel(false);
+    };
+    window.addEventListener('keydown', closeDetails);
+    return () => window.removeEventListener('keydown', closeDetails);
+  }, []);
   const windMw = windData?.windMw ?? 0;
   const share = (windData?.share ?? 0) * 100;
   const hasMixShare = (windData?.totalMw ?? 0) > 0;
@@ -644,12 +659,12 @@ export default function Dashboard({
         <span>{isDashboardCollapsed ? 'Mostrar dashboard' : 'Minimizar'}</span>
       </button>
 
-      <div className="dashboard-title">
+      <div className="dashboard-title" inert={isDashboardCollapsed}>
         <div className="status-icon">
           <Wind size={24} />
         </div>
         <div>
-          <h1>Aerogenerador REE</h1>
+          <h2>Centro de control</h2>
           <p>{windData?.status ?? 'Esperando datos'}</p>
           <p className="dashboard-location">
             <MapPin size={13} />
@@ -658,7 +673,7 @@ export default function Dashboard({
         </div>
       </div>
 
-      <div className="stats-grid">
+      <div className="stats-grid" inert={isDashboardCollapsed}>
         <Stat label="Eolica" value={`${numberFormatter.format(windMw)} MW`} detail={generationArea} />
         <Stat
           label={hasMixShare ? 'Mix' : 'Factor carga'}
@@ -689,7 +704,7 @@ export default function Dashboard({
         />
       </div>
 
-      <div className="mechanics-grid">
+      <div className="mechanics-grid" inert={isDashboardCollapsed}>
         <Stat
           label="Oscilacion torre"
           value={`${decimalFormatter.format(towerSwayDeg)} deg`}
@@ -712,7 +727,7 @@ export default function Dashboard({
         />
       </div>
 
-      <section className="scada-panel" aria-label="Panel SCADA">
+      <section className="scada-panel" aria-label="Panel SCADA" inert={isDashboardCollapsed}>
         <button
           type="button"
           className={`scada-card operation-card operation-trigger ${showOperationPanel ? 'active' : ''}`}
@@ -821,7 +836,7 @@ export default function Dashboard({
         </button>
       </section>
 
-      <div className="dashboard-actions">
+      <div className="dashboard-actions" inert={isDashboardCollapsed}>
         <label className="stress-toggle">
           <input
             type="checkbox"

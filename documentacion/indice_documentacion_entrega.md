@@ -1,4 +1,4 @@
-﻿# Indice de documentacion de entrega
+# Indice de documentacion de entrega
 
 ## Autoria y destino academico
 
@@ -235,3 +235,7 @@ Esta separacion entre dato real y dato derivado es esencial para que el proyecto
 
 **Autor:** Robert Jesus Melendez Nunez
 
+
+## Último avance guardado
+
+[14 de octubre de 2026: aplicación renovada y laboratorio animado del portal](progreso_2026-10-14.md).

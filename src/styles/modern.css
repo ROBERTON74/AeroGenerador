@@ -1,0 +1,176 @@
+/* Observatory theme: keep the existing SCADA visualizations and give the shell
+   a consistent layout, clear hierarchy and comfortable touch targets. */
+:root { color: #edf5fc; background: #07131f; --accent: #73ead4; --muted: #a5b8c9; }
+.app-shell { min-height: 100svh; background: #0b2635; }
+.scene-vignette { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(5,20,34,.91), rgba(5,20,34,.58) 25%, transparent 58%), linear-gradient(180deg, rgba(5,20,34,.74), transparent 24%, transparent 60%, rgba(5,20,34,.55)); }
+.site-header { position: absolute; z-index: 3; top: 0; left: 0; right: 0; height: 92px; padding: 0 36px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ffffff16; }
+.brand { display: flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; font-size: 20px; font-weight: 750; letter-spacing: -.7px; }
+.brand-mark { width: 43px; height: 43px; display: grid; place-items: center; border-radius: 14px; background: var(--accent); color: #102c36; }
+.brand-light { font-weight: 400; }
+.brand small { display: block; margin-top: 4px; font-size: 8px; letter-spacing: 2.1px; color: #c5d7e4; font-weight: 550; }
+.header-meta { display: flex; align-items: center; gap: 10px; color: #dae7ef; font-size: 12px; }
+.live-badge { margin-left: 22px; display: flex; align-items: center; gap: 8px; padding: 9px 13px; border: 1px solid #73ead433; border-radius: 30px; color: #b5f6e8; background: #09252caa; }
+.live-badge i { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 0 4px #73ead41a; animation: status-glow 3s ease-in-out infinite; }
+.live-badge.is-fallback { color: #ffe0a8; border-color: #ffc66a55; }
+.live-badge.is-fallback i { background: #ffc66a; animation: none; }
+.scene-intro { position: absolute; top: 145px; left: 38px; width: min(29vw, 370px); pointer-events: none; animation: observatory-in .7s ease-out both; }
+.eyebrow { display: flex; align-items: center; gap: 9px; font-size: 10px; letter-spacing: 2.4px; font-weight: 650; color: var(--accent); }
+.eyebrow > span { width: 22px; height: 1px; background: var(--accent); }
+.scene-intro h1 { margin: 20px 0 18px; font-size: clamp(36px, 4.1vw, 65px); font-weight: 650; line-height: 1.06; letter-spacing: -2.8px; }
+.scene-intro h1 > span { color: var(--accent); }
+.scene-intro > p { max-width: 285px; color: #c3d3df; font-size: 13px; line-height: 1.7; margin: 0; }
+.generation-highlight { margin-top: 25px; display: flex; align-items: center; gap: 12px; padding-top: 18px; border-top: 1px solid #ffffff24; }
+.generation-icon { display: grid; place-items: center; width: 38px; height: 38px; color: var(--accent); border-radius: 12px; background: #73ead412; }
+.generation-highlight > div { flex: 1; }
+.generation-highlight > div > span { display: block; font-size: 10px; color: #b8ccd9; }
+.generation-highlight strong { display: block; margin-top: 5px; font-size: 30px; font-weight: 550; font-variant-numeric: tabular-nums; letter-spacing: -1px; }
+.generation-highlight strong small { color: var(--accent); font-size: 13px; letter-spacing: 0; }
+.generation-highlight > svg { color: var(--accent); }
+.scene-intro > .data-disclaimer { margin-top: 11px; font-size: 9px; color: #9fb5c7; }
+.scene-toolbar { position: absolute; top: 116px; right: 36px; z-index: 3; display: flex; gap: 4px; border: 1px solid #ffffff24; border-radius: 15px; padding: 5px; background: #0a1e30bb; backdrop-filter: blur(18px); }
+.scene-toolbar button { display: flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 13px; border: 0; border-radius: 10px; background: transparent; color: #d4e3ec; font-size: 11px; cursor: pointer; transition: background .2s, color .2s; }
+.scene-toolbar button:hover { background: #ffffff12; }
+.scene-toolbar button.selected { color: #07262e; background: var(--accent); }
+.scene-hint { position: absolute; right: 42px; bottom: 370px; display: flex; gap: 8px; align-items: center; color: #fff; font-size: 10px; pointer-events: none; padding: 8px 12px; border-radius: 20px; background: #081e2b66; }
+.dashboard { z-index: 4; left: 28px; right: 28px; bottom: 22px; grid-template-columns: 210px minmax(0, 1fr); grid-template-rows: auto auto auto; gap: 12px; align-items: stretch; padding: 20px; border: 1px solid #b1d5ef29; border-radius: 22px; background: #081726ec; box-shadow: 0 18px 60px #03101b66; backdrop-filter: blur(24px); }
+.dashboard::before { background: linear-gradient(120deg, #73ead409, transparent 45%); opacity: 1; }
+.dashboard-title { grid-column: 1; grid-row: 1; gap: 11px; }
+.dashboard-title h2 { margin: 0; color: #f3f8fc; font-size: 16px; line-height: 1.2; letter-spacing: -.4px; }
+.dashboard-title p { font-size: 11px; color: #a9bdce; }
+.dashboard-location { font-size: 9px !important; }
+.status-icon { width: 38px; height: 38px; border-radius: 12px; border-color: #73ead429; background: #73ead40d; box-shadow: none; color: var(--accent); }
+.stats-grid { grid-column: 2; grid-row: 1; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.stat { padding: 7px 10px; border: 0; border-radius: 10px; }
+.stat span { color: #a8bfd1; font-size: 10px; }
+.stat strong { font-size: clamp(14px, 1.2vw, 20px); font-weight: 600; letter-spacing: -.5px; font-variant-numeric: tabular-nums; }
+.stat small { font-size: 9px; color: #8ba4ba; }
+.stats-grid > .stat:first-child { background: #73ead40d; }
+.stats-grid > .stat:first-child strong { color: var(--accent); }
+.last-update-stat { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; min-width: 0; padding: 3px 10px 0; }
+.last-update-stat strong { margin: 0; font-size: 10px; font-weight: 450; letter-spacing: 0; }
+.last-update-stat small { margin-left: auto; }
+.mechanics-grid { grid-column: 1; grid-row: 2; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 0; gap: 6px; }
+.mechanics-grid .stat { background: #a7c9e708; padding: 8px; }
+.mechanics-grid .stat span { font-size: 9px; }
+.mechanics-grid .stat strong { font-size: 14px; }
+.mechanics-grid .stat small { font-size: 8px; }
+.scada-panel { grid-column: 2; grid-row: 2; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; padding: 0; }
+.scada-card { min-height: 119px; padding: 13px 12px; border-radius: 13px; border-color: #a7c9e720; background: #13263988; }
+.scada-card > span { color: #b7cddd; font-size: 10px; }
+.scada-card strong { font-size: 16px; letter-spacing: -.3px; margin: 9px 0 6px; }
+.scada-card small { font-size: 9px; }
+.scada-card em { font-size: 9px; }
+button.scada-card:hover { transform: translateY(-3px); }
+.mini-chart { width: 58px; height: 36px; opacity: .6; }
+.wind-rose { transform: scale(.8); transform-origin: right bottom; }
+.alarm-pill { font-size: 8px !important; }
+.dashboard-actions { grid-column: 1 / -1; grid-row: 3; flex-wrap: nowrap; justify-content: flex-start; gap: 10px; padding-top: 12px; border-top: 1px solid #ffffff12; }
+.dashboard-actions button { min-height: 38px; border-radius: 10px; }
+.dashboard-actions .detail-action { padding: 8px 16px; font-size: 11px; border-color: #a7c9e726; background: #a7c9e708; }
+.stress-toggle { min-width: 170px; min-height: 38px; border-radius: 10px; }
+.stress-copy strong { font-size: 10px; }
+.stress-copy small { font-size: 9px; }
+.power-core { flex: 1; max-width: 180px; margin: 0 12px; }
+.connection { margin-left: auto; font-size: 10px; }
+.dashboard-collapse-toggle { top: -16px; right: 22px; border-radius: 20px; padding: 7px 14px; background: #10283a; border-color: #a7c9e738; box-shadow: none; }
+.dashboard-collapse-toggle span { font-size: 10px; }
+.dashboard.collapsed { transform: translateY(calc(100% - 12px)); }
+.thermal-panel { border-radius: 20px; background-color: #081726f5; box-shadow: 0 25px 90px #0008; }
+.thermal-panel-head button { border-radius: 10px; min-height: 36px; min-width: 36px; }
+.error-line { font-size: 10px; margin: 0; }
+.loading-screen { z-index: 2; background: transparent; }
+.loading-screen p { padding: 8px 14px; border-radius: 20px; background: #081726cc; }
+button:focus-visible, a:focus-visible, .stress-toggle:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; }
+@keyframes observatory-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes status-glow { 50% { box-shadow: 0 0 0 6px #73ead40a; } }
+@media (min-width: 901px) and (max-height: 830px) {
+  .site-header { height: 74px; }
+  .scene-intro { top: 105px; width: 290px; }
+  .scene-intro h1 { font-size: 43px; margin: 14px 0; }
+  .scene-intro > p { font-size: 11px; max-width: 250px; }
+  .generation-highlight { margin-top: 16px; padding-top: 12px; }
+  .generation-highlight strong { font-size: 25px; }
+  .scene-toolbar { top: 96px; }
+  .dashboard { padding: 16px; gap: 10px; }
+  .scene-hint { bottom: 340px; }
+}
+@media (min-width: 901px) and (max-width: 1180px) {
+  .dashboard { grid-template-columns: 170px minmax(0, 1fr); left: 18px; right: 18px; }
+  .dashboard-title h2 { font-size: 14px; }
+  .dashboard-title { gap: 7px; }
+  .scada-card { padding: 11px 9px; }
+  .scada-card strong { font-size: 13px; }
+  .scene-intro { width: 270px; }
+  .scene-intro h1 { font-size: 42px; }
+}
+@media (max-width: 900px) {
+  .app-shell { min-height: 100svh; }
+  .site-header { height: 76px; padding: 0 20px; }
+  .brand { font-size: 18px; }
+  .header-meta > svg, .header-meta > span:not(.live-badge) { display: none; }
+  .live-badge { margin: 0; font-size: 10px; }
+  .scene-wrap { inset: 0 0 38svh; }
+  .scene-vignette { background: linear-gradient(180deg, #071726aa, transparent 45%), linear-gradient(90deg, #07172688, transparent 60%); }
+  .scene-intro { top: 99px; left: 22px; width: 250px; }
+  .scene-intro h1 { font-size: 36px; letter-spacing: -1.8px; margin: 12px 0; }
+  .scene-intro > p, .generation-highlight, .scene-intro > .data-disclaimer { display: none; }
+  .eyebrow { font-size: 8px; letter-spacing: 1.6px; }
+  .scene-toolbar { top: auto; bottom: calc(49svh + 12px); right: 18px; }
+  .scene-hint { display: none; }
+  .dashboard { bottom: 12px; left: 12px; right: 12px; max-height: 49svh; grid-template-columns: 1fr; grid-template-rows: auto; padding: 17px; gap: 13px; overflow-y: auto; }
+  .dashboard-title, .stats-grid, .mechanics-grid, .scada-panel, .dashboard-actions { grid-column: 1; grid-row: auto; }
+  .dashboard-title { padding-right: 105px; }
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stat { background: #a7c9e708; padding: 10px; }
+  .stat strong { font-size: 18px; }
+  .last-update-stat { display: block; }
+  .last-update-stat strong { margin: 4px 0; font-size: 12px; }
+  .mechanics-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .scada-panel { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scada-card strong { font-size: 17px; }
+  .scada-card:last-child { grid-column: 1 / -1; }
+  .dashboard-actions { display: flex; flex-wrap: wrap; }
+  .power-core, .connection { display: none; }
+  .dashboard-collapse-toggle { top: 12px; right: 12px; min-height: 36px; }
+  .dashboard.collapsed { transform: translateY(calc(100% - 58px)); }
+  .app-shell:has(.dashboard.collapsed) .scene-toolbar { bottom: 88px; }
+  .thermal-panel { top: 12px; bottom: 12px; right: 12px; left: 12px; width: auto; height: auto; min-width: 0; max-height: none; transform: none; }
+}
+@media (max-width: 520px) {
+  .site-header { height: 68px; padding: 0 14px; }
+  .brand { font-size: 16px; gap: 8px; }
+  .brand-mark { width: 34px; height: 34px; border-radius: 11px; }
+  .brand small { font-size: 6px; letter-spacing: 1.4px; }
+  .live-badge { padding: 7px 9px; font-size: 8px; }
+  .scene-intro { top: 88px; left: 17px; width: 190px; }
+  .scene-intro h1 { font-size: 28px; }
+  .eyebrow { font-size: 7px; letter-spacing: 1px; }
+  .scene-toolbar { left: 50%; right: auto; transform: translateX(-50%); width: max-content; bottom: calc(48svh + 13px); }
+  .scene-toolbar button { min-height: 38px; padding: 0 10px; font-size: 10px; gap: 6px; }
+  .scene-wrap { inset: 0 0 34svh; }
+  .dashboard { max-height: 48svh; border-radius: 18px; padding: 14px; left: 8px; right: 8px; bottom: max(8px, env(safe-area-inset-bottom)); }
+  .dashboard-title { padding-right: 45px; align-items: center; }
+  .dashboard-title h2 { font-size: 15px; }
+  .dashboard-collapse-toggle { width: 36px; padding: 6px; }
+  .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mechanics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scada-card { min-height: 116px; }
+  .dashboard-actions { display: grid; grid-template-columns: 1fr 1fr 40px; }
+  .stress-toggle { grid-column: 1 / -1; }
+  .dashboard.collapsed { background: #081726e6; border-color: #b1d5ef29; backdrop-filter: blur(20px); }
+}
+@media (max-height: 580px) and (min-width: 700px) {
+  .scene-intro { top: 100px; }
+  .scene-intro h1 { font-size: 28px; }
+  .scene-intro > p, .generation-highlight, .scene-intro > .data-disclaimer { display: none; }
+  .dashboard { max-height: 45svh; overflow-y: auto; }
+  .scene-toolbar { top: 90px; bottom: auto; }
+}
+@media (min-width: 901px) and (min-height: 581px) and (max-height: 720px) {
+  .scene-intro h1 { font-size: 36px; }
+  .scene-intro > p:not(.data-disclaimer) { display: none; }
+  .generation-highlight { max-width: 240px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

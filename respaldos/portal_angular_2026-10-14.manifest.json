@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-14",
+  "source_directory": "C:\\Users\\rober\\Desktop\\Pracicas WEBS\\AeroGenerador_Entrega_Completa\\blender_portal_renderizaciones\\portal_aerogenerador_angular",
+  "archive": "portal_angular_2026-10-14.zip",
+  "archive_sha256": "f24d1850bc8aa416a7d88f990f34cb6d0efaea2f4ba2b4307608de90acee680e",
+  "excludes": [
+    "public/assets (unchanged original media)",
+    "node_modules",
+    "dist",
+    "environment credentials"
+  ],
+  "files_sha256": {
+    "src/app/animated-number.ts": "94d1567ee82bd7de0a3b64290cf9bf8ba4bd77206c6c0f14efcd437d1cbb75d3",
+    "src/app/app-new.html": "294a1cf1a7fcdc5ac79ef8675077aff66867a7e71e966b476a0bccd1d53e544b",
+    "src/app/app.config.ts": "0ddefc42df2de2dca187a53e243d0abecba264555e2dc33d6b93a8f7d4c9b996",
+    "src/app/app.css": "b30572aec6b5dd8ca85454642877451ab834f66aa484df410edf06d30ab420f7",
+    "src/app/app.html": "cfcf6c7f734c3c96aa84487e6fa37a9ee1610eb8c759367634f7518829f3015c",
+    "src/app/app.ts": "72bf1a8f98209d8754f2f0c748c045c5a5bc7b0ec43a00f5ee18cdaee38ccaa2",
+    "src/app/wind-lab.css": "f757933757d63a6901695a7975924d8aac3330a144bd9699b194e6904ea18c07",
+    "src/app/wind-lab.html": "3cc50700ebff330d11ac7fd55cab726a731151a89b301c3ba2ab0373673c2c40",
+    "src/app/wind-lab.ts": "b5bae9df10291f48ae9c78eb45df9d292496502aee2a005bdb3e7e9b666addb5",
+    "src/app/wind-model.ts": "1129aff8f2bc46f08a00f83fe6dec6c9cce76c746a2f9cef6b998fddc83d47b0",
+    "src/index.html": "d3a1977484c7f06a5d6150d63260fddc4f1f62d1abba03f45b6970f872e0e338",
+    "src/main.ts": "a53d8bf50034149a8d8b171377d40bfa2cb72535f30894af63a4429355332c76",
+    "src/styles.css": "f65036f2a3a0362b6713e0c0a8b9864a984e9b6b1a4bd7312f0af3e60602f24e",
+    ".editorconfig": "9da1d179fa691e796ec7cb26d719e2308a073594b7c7c77756d1ba4560e295be",
+    ".gitignore": "ae6d22f040c44292c421a5c0715e28b9330b8c26d9f2bf08c7935374c6147967",
+    ".prettierrc": "7bbd911f1ad35a68fd6c04d83c101b4ab1d08c1f8008623c056a27070a735532",
+    "AGENTS.md": "0fb0c52a8f5acf46de317dcc2a782c84cf73c2216a62882e76e2c2c3a48f7f7e",
+    "AVANCES_2026-10-14.md": "2ad3126efc5f529e73c8fee12673a2e934b8ed92baf7b97d871b99895d310ff8",
+    "angular.json": "65ff8051ebed0ff78be047644f0ee8093477e06b9686045ffcd6880578cd4728",
+    "package.json": "7d70318fec815018c9cff1978f4993e2210b4a5f874c66c506ddf5a7bf6d774b",
+    "package-lock.json": "54c985cf6c6ed666bd25311683ed2594268e8379ca7f7dfa07cd85f5fc7ace82",
+    "README.md": "ea748f756b9759da9067a016bb22baa2a00984bb5117c05a2b73bc92c9fed01b",
+    "tsconfig.app.json": "33c72ad2ebdc804858966a339944f7b760be1470675989dc3a02ba73c2bfb8ab",
+    "tsconfig.json": "3a10e2267b2ef116142793e305ddfb42786f99484c86112223af1cdb2aef57e2",
+    "tsconfig.spec.json": "cb4eb7ca14ffd7ab4a3fcfa1080cbc3ca3dbb039e7daecc5e7204120d0f43161"
+  }
+}
