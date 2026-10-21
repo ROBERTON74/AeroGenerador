@@ -268,17 +268,27 @@ function applyEsiosDerivedOperationalContext(generationData) {
       windDirection10mDeg: directionDeg,
       windDirection80mDeg: directionDeg,
       windGustKmh: equivalentWindKmh + equivalentSpreadKmh,
-      source: 'Derivado de ESIOS 551',
+      source: generationData.source?.startsWith('ESIOS') ? 'Derivado de ESIOS 551' : 'Derivado de la media diaria REData',
       derived: true,
     },
-    status: `${generationData.status}  - base ESIOS`,
+    status: `${generationData.status} - base ${generationData.source?.startsWith('ESIOS') ? 'ESIOS' : 'REData'}`,
     dataBasis: generationData.source?.startsWith('ESIOS') ? 'ESIOS' : 'REData',
     estimateMethod:
       'Generacion eolica real normalizada contra potencia instalada eolica espanola y convertida a equivalentes de turbina tipo',
   };
 }
 
-function normalizeGenerationResponse(payload) {
+function madridDayHours(datetime) {
+  // La energia diaria REData se convierte a potencia media; hay dias de 23 o 25 horas.
+  const midnightUtc = Date.parse(`${datetime.slice(0, 10)}T00:00:00Z`);
+  const offset = new Intl.DateTimeFormat('en', { timeZone: 'Europe/Madrid', timeZoneName: 'longOffset' })
+    .formatToParts(new Date(midnightUtc + 36 * 3600000)).find(part => part.type === 'timeZoneName').value;
+  const [, sign, hours, minutes] = offset.match(/GMT([+-])(\d{2}):(\d{2})/);
+  const offsetMs = (sign === '+' ? 1 : -1) * (Number(hours) * 60 + Number(minutes)) * 60000;
+  return (midnightUtc + 86400000 - offsetMs - Date.parse(datetime)) / 3600000;
+}
+
+function normalizeGenerationResponse(payload, beforeDate) {
   // REData devuelve muchos indicadores; se busca el de eolica y se calcula su peso dentro del total.
   const indicators = payload?.included ?? [];
   const windIndicator = indicators.find((item) =>
@@ -288,25 +298,27 @@ function normalizeGenerationResponse(payload) {
       .replace(/\p{Diacritic}/gu, '')
       .includes('eolica'),
   );
-  const latestWind = getLatestValue(windIndicator?.attributes?.values);
+  const latestWind = getLatestValue(windIndicator?.attributes?.values?.filter(value => value.datetime.slice(0, 10) < beforeDate));
 
   if (!windIndicator || !latestWind) {
     throw new Error('No se encontro el indicador de generacion eolica en REData.');
   }
 
-  const totalMw = indicators.reduce((sum, item) => {
-    const latest = getLatestValue(item?.attributes?.values);
-    return sum + (latest?.value ?? 0);
+  const hours = madridDayHours(latestWind.datetime);
+  const totalMw = indicators.filter(item => !item?.attributes?.composite).reduce((sum, item) => {
+    const sameDay = item?.attributes?.values?.find(value => value.datetime === latestWind.datetime);
+    return sum + (sameDay?.value ?? 0) / hours;
   }, 0);
 
   return createWindMetrics({
-    windMw: latestWind.value,
+    windMw: latestWind.value / hours,
     totalMw,
     share: latestWind.percentage,
     datetime: latestWind.datetime,
     source: 'Red Electrica de Espana - REData',
     rawTitle: windIndicator.attributes.title,
     geoName: ELECTRIC_SYSTEM_LABEL,
+    statusPrefix: 'Potencia media diaria REData',
   });
 }
 
@@ -353,12 +365,16 @@ async function fetchEsiosRealtimeWind() {
 }
 
 async function fetchReeDailyWind() {
-  // Respaldo publico sin token: dato diario agregado de REData.
-  const end = new Date();
-  const start = new Date(end.getTime() - 7 * 24 * 60 * 60 * 1000);
+  // Solo dias cerrados de Madrid: un acumulado parcial no permite calcular la media diaria.
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en', { timeZone: 'Europe/Madrid', year: 'numeric', month: '2-digit', day: '2-digit' })
+    .formatToParts(new Date()).map(part => [part.type, part.value]));
+  const today = `${parts.year}-${parts.month}-${parts.day}`;
+  const midnight = Date.parse(`${today}T00:00:00Z`);
+  const start = new Date(midnight - 7 * 86400000).toISOString().slice(0, 10);
+  const end = new Date(midnight - 86400000).toISOString().slice(0, 10);
   const params = new URLSearchParams({
-    start_date: toApiDate(start),
-    end_date: toApiDate(end),
+    start_date: `${start}T00:00`,
+    end_date: `${end}T23:59`,
     time_trunc: 'day',
     geo_trunc: 'electric_system',
     geo_limit: 'peninsular',
@@ -378,12 +394,12 @@ async function fetchReeDailyWind() {
     throw new Error(`REData respondio con HTTP ${response.status}.`);
   }
 
-  const data = normalizeGenerationResponse(await response.json());
+  const data = normalizeGenerationResponse(await response.json(), today);
 
   return {
     ...data,
-    source: 'REData publico diario - respaldo sin token ESIOS',
-    status: `${data.status} (dato diario)`,
+    source: 'REData publico diario - potencia media de dia cerrado (MWh/h)',
+    status: `${data.status} (dia cerrado)`,
   };
 }
 

@@ -22,6 +22,12 @@ Conexión GitHub–Vercel aceptada mediante `vercel git connect`. No se ha confi
 
 Aplicación React pública verificada en navegador a 1440 px y 390 px: turbina y mar de Blender cargados, velocidad 0,75, siete métricas, sin excepciones JavaScript ni desbordamiento móvil. REData devuelve HTTP 200 y dato diario del 21 de octubre de 2026, identificado como respaldo público diario en el dashboard. ESIOS devuelve HTTP 403 por faltar la clave del servidor; el respaldo actúa correctamente. Captura revisada y resultado en `react-publico.json`.
 
+### Corrección del respaldo REData durante la comprobación pública
+
+La inspección de esa captura descubrió que el acumulado de energía diario se presentaba como MW. Se corrige `windDataService.js`: consulta únicamente días completos de Madrid, convierte MWh a potencia media dividiendo por la duración real del día (23, 24 o 25 horas) y distingue la media diaria de ESIOS en las etiquetas. Las tecnologías se suman para la misma fecha, excluyendo agregados compuestos. No se modifica ESIOS 551, los modelos, el mar ni el aspecto de la escena.
+
+Prueba reproducible: `node scripts/verify_redata_units.mjs`. Verifica días de 23/24/25 horas, exclusión del día parcial, coherencia de potencia y factor de carga, fecha de consulta y conservación de MW de ESIOS. Las pruebas de análisis técnico siguen pasando. Referencia de parámetros y periodos: [documentación oficial REData](https://www.ree.es/es/datos/apidatos). La primera captura pública representa el estado anterior a esta corrección; conservarla como evidencia de la detección y generar una nueva para el resultado final.
+
 La revisión automática rechazó transferir la clave local ESIOS al secreto del servidor Vercel porque exige autorización específica para esa clave y ese destino. Se pidió esa autorización al usuario; no se envió la clave ni se incluyó en GitHub. La publicación mantiene la cadena de respaldo existente (REData público y simulación identificada si los proveedores fallan). Cuando el usuario lo autorice expresamente, configurar únicamente `ESIOS_API_KEY` como secreto de Vercel y volver a desplegar.
 
 Antes de preparar la subida se superaron 70 comprobaciones funcionales, 45 recursos y tres vídeos, y ambas compilaciones individuales. Se revisa de nuevo la compilación conjunta y la navegación bajo `/portal/`.
