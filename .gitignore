@@ -32,3 +32,5 @@ review_offshore_base_render.png
 respaldos/
 exportaciones/
 __pycache__/
+.env*
+!.env.example
