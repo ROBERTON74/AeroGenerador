@@ -174,3 +174,98 @@ button:focus-visible, a:focus-visible, .stress-toggle:has(input:focus-visible) {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
+
+/* DEL: illustrative fatigue locations on the existing Blender model. */
+.fatigue-panel { position:absolute; z-index:3; top:140px; left:36px; width:330px; max-height:calc(100svh - 190px); overflow:auto; padding:22px; border:1px solid #e46b5b50; border-radius:18px; background:linear-gradient(145deg,#152b36f5,#0a1b2bf0); box-shadow:0 22px 65px #0004; backdrop-filter:blur(18px); }
+.fatigue-heading { display:flex; align-items:center; justify-content:space-between; color:#ffab91; font-size:9px; letter-spacing:2px; font-weight:700; }
+.fatigue-heading button { width:32px; height:32px; min-height:32px; padding:0; background:#ffffff0a; border:1px solid #ffffff20; border-radius:8px; color:#d7e7ed; font-size:21px; cursor:pointer; }
+.fatigue-panel h1 { font-size:51px; line-height:1; letter-spacing:-2px; margin:12px 0 15px; color:#fff; }
+.fatigue-panel h1 span { display:block; margin-top:9px; font-size:14px; letter-spacing:0; font-weight:550; color:#ffbaa6; }
+.fatigue-caption { color:#ffd1bb; font-size:8px; letter-spacing:.5px; margin:-3px 0 13px; }
+.fatigue-intro { color:#bdd0db; font-size:12px; line-height:1.7; margin:0 0 18px; }
+.fatigue-legend { display:flex; justify-content:space-between; flex-wrap:wrap; gap:7px; margin-bottom:20px; color:#9db3c1; font-size:9px; }
+.fatigue-legend i { display:block; width:100%; height:5px; background:linear-gradient(90deg,#7899ab,#fdaa42,#f32130); border-radius:6px; }
+.fatigue-zones { display:grid; gap:7px; }
+.fatigue-zones button { display:flex; align-items:center; gap:11px; width:100%; min-height:64px; text-align:left; padding:11px; color:#dcebf0; border:1px solid #ffffff17; border-radius:9px; background:#ffffff04; cursor:pointer; }
+.fatigue-zones button[aria-pressed=true] { border-color:#ff8e6e85; background:#ed593018; }
+.fatigue-zones button:hover { border-color:#ff9678; }
+.fatigue-zone-dot { flex:none; width:8px; height:8px; background:#ff444b; border-radius:50%; box-shadow:0 0 12px #ff393f44; }
+.fatigue-zones button > span:nth-child(2) { flex:1; }
+.fatigue-zones strong { font-size:11px; }
+.fatigue-zones small { display:block; color:#9cb2bf; font-size:10px; line-height:1.5; margin-top:4px; }
+.fatigue-scope { font-size:10px; line-height:1.65; color:#a2bac7; margin:18px 0 14px; }
+.fatigue-scope strong { display:block; color:#ffd2bc; font-weight:550; margin-bottom:5px; }
+.fatigue-panel details { border-top:1px solid #ffffff15; padding-top:12px; font-size:10px; color:#a2bac7; line-height:1.6; }
+.fatigue-panel summary { cursor:pointer; color:#e5edf1; font-size:11px; }
+.fatigue-panel code { display:block; font-size:12px; padding:10px 0; color:#ffb294; }
+.fatigue-panel a { color:#8de4d6; }
+.scene-toolbar button.fatigue-active { background:#ff987c; color:#261b1a; }
+@media(min-width:901px) and (max-height:830px) { .fatigue-panel { top:105px; width:300px; max-height:calc(100svh - 145px); padding:18px; } }
+@media(max-width:900px) {
+  .fatigue-panel { top:82px; left:14px; width:310px; max-height:250px; padding:15px; border-radius:13px; }
+  .fatigue-panel h1 { font-size:31px; margin:8px 0 10px; }
+  .fatigue-panel h1 span { font-size:12px; margin-top:6px; }
+  .fatigue-intro { font-size:11px; margin-bottom:12px; }
+  .fatigue-zones button { min-height:50px; padding:9px; }
+  .fatigue-zones small { display:none; }
+  .fatigue-legend { margin-bottom:12px; }
+}
+@media(max-width:520px) {
+  .fatigue-panel { top:78px; left:12px; right:12px; width:auto; max-height:240px; }
+  .scene-toolbar { width:calc(100% - 24px); display:flex; }
+  .scene-toolbar button { flex:1; padding:0 6px; font-size:9px; gap:4px; }
+  .scene-toolbar button svg { width:13px; height:13px; }
+}
+
+/* Companion technical views: inspection and synthetic aerodynamic cycles. */
+.technical-panel { width:355px; scrollbar-width:thin; scrollbar-color:#55727d transparent; }
+.technical-panel::-webkit-scrollbar { width:5px; }
+.technical-panel::-webkit-scrollbar-thumb { background:#55727d; border-radius:5px; }
+.technical-panel::-webkit-scrollbar-track { background:transparent; }
+.technical-panel h1 { font-size:32px; letter-spacing:-1px; }
+.technical-panel h1 span { font-size:12px; line-height:1.5; }
+.predictive-panel { border-color:#f1bd5c55; }
+.predictive-panel .fatigue-heading,.predictive-panel .fatigue-caption { color:#f5cf89; }
+.rainflow-panel { border-color:#6cdec755; }
+.rainflow-panel .fatigue-heading,.rainflow-panel .fatigue-caption { color:#7de4d3; }
+.inspection-list { display:grid; gap:8px; }
+.inspection-list button { text-align:left; padding:12px; border:1px solid #ffffff17; border-radius:10px; background:#ffffff04; color:#e1edf3; cursor:pointer; }
+.inspection-list button[aria-pressed=true] { background:#ffd06410; border-color:#e5bb6c85; }
+.inspection-top { display:flex; justify-content:space-between; gap:8px; font-size:12px; }
+.inspection-list small { display:block; font-size:10px; color:#9cb4c2; margin:5px 0 9px; }
+.inspection-list b { display:block; font-size:14px; font-weight:550; }
+.inspection-state { display:inline-block; color:#9dcfc6; font-size:9px; margin-top:9px; padding:4px 7px; border:1px solid #78beae33; border-radius:5px; }
+.inspection-state.review { color:#ffce8c; border-color:#f1ad5c55; }
+.technical-empty { color:#92aebc; font-size:10px; line-height:1.7; padding:12px 0; margin:10px 0; border-bottom:1px solid #ffffff15; }
+.technical-signal { margin:17px 0 12px; }
+.technical-signal figcaption,.rainflow-histogram figcaption { font-size:10px; color:#afc8d4; display:flex; justify-content:space-between; gap:8px; margin-bottom:7px; }
+.technical-signal svg { width:100%; display:block; background:#06172580; border-radius:7px; }
+.technical-signal polyline { fill:none; stroke:#72e2d0; stroke-width:1.5; }
+.technical-signal .signal-grid { fill:none; stroke:#9ebfcc22; stroke-width:.6; }
+.technical-signal text { fill:#829eae; font-size:7px; }
+.technical-sliders { display:grid; gap:13px; margin:18px 0; }
+.technical-sliders label { display:flex; flex-wrap:wrap; justify-content:space-between; color:#b3cbd5; font-size:10px; gap:8px; }
+.technical-sliders strong { color:#edf7fa; font-size:11px; }
+.technical-sliders input { width:100%; height:12px; accent-color:#73ead4; cursor:pointer; }
+.technical-results { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.technical-results article { padding:10px; background:#ffffff05; border:1px solid #ffffff12; border-radius:8px; }
+.technical-results article > span { display:block; font-size:9px; color:#a9c1ce; }
+.technical-results strong { display:block; margin:8px 0; font-size:21px; color:#8aecd9; }
+.technical-results strong small { font-size:11px; }
+.technical-results article > small { font-size:8px; line-height:1.5; display:block; color:#91acbb; }
+.rainflow-histogram { margin:16px 0; }
+.rainflow-histogram figcaption strong { font-size:9px; color:#e2f2f5; }
+.rainflow-bars { display:flex; align-items:flex-end; justify-content:space-around; gap:12px; height:81px; padding-top:8px; }
+.rainflow-bars div { flex:1; text-align:center; }
+.rainflow-bars span { display:block; background:linear-gradient(#f4be6b,#c6793c77); border-radius:4px 4px 0 0; }
+.rainflow-bars small { display:block; color:#b9cfd8; font-size:9px; padding-top:5px; }
+.histogram-axis { display:flex; justify-content:space-between; margin-top:9px; font-size:8px; color:#8faab9; }
+.scene-toolbar button.inspection-active { background:#efcd81; color:#28312f; }
+@media(max-width:900px) {
+  .scene-toolbar { width:calc(100% - 36px); display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:3px; }
+  .scene-toolbar button { justify-content:center; }
+  .technical-panel { width:320px; max-height:290px; }
+  .technical-panel h1 { font-size:25px; }
+  .technical-panel .fatigue-intro { display:none; }
+}
+@media(max-width:520px) { .technical-panel { width:auto; max-height:270px; } .scene-toolbar { width:calc(100% - 24px); display:grid; } }

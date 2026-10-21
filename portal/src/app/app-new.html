@@ -1,0 +1,383 @@
+<header class="shell-header" [class.menu-open]="menuOpen">
+  <a class="brand" href="#inicio" (click)="closeMenu()" aria-label="Inicio AeroGenerador">
+    <span class="brand-mark">AG</span>
+    <span>
+      <strong>AeroGenerador</strong>
+      <small>Universidad Complutense de Madrid</small>
+    </span>
+  </a>
+
+  <button class="menu-button" type="button" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen" aria-label="Abrir menu">
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav class="main-nav" aria-label="Navegacion principal">
+    <a href="#aplicacion" (click)="closeMenu()" [class.active]="activeSection === 'aplicacion'">Aplicacion</a>
+    <a href="#modelo3d" (click)="closeMenu()" [class.active]="activeSection === 'modelo3d'">Modelo 3D</a>
+    <a href="#plataformas-offshore" (click)="closeMenu()" [class.active]="activeSection === 'plataformas-offshore'">Tipos de plataformas offshore</a>
+    <a href="#laboratorio" (click)="closeMenu()" [class.active]="activeSection === 'laboratorio'">Laboratorio</a>
+    <a href="#videos" (click)="closeMenu()" [class.active]="activeSection === 'videos'">Videos</a>
+    <a href="#papers" (click)="closeMenu()" [class.active]="activeSection === 'papers'">Papers</a>
+    <a href="#metodologia" (click)="closeMenu()" [class.active]="activeSection === 'metodologia'">Metodologia</a>
+    <a href="#entregables" (click)="closeMenu()" [class.active]="activeSection === 'entregables'">Entregables</a>
+  </nav>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="hero-visual">
+      <div class="technical-plate">
+        <img src="assets/renders/07_front_rotor_full_proportion_review.png" alt="Vista técnica frontal del aerogenerador con referencias del buje y el eje de torre" />
+        <svg class="technical-overlay" viewBox="0 0 1200 1600" fill="none" aria-hidden="true" focusable="false">
+          <g class="draft-guides">
+            <path d="M600 80V1510 M160 237H1100" stroke-dasharray="12 14" />
+            <circle cx="600" cy="237" r="112" />
+            <circle cx="600" cy="237" r="140" stroke-dasharray="4 16" />
+            <path d="M574 237H626 M600 211V263 M170 1470H1040" />
+            <path d="M110 115V65H160 M1040 65H1090V115 M110 1485V1535H160 M1040 1535H1090V1485" />
+          </g>
+          <g class="draft-callouts">
+            <path d="M640 270L760 370H1030 M630 815L790 735H1030" />
+            <circle cx="640" cy="270" r="7" /><circle cx="630" cy="815" r="7" />
+          </g>
+          <g class="draft-labels">
+            <text x="775" y="351">01 / BUJE</text>
+            <text x="805" y="716">02 / TORRE</text>
+            <text x="140" y="145">ALZADO FRONTAL</text>
+            <text x="140" y="1505">MODELO DE REFERENCIA · VISTA ILUSTRATIVA</text>
+          </g>
+        </svg>
+      </div>
+      <div class="enterprise-console" aria-label="Vista previa de plataforma industrial">
+        <div class="console-topbar">
+          <span></span>
+          <span></span>
+          <strong>WindOps Core</strong>
+        </div>
+        <div class="console-grid">
+          <article>
+            <small>Produccion</small>
+            <strong>31.679</strong>
+            <span>MW agregados</span>
+          </article>
+          <article>
+            <small>Pitch</small>
+            <strong>Auto</strong>
+            <span>Modelo didactico</span>
+          </article>
+          <article>
+            <small>Yaw</small>
+            <strong>Stable</strong>
+            <span>Alineacion estimada</span>
+          </article>
+          <article>
+            <small>Estado</small>
+            <strong>Online</strong>
+            <span>Polling 5 min</span>
+          </article>
+        </div>
+        <div class="signal-row">
+          <span style="--level: 62%"></span>
+          <span style="--level: 84%"></span>
+          <span style="--level: 48%"></span>
+          <span style="--level: 73%"></span>
+          <span style="--level: 57%"></span>
+          <span style="--level: 91%"></span>
+        </div>
+      </div>
+      <div class="telemetry-card rotor-card">
+        <span>Rotor</span>
+        <strong>145 m</strong>
+        <small>Escala visual tecnica</small>
+      </div>
+      <div class="telemetry-card data-card">
+        <span>Fuente</span>
+        <strong>ESIOS</strong>
+        <small>Datos agregados reales</small>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="enterprise-label">
+        <span></span>
+        <strong>Industrial digital twin concept</strong>
+      </div>
+      <p class="eyebrow">Proyecto universitario · UCM · Energia eolica</p>
+      <h1>AeroGenerador</h1>
+      <p class="hero-subtitle">Portal academico interactivo de visualizacion tecnica eolica</p>
+      <p class="lead">
+        Aplicacion web interactiva con datos reales agregados de generacion eolica,
+        modelos matematicos derivados y material visual de Blender para explicar el
+        comportamiento tecnico del aerogenerador.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button primary" [href]="applicationUrl" target="_blank" rel="noopener">Abrir aplicacion</a>
+        <a class="button ghost" href="#videos">Ver videos Blender</a>
+        <a class="button ghost" href="#papers">Ver papers tecnicos</a>
+      </div>
+
+      <div class="hero-strip" aria-label="Resumen de tecnologia">
+        <article>
+          <strong>Angular</strong>
+          <span>Frontend moderno</span>
+        </article>
+        <article>
+          <strong>Three.js</strong>
+          <span>Visualizacion 3D</span>
+        </article>
+        <article>
+          <strong>Blender</strong>
+          <span>Renders tecnicos</span>
+        </article>
+      </div>
+
+      <div class="trust-row" aria-label="Enfoque de plataforma">
+        <span>API ready</span>
+        <span>SCADA style</span>
+        <span>Asset analytics</span>
+        <span>Academic scope</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="aplicacion" class="section app-section">
+    <div class="section-heading">
+      <span>01</span>
+      <div>
+        <p class="kicker">Aplicacion principal</p>
+        <h2>Dashboard tecnico con datos reales agregados</h2>
+        <p>
+          Acceso directo a la experiencia web desarrollada con Vite, React,
+          Three.js, React Three Fiber y Drei.
+        </p>
+      </div>
+    </div>
+
+    <div class="control-panel">
+      <div class="panel-copy">
+        <p class="status-pill">Acceso ESIOS con API key</p>
+        <h3>AeroGenerador en tiempo real</h3>
+        <p>
+          La aplicacion consulta ESIOS, el sistema de informacion de Red Electrica,
+          mediante una API key. ESIOS proporciona datos reales agregados del sistema
+          electrico, como la generacion eolica en MW. Con esos datos y modelos
+          matematicos propios calculamos variables didacticas de aerogenerador:
+          rpm, pitch, yaw, carga mecanica, vibracion, temperaturas, disponibilidad y alarmas.
+        </p>
+      </div>
+      <a class="button primary dark" [href]="applicationUrl" target="_blank" rel="noopener">Entrar a la aplicacion</a>
+    </div>
+
+    <div class="metrics-grid" aria-label="Resumen tecnico">
+      @for (metric of metrics; track metric.value) {
+        <article [class.featured]="metric.featured">
+          <strong>{{ metric.value }}</strong>
+          <span>{{ metric.label }}</span>
+        </article>
+      }
+    </div>
+
+    <div class="operations-grid" aria-label="Capas de plataforma">
+      <article>
+        <span>01</span>
+        <h3>Data layer</h3>
+        <p>Lectura agregada desde ESIOS y normalizacion para indicadores del dashboard.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Model layer</h3>
+        <p>Derivacion didactica de rpm, pitch, yaw, carga, vibracion y estado operativo.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Visual layer</h3>
+        <p>Representacion 3D, videos Blender y papers para explicar el alcance tecnico.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="modelo3d" class="section wide-section blender-model-section">
+    <div class="section-heading">
+      <span>3D</span>
+      <div>
+        <p class="kicker">Modelo original de Blender</p>
+        <h2>Explora el aerogenerador en movimiento</h2>
+        <p>Recorre su geometría, observa el giro del rotor y reproduce la animación de pitch de las palas.</p>
+      </div>
+    </div>
+    <iframe class="blender-model-frame" src="assets/modelo3d/index.html" title="Visor interactivo del aerogenerador de Blender: giro del rotor y pitch de palas" loading="lazy" allow="fullscreen" allowfullscreen (load)="onModelFrameLoad($event)"></iframe>
+    <p class="blender-model-note">Modelo procedente de Blender · Arrastra para girar la vista y usa la rueda o el gesto de pellizco para acercar. <a href="assets/modelo3d/index.html" target="_blank" rel="noopener">Abrir visor en pantalla completa ↗</a></p>
+  </section>
+
+  <section id="plataformas-offshore" class="section wide-section offshore-platform-section">
+    <div class="section-heading">
+      <span>OF</span>
+      <div>
+        <p class="kicker">Tipos de plataformas offshore</p>
+        <h2>Plataforma flotante semisumergible</h2>
+        <p>Explora la base triangular con tres columnas y amarres, junto al aerogenerador original de Blender y sus palas en movimiento.</p>
+      </div>
+    </div>
+    <nav class="offshore-model-links" aria-label="Elegir plataforma offshore"><a href="#plataforma-semisumergible">01 · Semisumergible</a><a href="#plataforma-tensores">02 · TLP · Tensores y anillo</a><a href="#cimentacion-jacket">03 · Jacket</a></nav>
+    <iframe id="plataforma-semisumergible" class="offshore-platform-frame" src="assets/plataformas-offshore/index.html" title="Plataforma flotante offshore en 3D con rotor animado" loading="lazy" allow="fullscreen" allowfullscreen (load)="onModelFrameLoad($event)"></iframe>
+    <p class="blender-model-note">Modelo visual de referencia · Arrastra para explorar, acerca la vista y pausa las palas para observar los detalles. <a href="assets/plataformas-offshore/index.html" target="_blank" rel="noopener">Abrir visor en pantalla completa ↗</a></p>
+
+    <div id="plataforma-tensores" class="offshore-additional-model">
+      <p class="kicker">02 · Modelo aprobado en Blender</p>
+      <h3>Plataforma TLP · Tensores y anillo inferior</h3>
+      <p class="offshore-model-description">Cuerpo de flotación amarillo, seis tensores verticales y anillo inferior abierto. Explora los acabados, acerca cada parte y observa el rotor en movimiento.</p>
+      <article class="tlp-explanation" aria-labelledby="tlp-definition">
+        <h4 id="tlp-definition">¿Qué es una plataforma TLP?</h4>
+        <p><strong>TLP</strong> significa <strong lang="en">Tension Leg Platform</strong>: una plataforma flotante estabilizada mediante tendones casi verticales y pretensados, conectados a anclajes en el fondo marino.</p>
+        <p>La tensión de los tendones aporta rigidez y limita el movimiento vertical y las inclinaciones del conjunto. Su diseño exige estudiar las cargas en los tendones y los anclajes, además de la instalación.</p>
+        <p class="tlp-model-detail">En este modelo se representan seis tensores y un anillo inferior. La forma de ese anillo corresponde a la reconstrucción de las fotografías; no es un componente obligatorio de todas las TLP.</p>
+        <p class="tlp-sources">Fuentes: <a href="https://www.energy.gov/cmei/systems/articles/glosten-associates-tests-innovative-high-strength-mooring-lines-deepwater" target="_blank" rel="noopener">DOE · Tendones y movimiento vertical ↗</a> · <a href="https://www.energy.gov/cmei/systems/articles/offshore-floating-vertical-axis-wind-turbine-project-identifies-promising" target="_blank" rel="noopener">DOE / Sandia · Plataformas TLP y estabilidad ↗</a></p>
+      </article>
+      <iframe class="offshore-platform-frame tensores-platform-frame" src="assets/plataforma-tensores/index.html" title="Plataforma TLP con tendones verticales, anillo inferior y palas animadas" loading="lazy" allow="fullscreen" allowfullscreen (load)="onModelFrameLoad($event)"></iframe>
+      <p class="blender-model-note">Materiales con relieve y rugosidad · Conjunto, estructura, anillo y rotor con vistas propias. <a href="assets/plataforma-tensores/index.html" target="_blank" rel="noopener">Abrir visor en pantalla completa ↗</a></p>
+    </div>
+
+    <div id="cimentacion-jacket" class="offshore-additional-model">
+      <p class="kicker">03 · Modelo aprobado en Blender</p>
+      <h3>Cimentación jacket</h3>
+      <p class="offshore-model-description">Explora la celosía amarilla de cuatro patas, sus refuerzos cruzados, los pilotes inferiores y la transición hacia la torre del aerogenerador.</p>
+      <iframe class="offshore-platform-frame tensores-platform-frame" src="assets/jacket/index.html" title="Cimentación jacket en 3D con pilotes y rotor animado" loading="lazy" allow="fullscreen" allowfullscreen (load)="onModelFrameLoad($event)"></iframe>
+      <p class="blender-model-note">Conjunto, jacket, pilotes y rotor con vistas propias · Arrastra para explorar y usa la rueda para acercar. <a href="assets/jacket/index.html" target="_blank" rel="noopener">Abrir visor en pantalla completa ↗</a></p>
+    </div>
+  </section>
+
+  <section id="laboratorio" class="section wide-section" style="scroll-margin-top: 100px">
+    <div class="section-heading"><span>↗</span><div><p class="kicker">Laboratorio interactivo</p><h2>Del viento al empuje. Del movimiento a la energía.</h2><p>Mueve los controles para explorar la animación y los resultados del escenario.</p></div></div>
+
+
+  <app-wind-lab />
+  </section>
+
+  <section id="videos" class="section wide-section">
+    <div class="section-heading">
+      <span>02</span>
+      <div>
+        <p class="kicker">Videos Blender HD</p>
+        <h2>Material audiovisual para defender el comportamiento tecnico</h2>
+        <p>
+          Material renderizado desde Blender para mostrar fidelidad visual,
+          pitch de palas, rotacion del rotor y comparativas tecnicas.
+        </p>
+      </div>
+    </div>
+
+    <div class="video-grid">
+      @for (video of videos; track video.title) {
+        <article class="video-card" [class.featured]="video.featured">
+          <video controls preload="metadata" [poster]="video.poster">
+            <source [src]="video.src" type="video/mp4" />
+          </video>
+          <div>
+            <p class="kicker">{{ video.kicker }}</p>
+            <h3>{{ video.title }}</h3>
+            <p>{{ video.text }}</p>
+            <a class="text-link" [href]="video.src" download>{{ video.download }}</a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="papers" class="section wide-section">
+    <div class="section-heading">
+      <span>03</span>
+      <div>
+        <p class="kicker">Papers tecnicos</p>
+        <h2>Base academica para conectar datos, fatiga y aerodinamica</h2>
+        <p>
+          Tres documentos de apoyo redactados para defender la parte de fatiga,
+          vida util y aerodinamica del modelo.
+        </p>
+      </div>
+    </div>
+
+    <div class="paper-intro">
+      <p class="status-pill">Base academica ampliada</p>
+      <h3>De la generacion eolica real a una lectura mecanica del aerogenerador</h3>
+      <p>
+        Estos papers dejan claro el alcance del proyecto: ESIOS aporta datos reales
+        agregados de generacion, y sobre esa base se construyen indicadores didacticos
+        para explicar carga equivalente, fatiga, vida consumida y coeficientes aerodinamicos.
+      </p>
+    </div>
+
+    <div class="paper-grid">
+      @for (paper of papers; track paper.number) {
+        <article class="paper-card">
+          <div class="paper-number">{{ paper.number }}</div>
+          <p class="kicker">{{ paper.kicker }}</p>
+          <h3>{{ paper.title }}</h3>
+          <p>{{ paper.text }}</p>
+          <ul>
+            @for (point of paper.points; track point) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+          <a class="text-link" [href]="paper.href" target="_blank" rel="noopener">{{ paper.link }}</a>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="metodologia" class="section">
+    <div class="section-heading">
+      <span>04</span>
+      <div>
+        <p class="kicker">Criterio tecnico</p>
+        <h2>Web y Blender como piezas complementarias</h2>
+        <p>
+          La web y Blender se presentan como partes complementarias, no como
+          duplicados de la misma funcionalidad.
+        </p>
+      </div>
+    </div>
+
+    <div class="method-grid">
+      @for (item of methodology; track item.title) {
+        <article>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section id="entregables" class="section wide-section">
+    <div class="section-heading">
+      <span>05</span>
+      <div>
+        <p class="kicker">Entregables del proyecto</p>
+        <h2>Conjunto final para defender la parte web, visual y documental</h2>
+        <p>
+          Conjunto final preparado para defender la parte web, la parte visual
+          en Blender y la documentacion tecnica asociada.
+        </p>
+      </div>
+    </div>
+
+    <div class="deliverables-grid">
+      @for (item of deliverables; track item.title) {
+        <article>
+          <p class="kicker">{{ item.kicker }}</p>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+      }
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div>
+    <p>AeroGenerador · Proyecto academico</p>
+    <small>Powered by Robert Melendez</small>
+  </div>
+  <p>Visualizacion tecnica calibrada, no sensorizacion real de una turbina individual.</p>
+</footer>

@@ -1,0 +1,16 @@
+{
+  "source": "Free Ocean Simulation Tiled — the9thearl",
+  "license": "CC BY 4.0",
+  "source_url": "https://sketchfab.com/3d-models/free-ocean-simulation-tiled-ec999170128341a29dfe6d75878e2303",
+  "speed": 0.75,
+  "scale": 0.0608780487804878,
+  "height": -0.08,
+  "only_water": true,
+  "files_sha256": {
+    "mar_base.glb": "0ee8ac83c9e9b52eb0e13ed363be1ab81e4364a55f86d0dc0407f225a75e9e75",
+    "mar_animacion.json": "6507bf329d668d08f156272210dc3986349badc4f9436a880fb6644fb6f0a32e",
+    "mar_movimiento_0.bin.gz": "b6ca250995ccad508c10461e473e4e1c82427620865e8766bb84327f104e4871",
+    "mar_movimiento_1.bin.gz": "dbe16b94375c23df68a28f3f83eb7727d6acffb6526ce2d42212fc3250c8c1ac",
+    "mar_movimiento_2.bin.gz": "6e92559dfc587678d2bfa80ac9c62fae3b974f1b004e4a77da7d57d677fbc0b1"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "source": "exportaciones/jacket_referencia_2026-10-20/jacket_cimentacion_REVISION.blend",
+  "scene": "Jacket_cimentacion_REVISION",
+  "bytes": 14303352,
+  "sha256": "606d8e63bcf8c8dd374cb09145204a1c42a21db6d64a7b129c12cc5b421a11f0",
+  "rotor": "JACKET_ROTOR_ANIMADO_12_RPM",
+  "animation": "Giro web de 12 rpm sobre eje local glTF (0,0,-1), con pausa y velocidad.",
+  "previous_models_unchanged": true
+}

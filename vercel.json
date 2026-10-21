@@ -1,7 +1,12 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build:all",
+  "installCommand": "npm ci --include=dev && npm ci --prefix portal --include=dev",
   "outputDirectory": "dist",
   "rewrites": [
+    {
+      "source": "/portal",
+      "destination": "/portal/index.html"
+    },
     {
       "source": "/esios-api/:path*",
       "destination": "/api/esios?path=:path*"

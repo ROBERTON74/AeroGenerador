@@ -1,0 +1,14 @@
+Free Ocean Simulation Tiled — the9thearl
+Fuente: https://sketchfab.com/3d-models/free-ocean-simulation-tiled-ec999170128341a29dfe6d75878e2303
+Licencia recibida: Creative Commons Attribution 4.0
+https://creativecommons.org/licenses/by/4.0/
+
+Adaptación en AeroGenerador: geometría y texturas exportadas de Blender,
+texturas reducidas, deltas de vértices comprimidos, módulos repetidos y
+detalle lejano reducido. Clip original al 75 % de velocidad. Escala uniforme
+de presentación equivalente a la del aerogenerador de React. No se añaden
+ondas procedurales, animales ni fondo marino en esta adaptación.
+
+Los cinco archivos de mar coinciden por SHA-256 con los usados en los
+visores de las plataformas del portal local. Ver procedencia.json y
+documentacion/react_mar_blender_2026-10-20.md en el proyecto fuente.

@@ -1,0 +1,15 @@
+.git
+.env*
+!.env.example
+respaldos
+exportaciones
+documentacion
+*.blend
+*.blend1
+*.zip
+Eduardo Muñoz palomeque
+scripts/__pycache__
+.portal-build
+dist
+node_modules
+portal/node_modules

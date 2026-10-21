@@ -1,0 +1,31 @@
+# Portada técnica del portal · 18 de octubre de 2026
+
+## Petición y alcance
+
+El usuario pidió que únicamente la imagen frontal de la portada tuviera un aspecto más técnico y que se actualizara la documentación. Se conserva el mismo render Blender, con fondo oscuro integrado, retícula turquesa, referencias del buje y de la torre, ejes y marcas de encuadre. El PNG original no se ha editado: el tratamiento usa CSS y SVG decorativo, sin dependencias nuevas.
+
+Solo se modifican `src/app/app-new.html` y `src/app/app.css` del portal Angular. El título, textos, tarjetas, botones, navegación, vídeos, papers, laboratorio y aplicación React conservan su implementación. Las referencias gráficas son ilustrativas: no son cotas de fabricación ni telemetría real.
+
+## Arranque de los dos proyectos
+
+- Portal Angular: carpeta `../AeroGenerador_Entrega_Completa/blender_portal_renderizaciones/portal_aerogenerador_angular`, ejecutar `npm.cmd start -- --host 127.0.0.1 --port 4200`, abrir http://localhost:4200/.
+- Aplicación React 3D: raíz de AeroGenerador, ejecutar `npm.cmd run dev`, abrir http://127.0.0.1:5177/.
+- Mantener ambos procesos activos. Abrir el portal no arranca automáticamente la aplicación. El fallo de acceso de esta sesión se debía a que el servidor React estaba apagado; se inició y respondió HTTP 200.
+
+## Verificación y conservación
+
+- Compilación Angular de producción correcta (`npm.cmd run build`).
+- Comparación del HTML: todo lo ajeno al bloque de la imagen es idéntico a la copia previa.
+- Huellas SHA-256 de los archivos `wind-*`: laboratorio y modelo sin modificaciones.
+- Captura de escritorio revisada; captura a 500 píxeles para revisar el diseño móvil. No se ha validado un dispositivo físico.
+- Portal, render y aplicación comprobados mediante HTTP local.
+- Copias anteriores de HTML/CSS, huellas y capturas en `respaldos/portada_2026-10-18/` de AeroGenerador.
+- Copia actualizada del código del portal en `respaldos/portal_angular_2026-10-18.zip`, con manifiesto SHA-256. Incluye fuentes, configuración y notas; excluye dependencias, dist, credenciales y medios originales. Conservar también `public/assets` para restaurar el portal completo.
+
+Los documentos históricos se conservan como registro de sus fechas; este documento es el estado más reciente de la portada. La investigación offshore del día 15 sigue disponible. No se ha publicado ni subido a GitHub. Las credenciales permanecen en archivos de entorno ignorados.
+
+## Mantenimiento y reversión
+
+Los selectores `.technical-plate`, `.technical-overlay` y `.draft-*` se limitan a la portada. La capa SVG tiene `aria-hidden`, no recibe foco ni intercepta pulsaciones; el render dispone de texto alternativo. Por debajo de 640 píxeles, la lámina ocupa 260 píxeles de alto. No añade animaciones.
+
+Para revertir únicamente este ajuste, restaurar `app-new.html` y `app.css` desde `respaldos/portada_2026-10-18/` a `src/app/` del portal y volver a compilar. No restaurar otros archivos ni sustituir el laboratorio.

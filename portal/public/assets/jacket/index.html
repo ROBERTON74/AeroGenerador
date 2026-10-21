@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AeroGenerador · Cimentación jacket</title>
+  <link rel="stylesheet" href="visor.css">
+  <script type="importmap">{"imports":{"three":"../modelo3d/vendor/three.module.js","three/addons/":"../modelo3d/vendor/addons/"}}</script>
+</head>
+<body>
+<main>
+  <div id="stage" tabindex="0" aria-label="Cimentación jacket en 3D. Arrastra para girar y usa la rueda para acercar.">
+    <div class="badge"><i></i> OFFSHORE · CIMENTACIÓN JACKET</div>
+    <div id="loading" role="status">Cargando el modelo 3D…</div>
+    <p class="hint">Arrastra para explorar · Rueda o pellizco para acercar<br>Mar de Blender al 75 % · Fondo de arena y fauna animada</p>
+  </div>
+  <aside>
+    <p class="eyebrow">TIPOS DE PLATAFORMAS OFFSHORE</p>
+    <h1>Cimentación jacket</h1>
+    <p class="intro">Estructura tubular de cuatro patas inclinadas, arriostrada con diagonales en X. Los pilotes inferiores representan la conexión de esta cimentación fija con el terreno.</p>
+    <fieldset id="controls" disabled>
+      <legend>Explora el conjunto</legend>
+      <div class="views"><button data-view="general" aria-pressed="true">Conjunto</button><button data-view="platform" aria-pressed="false">Jacket</button><button data-view="ring" aria-pressed="false">Pilotes</button><button data-view="rotor" aria-pressed="false">Rotor</button></div>
+      <div class="views environment-views"><button data-view="marine" aria-pressed="false">Entorno marino</button><button data-view="underwater" aria-pressed="false">Bajo el agua</button></div>
+      <div class="playback"><button id="play" aria-pressed="true">Pausar animación</button><label>Velocidad palas<select id="speed"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option></select></label></div>
+      <label class="quality">Definición <select id="quality"><option value="high" selected>Alta</option><option value="low">Ligera</option></select></label>
+      <button id="reset">Restablecer vista</button>
+    </fieldset>
+    <dl><div><dt>Tipología</dt><dd>Jacket · Cimentación fija</dd></div><div><dt>Estructura</dt><dd>4 patas y cruces en X</dd></div><div><dt>Apoyo</dt><dd>Pilotes y transición a la torre</dd></div><div><dt>Movimiento</dt><dd>Rotor animado · 12 rpm a 1×</dd></div></dl>
+    <p class="scope">Reconstrucción visual a partir de las fotografías aportadas. Proporciones aproximadas. El giro es ilustrativo; no se calculan cargas, resistencia ni interacción con el suelo.</p>
+    <p class="scope">Mar al 75 % del clip original; dos jorobadas, dos cachalotes y tres tiburones. Recorridos ilustrativos. Nivel del agua orientativo.</p>
+    <a class="poster" href="../entorno-offshore/atribuciones.html" target="_blank" rel="noopener">Créditos del entorno y licencias ↗</a><br>
+    <a class="poster" href="render_blender.png" target="_blank" rel="noopener">Ver render de Blender ↗</a>
+
+  </aside>
+</main>
+<script type="module" src="visor.js"></script>
+</body>
+</html>

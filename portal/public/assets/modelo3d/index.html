@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AeroGenerador · Modelo Blender 3D</title>
+  <link rel="stylesheet" href="visor.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js","three/addons/":"./vendor/addons/"}}</script>
+</head>
+<body>
+  <main class="viewer">
+    <div class="stage" id="stage" tabindex="0" aria-label="Modelo 3D: arrastra para orbitar y usa la rueda para acercar">
+      <div class="badge"><i></i> MODELO BLENDER / 3D INTERACTIVO</div>
+      <div class="loading" id="loading" role="status">Cargando el aerogenerador…</div>
+      <div class="view-caption">ARRASTRA PARA EXPLORAR <span>·</span> RUEDA O PELLIZCO PARA ACERCAR</div>
+    </div>
+    <aside>
+      <p class="eyebrow">DEL MODELADO A LA WEB</p>
+      <h1>El mismo modelo.<br>Otra forma de explorarlo.</h1>
+      <p class="intro">Palas, buje, góndola y torre del aerogenerador de Blender, ahora en una escena que puedes recorrer.</p>
+      <fieldset disabled id="controls">
+        <legend>Movimiento</legend>
+        <div class="segmented"><button data-mode="rotor" aria-pressed="true">Giro del rotor</button><button data-mode="pitch" aria-pressed="false">Pitch Blender</button></div>
+        <div class="playback"><button id="play" aria-pressed="true">Pausar</button><label>Velocidad <select id="speed"><option value="0.5">0,5×</option><option value="1" selected>1×</option><option value="1.5">1,5×</option></select></label></div>
+        <legend class="views-title">Punto de vista</legend>
+        <div class="views"><button data-view="general" aria-pressed="true">General</button><button data-view="rotor" aria-pressed="false">Rotor y buje</button><button data-view="nacelle" aria-pressed="false">Góndola</button></div>
+        <button class="reset" id="reset">Restablecer vista</button>
+      </fieldset>
+      <div class="origin"><strong id="motion-label">Giro ilustrativo sobre el rig original</strong><p id="motion-description">El rotor gira sobre el eje del modelo de Blender. Puedes pausar el movimiento para observar sus uniones.</p></div>
+      <p class="scope">Visualización didáctica. El pitch procede de la animación de Blender; el giro se recrea en la web. No representa desgaste medido ni telemetría individual.</p>
+    </aside>
+  </main>
+  <script type="module" src="visor.js"></script>
+</body>
+</html>

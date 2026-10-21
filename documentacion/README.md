@@ -1,4 +1,44 @@
-﻿# AeroGenerador - documentacion del proyecto
+# AeroGenerador - documentacion del proyecto
+
+- [Fondo de arena Nearshore Sandripples: escala y renders](sandripples_revision_2026-10-20.md).
+
+
+- [Tres tiburones animados a escala y cetáceos más alejados](tres_tiburones_revision_2026-10-20.md).
+
+
+- [Placa celeste recuperada y mar original un 20 % más rápido](base_celeste_mar_rapido_2026-10-20.md).
+
+
+- [Cetáceos descargados: escala, animación y renders en Blender](cetaceos_descargados_revision_2026-10-20.md).
+
+
+- [Superficie descargada: renders en Blender con los animales a media profundidad](oceano_descargado_revision_2026-10-20.md).
+
+
+- [Mar, ballena y cachalote animados: revisi?n solo en Blender](mar_cetaceos_revision_2026-10-20.md).
+
+
+- [Mar natural: ondas, transparencia y reflejos suaves en las tres plataformas](mar_natural_2026-10-20.md).
+
+
+- [Corrección del mar: lámina uniforme y bordes definidos](mar_lamina_definida_2026-10-20.md).
+
+
+- [Guardado completo, sesión Blender y restauración del trabajo actual](guardado_completo_2026-10-20.md).
+
+- [Lámina azul transparente para indicar el mar en las tres plataformas](mar_suave_visores_2026-10-20.md).
+
+- [Jacket añadida al portal como tercer modelo, con rotor animado y conservación de las otras plataformas](jacket_web_2026-10-20.md).
+
+- [Tercera estructura: jacket modelada en Blender, pendiente de revisión antes de web](jacket_revision_2026-10-20.md).
+
+- [TLP: nombre, definición y fuentes oficiales incorporadas al portal](tlp_explicacion_web_2026-10-20.md).
+
+- [Segunda plataforma aprobada e incorporada al portal: materiales PBR y rotor animado](plataforma_tensores_web_2026-10-20.md).
+
+- [Segunda plataforma con tensores y anillo: modelo Blender pendiente de revisión, todavía sin integración web](plataforma_tensores_revision_2026-10-20.md).
+
+- [Tipos de plataformas offshore · nuevo visor flotante, rotor animado y conservación del portal (20/10/2026)](plataformas_offshore_web_2026-10-20.md).
 
 He desarrollado **AeroGenerador** como una aplicacion web interactiva con un aerogenerador 3D animado en Three.js y un dashboard inferior con datos agregados de generacion eolica en Espana.
 
@@ -304,3 +344,30 @@ Para mantenimiento, escalabilidad y explicacion del codigo creado, consulta [man
 
 **Autor:** Robert Jesus Melendez Nunez
 
+## Actualización vigente · 18 de octubre de 2026
+
+Estado actual y verificaciones en [Portada técnica del portal · 18 de octubre](portada_tecnica_2026-10-18.md).
+
+La imagen frontal de la portada Angular recibe un tratamiento de dibujo técnico mediante CSS y SVG; se conserva el render original. El ajuste se limita a esa imagen. El laboratorio animado, la interfaz restante y la aplicación 3D mantienen su implementación. No implica cambios de modelos matemáticos, ESIOS ni telemetría.
+
+Para usar todo el proyecto deben arrancarse dos servidores: portal Angular en 4200 (`npm.cmd start -- --host 127.0.0.1 --port 4200` desde su carpeta) y React 3D en 5177 (`npm.cmd run dev` desde AeroGenerador). Se verificó la compilación del portal y se guardaron copias locales. No hay nueva publicación ni subida a GitHub.
+
+## Estado vigente · 20 de octubre de 2026
+
+Leer primero [progreso_2026-10-20.md](progreso_2026-10-20.md) y [la integración Blender/web](integracion_modelo_blender_web.md) para el estado más reciente.
+
+El portal Angular (4200) incorpora «Modelo 3D» con el aerogenerador original de Blender. La aplicación React (5177) también usa ese modelo como turbina principal, manteniendo datos, dashboard, paneles SCADA, cámara, entorno marino y análisis mecánico. El giro sigue las rpm equivalentes; pitch y yaw se adaptan a los indicadores existentes. El Blender original, la portada técnica y el laboratorio aprobado se conservan. No hay simulación nueva de desgaste acumulado ni nueva publicación. Copias y verificaciones documentadas en las notas del día 20.
+
+## Vista DEL · ampliación del 20 de octubre de 2026
+
+Nueva vista ampliada [DEL y zonas de fatiga](vista_del_2026-10-20.md) en http://localhost:5177/?vista=del, accesible también desde «DEL · Fatiga». Colorea el modelo Blender en rojo en raíces de pala, uniones superiores y base de torre; incluye tres acercamientos y restaura los materiales al salir. Es un mapa ilustrativo: **no se calcula DEL numérico ni daño medido** porque no hay historial de cargas individual. Mantener esta distinción en interfaz y documentación. No cambia el visor del portal, el laboratorio ni los servicios de datos. Copias y verificaciones en la nota específica.
+
+
+## Base offshore · actualización del 20 de octubre de 2026
+
+La aplicación React sustituye la base anterior por un monopilote con transición amarilla, plataforma de rejilla, barandillas, escalera y defensas de desembarco, tomando referencias offshore reales. Detalle normal: http://localhost:5177/?vista=base. Se conserva el modelo Blender, sus funciones y la vista DEL ilustrativa; el original `.blend` y el portal permanecen intactos. [Proporciones, fuentes, verificaciones y reversión](base_offshore_2026-10-20.md). Copia del código en `respaldos/react_base_offshore_2026-10-20.zip`; sin nueva publicación.
+
+
+## Predictivo y Rainflow / Cp / Ct · 20 de octubre de 2026
+
+Se añaden dos vistas a la aplicación React: [Predictivo](http://localhost:5177/?vista=predictivo) y [Rainflow · Cp/Ct](http://localhost:5177/?vista=rainflow). La primera presenta seguimiento por componentes con estimaciones SCADA y selección ámbar, sin RUL ni fallos predichos. La segunda calcula potencia y empuje de un escenario editable y cuenta ciclos Rainflow de una señal sintética identificada. Se conservan el modelo Blender, la base offshore, DEL, el dashboard y el portal. [Supuestos, verificación y reversión](predictivo_rainflow_2026-10-20.md). Copia en `respaldos/react_analisis_2026-10-20.zip`; sin nueva publicación.

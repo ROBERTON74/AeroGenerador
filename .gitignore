@@ -2,6 +2,8 @@ node_modules/
 dist/
 
 .env
+.env.*
+!.env.example
 .env - copia.*
 .env.local
 .env.*.local
@@ -26,3 +28,7 @@ benchmark_frame_*.png
 render_torre_metalica_precisa_preview*.png
 review_offshore_base_render.png
 .vercel
+.portal-build/
+respaldos/
+exportaciones/
+__pycache__/

@@ -1,0 +1,24 @@
+{
+  "source_scene": "Oceano_dos_ballenas_dos_cachalotes_REVISION",
+  "animal_roots": [
+    "TIBURONES_DESPLAZAMIENTO_JOROBADA",
+    "TIBURONES_DESPLAZAMIENTO_CACHALOTE",
+    "TIBURON_GLB_01_NADO",
+    "TIBURON_GLB_02_NADO",
+    "TIBURON_GLB_03_NADO",
+    "EXTRA_JOROBADA_TIBURONES_DESPLAZAMIENTO_JOROBADA",
+    "EXTRA_CACHALOTE_TIBURONES_DESPLAZAMIENTO_CACHALOTE"
+  ],
+  "animals": 7,
+  "humpbacks": 2,
+  "sperm_whales": 2,
+  "sharks": 3,
+  "fps": 24,
+  "frames": [
+    1,
+    480
+  ],
+  "maximum_texture_size": 1024,
+  "sand_tile_decimation": 0.25,
+  "source_scenes_unchanged": true
+}

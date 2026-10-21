@@ -401,7 +401,7 @@ function BladeRootStressMarkers({ intensity }) {
   );
 }
 
-function StressMap({ intensity }) {
+export function StressMap({ intensity }) {
   // Capa completa de analisis mecanico que se activa desde el dashboard.
   return (
     <>
@@ -550,7 +550,7 @@ function RemovedNacelleCover() {
   );
 }
 
-function GeneratorCutaway({ rpm, power, intensity }) {
+export function GeneratorCutaway({ rpm, power, intensity, position = [0, 5.2, -0.23], scale = 1 }) {
   // Vista interna: eje, rodamientos, gearbox y generador animados con las rpm estimadas.
   const shaftRef = useRef();
   const generatorRotorRef = useRef();
@@ -578,7 +578,7 @@ function GeneratorCutaway({ rpm, power, intensity }) {
   });
 
   return (
-    <group position={[0, 5.2, -0.23]} rotation={[0, 0, 0]}>
+    <group position={position} scale={scale} rotation={[0, 0, 0]}>
       <SupportFrame />
 
       <group ref={shaftRef}>

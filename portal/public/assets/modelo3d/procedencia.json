@@ -1,0 +1,14 @@
+{
+  "source": "C:\\Users\\rober\\Desktop\\Pracicas WEBS\\Proyecto_blender\\aerogenerador_desplazado_de_base_COPIA_TRABAJO.blend",
+  "source_sha256": "8d712a014aeacf747b6b36d22c3234d6047a52ca50485eeba63d668494920479",
+  "frames": [
+    1,
+    144
+  ],
+  "fps": 24,
+  "exported_objects": 1435,
+  "rotor": "ROTOR_3_PALAS_ESCALA_PRECISA_EJE_Y",
+  "animation": "Pitch original horneado desde Blender. Giro de rotor recreado en el visor sobre el eje local del rig.",
+  "omitted": "Paisaje, nubes, mar y espuma. Entorno web independiente.",
+  "file_bytes": 14220004
+}

@@ -1,8 +1,26 @@
-﻿import { Cloud, Clouds, Environment, OrbitControls, Sky, Sparkles } from '@react-three/drei';
+import { Cloud, Clouds, Environment, OrbitControls, Sky, Sparkles } from '@react-three/drei';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Suspense, useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import WindTurbine from './WindTurbine.jsx';
+import BlenderWindTurbine from './BlenderWindTurbine.jsx';
+import OffshoreMonopile from './OffshoreMonopile.jsx';
+import BlenderSea from './BlenderSea.jsx';
+import AerodynamicOverlay from './AerodynamicOverlay.jsx';
+import { Html } from '@react-three/drei';
+import { Component } from 'react';
+
+class TurbineModelBoundary extends Component {
+  state = { failed: false };
+  static getDerivedStateFromError() { return { failed: true }; }
+  render() {
+    if (!this.state.failed) return this.props.children;
+    return <>
+      {this.props.fallback}
+      <Html center position={[0,7.2,0]}><p role="status" style={{width:250,padding:12,background:'#15313be8',color:'#fff',borderRadius:8,fontSize:12}}>No se pudo cargar el modelo de Blender. Se muestra el modelo de respaldo; recarga para intentarlo de nuevo.</p></Html>
+    </>;
+  }
+}
 
 function AnimatedSea() {
   // Mar procedural: mueve vertices de la malla para evitar que parezca una placa de cristal.
@@ -129,81 +147,10 @@ function HorizonTurbine({ position, scale = 1, rotation = 0 }) {
   );
 }
 
-function OffshoreFoundation() {
-  // Plataforma y cimentacion marina que integran la torre principal con el agua.
-  const railPosts = useMemo(
-    () =>
-      Array.from({ length: 16 }).map((_, index) => {
-        const angle = (index / 16) * Math.PI * 2;
-        return [Math.cos(angle) * 0.92, Math.sin(angle) * 0.92, angle];
-      }),
-    [],
-  );
-
-  return (
-    <group>
-      <mesh position={[0, -0.72, 0]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.42, 0.58, 1.55, 48]} />
-        <meshStandardMaterial color="#7a8988" roughness={0.58} metalness={0.18} />
-      </mesh>
-      <mesh position={[-1.28, -0.55, 0.15]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.32, 0.46, 1.18, 36]} />
-        <meshStandardMaterial color="#6f817f" roughness={0.62} metalness={0.16} />
-      </mesh>
-      <mesh position={[1.28, -0.55, 0.15]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.32, 0.46, 1.18, 36]} />
-        <meshStandardMaterial color="#6f817f" roughness={0.62} metalness={0.16} />
-      </mesh>
-      <mesh position={[0, -1.12, 0.16]} castShadow receiveShadow>
-        <boxGeometry args={[2.9, 0.18, 0.72]} />
-        <meshStandardMaterial color="#596967" roughness={0.62} metalness={0.18} />
-      </mesh>
-      <mesh position={[-0.64, -0.42, 0.06]} rotation={[0, 0, -0.48]} castShadow>
-        <cylinderGeometry args={[0.035, 0.035, 1.55, 12]} />
-        <meshStandardMaterial color="#d6c36a" roughness={0.52} metalness={0.18} />
-      </mesh>
-      <mesh position={[0.64, -0.42, 0.06]} rotation={[0, 0, 0.48]} castShadow>
-        <cylinderGeometry args={[0.035, 0.035, 1.55, 12]} />
-        <meshStandardMaterial color="#d6c36a" roughness={0.52} metalness={0.18} />
-      </mesh>
-      <mesh position={[0, 0.1, 0]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.54, 0.68, 1.35, 64]} />
-        <meshStandardMaterial color="#d9e1dc" roughness={0.42} metalness={0.2} />
-      </mesh>
-      <mesh position={[0, 0.47, 0]} castShadow receiveShadow>
-        <cylinderGeometry args={[1.05, 1.05, 0.08, 64]} />
-        <meshStandardMaterial color="#4a5655" roughness={0.5} metalness={0.32} />
-      </mesh>
-      <mesh position={[0.72, 0.18, 0.72]} rotation={[0, -0.72, 0]} castShadow>
-        <boxGeometry args={[0.08, 1.12, 0.08]} />
-        <meshStandardMaterial color="#2f4f5a" roughness={0.46} metalness={0.22} />
-      </mesh>
-      <mesh position={[0.78, 0.68, 0.78]} rotation={[0, -0.72, 0]} castShadow>
-        <boxGeometry args={[0.1, 0.08, 0.35]} />
-        <meshStandardMaterial color="#f4c542" roughness={0.45} metalness={0.18} />
-      </mesh>
-      <mesh position={[0, 0.54, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
-        <torusGeometry args={[0.94, 0.018, 10, 80]} />
-        <meshStandardMaterial color="#f4c542" roughness={0.45} metalness={0.18} />
-      </mesh>
-      <mesh position={[0, 0.82, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
-        <torusGeometry args={[0.94, 0.015, 10, 80]} />
-        <meshStandardMaterial color="#f4c542" roughness={0.45} metalness={0.18} />
-      </mesh>
-      {railPosts.map(([x, z, angle]) => (
-        <mesh key={angle} position={[x, 0.68, z]} rotation={[0, angle, 0]} castShadow>
-          <cylinderGeometry args={[0.015, 0.015, 0.32, 8]} />
-          <meshStandardMaterial color="#f4c542" roughness={0.45} metalness={0.16} />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
 function MaintenanceWorker() {
   // Figura pequena de operario para reforzar escala humana y contexto de mantenimiento.
   return (
-    <group position={[0.72, 0.48, 0.5]} rotation={[0, -0.88, 0]} scale={0.19}>
+    <group position={[0.28, 0.49, -0.12]} rotation={[0, -0.88, 0]} scale={0.055}>
       <mesh position={[0, 1.74, 0]} castShadow>
         <sphereGeometry args={[0.16, 18, 12]} />
         <meshStandardMaterial color="#d0a17a" roughness={0.58} />
@@ -418,7 +365,7 @@ function ServiceBoat() {
   );
 }
 
-function OffshoreEnvironment() {
+function OffshoreEnvironment({ reducedMotion }) {
   // Entorno principal actual: mar, cimentacion, barco, cables, espuma y turbinas lejanas.
   const foamBands = useMemo(
     () =>
@@ -437,8 +384,8 @@ function OffshoreEnvironment() {
 
   return (
     <group>
-      <AnimatedSea />
-      <OffshoreFoundation />
+      <BlenderSea fallback={<AnimatedSea />} reducedMotion={reducedMotion} />
+      <OffshoreMonopile />
       <MaintenanceWorker />
       <UnderwaterCutaway />
       <ServiceBoat />
@@ -446,7 +393,7 @@ function OffshoreEnvironment() {
       <DistantTurbine position={[19, 0.02, -31]} scale={0.78} rotation={-0.35} />
       <DistantTurbine position={[2, 0.02, -36]} scale={0.66} rotation={0.14} />
       <mesh position={[0, -0.005, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[0.8, 1.35, 96]} />
+        <ringGeometry args={[0.245, 0.34, 96]} />
         <meshBasicMaterial color="#e6fbf7" transparent opacity={0.4} depthWrite={false} />
       </mesh>
       <mesh position={[3.6, 0.018, -8]} rotation={[-Math.PI / 2, 0, -0.36]}>
@@ -827,16 +774,29 @@ function Atmosphere({ power }) {
 function CameraControls({ cameraView, cameraRevision, autoRotate, reducedMotion }) {
   const controls = useRef();
   const transition = useRef(null);
-  const { camera } = useThree();
+  const { camera, size } = useThree();
   useEffect(() => {
-    const position = new THREE.Vector3(...(cameraView === 'rotor' ? [5.3, 7.5, 5.3] : [8.2, 5.15, 8.4]));
-    const target = new THREE.Vector3(...(cameraView === 'rotor' ? [0, 6.24, 0.46] : [0, 3.25, 0.1]));
+    const fatigueViews = {
+      del: { target: [0,6.2,.25], position: [4.6,7.1,7.9] },
+      'del-nacelle': { target: [0,6.24,-.18], position: [-4.5,7.3,-4.8] },
+      'del-base': { target: [0,.5,0], position: [1.8,1.25,2.15] },
+      base: { target: [0,.5,0], position: [1.8,1.25,2.15] },
+      predictivo: { target: [0,6.24,-.18], position: [-4.5,7.3,-4.8] },
+      'predictivo-palas': { target: [0,6.2,.25], position: [4.6,7.1,7.9] },
+      'predictivo-base': { target: [0,.5,0], position: [1.8,1.25,2.15] },
+      rainflow: { target: [0,6.2,.25], position: [4.6,7.1,8.9] },
+    };
+    const fatigue = fatigueViews[cameraView];
+    const target = new THREE.Vector3(...(fatigue?.target ?? (cameraView === 'rotor' ? [0, 6.24, 0.31] : [0, 4.7, 0.1])));
+    const fitDistance = Math.max(17.3, 9.4 / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * (size.width / size.height)));
+    const position = fatigue ? new THREE.Vector3(...fatigue.position) : cameraView === 'rotor' ? new THREE.Vector3(5.3, 7.5, 5.3) : target.clone().addScaledVector(new THREE.Vector3(.64,.14,.77).normalize(), fitDistance);
+    if (fatigue && size.width < 640) position.sub(target).multiplyScalar(1.35).add(target);
     if (reducedMotion && controls.current) {
       camera.position.copy(position);
       controls.current.target.copy(target);
       controls.current.update();
     } else transition.current = { position, target, remaining: 1.8 };
-  }, [cameraView, cameraRevision, reducedMotion, camera]);
+  }, [cameraView, cameraRevision, reducedMotion, camera, size.width, size.height]);
   useFrame((_, delta) => {
     if (!transition.current || !controls.current) return;
     const { position, target } = transition.current;
@@ -848,15 +808,16 @@ function CameraControls({ cameraView, cameraRevision, autoRotate, reducedMotion 
     if (camera.position.distanceTo(position) < 0.01 || transition.current.remaining <= 0) transition.current = null;
   });
   return <OrbitControls ref={controls} enablePan={false} enableDamping dampingFactor={0.06}
-    autoRotate={autoRotate} autoRotateSpeed={0.65} minDistance={4.5} maxDistance={17}
+    autoRotate={autoRotate} autoRotateSpeed={0.65} minDistance={['base','del-base','predictivo-base'].includes(cameraView) ? 1.5 : 4.5} maxDistance={40}
     minPolarAngle={Math.PI / 3.7} maxPolarAngle={Math.PI / 2.02} target={[0, 3.25, 0.1]}
     onStart={() => { transition.current = null; }} />;
 }
 
-function SceneContent({ windData, showStressMap, ...cameraProps }) {
+function SceneContent({ windData, showStressMap, showDelMap, ...cameraProps }) {
   // Une datos, luces, entorno offshore, aerogenerador y controles de camara.
   const power = windData?.rotorPower ?? windData?.normalizedPower ?? 0.4;
   const rpm = windData?.rpm ?? 12;
+  const inspectionView = cameraProps.cameraView?.startsWith('predictivo') ? cameraProps.cameraView : '';
 
   return (
     <>
@@ -880,12 +841,16 @@ function SceneContent({ windData, showStressMap, ...cameraProps }) {
         shadow-normalBias={0.025}
       />
       <directionalLight position={[-8, 4, -6]} intensity={0.32} color="#c7e6ff" />
-      <WindTurbine rpm={rpm} power={power} showStressMap={showStressMap} mechanical={windData?.mechanical} />
-      <OffshoreEnvironment />
+      <TurbineModelBoundary fallback={<WindTurbine rpm={rpm} power={power} showStressMap={showStressMap} mechanical={windData?.mechanical} />}>
+        <Suspense fallback={<Html center position={[0,4.5,0]}><p role="status" style={{padding:12,background:'#15313be8',color:'#fff',borderRadius:8,whiteSpace:'nowrap'}}>Cargando modelo de Blender…</p></Html>}>
+          <BlenderWindTurbine rpm={rpm} power={power} showStressMap={showStressMap} showDelMap={showDelMap} inspectionView={inspectionView} mechanical={windData?.mechanical} scada={windData?.scada} />
+        </Suspense>
+      </TurbineModelBoundary>
+      {cameraProps.cameraView === 'rainflow' ? <AerodynamicOverlay yaw={windData?.scada?.yawMisalignmentDeg ?? 0} reducedMotion={cameraProps.reducedMotion} /> : null}
+      <OffshoreEnvironment reducedMotion={cameraProps.reducedMotion} />
       <GroundDataGrid power={power} />
       <HolographicTelemetry power={power} />
       <WindFlowParticles power={power} />
-      <SafetyBeacons power={power} />
       <ProfessionalClouds />
       <Atmosphere power={power} />
       <Sparkles count={10} scale={[24, 5, 18]} size={0.65} speed={0.025} opacity={0.06} color="#eef8f4" />

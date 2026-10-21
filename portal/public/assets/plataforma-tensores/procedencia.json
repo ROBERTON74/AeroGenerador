@@ -1,0 +1,16 @@
+{
+  "escena": "Plataforma_tensores_anillo_REVISION",
+  "blend": "C:\\Users\\rober\\Desktop\\Pracicas WEBS\\AeroGenerador\\exportaciones\\plataforma_tensores_web\\plataforma_tensores_materiales_web.blend",
+  "glb_bytes": 16548328,
+  "materiales_mejorados": 8,
+  "mallas_con_uv_preparadas": 849,
+  "texturas_embebidas": 6,
+  "rotor": "TENSORES_ROTOR_ANIMADO_12_RPM",
+  "base": "TENSORES_ESTRUCTURA_AMARILLA",
+  "anillo": "TENSORES_ANILLO_INFERIOR",
+  "movimiento": "12 rpm, giro web sobre eje local glTF (0,0,-1)",
+  "primera_plataforma_modificada": false,
+  "glb_sha256": "fa417b322cc13a19971a3ec28b9d2c1bf8e11119d75c127acde16a71b1c39d57",
+  "seccion": "#plataforma-tensores",
+  "primera_plataforma_conservada": true
+}
