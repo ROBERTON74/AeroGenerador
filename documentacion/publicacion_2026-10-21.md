@@ -16,9 +16,11 @@ Entrega subida a `main` en GitHub: commit `e42223e8cff9c1fb181cae4452b63c7f36003
 - Portal completo: https://aerogenerador-robert.vercel.app/portal/
 - Repositorio: https://github.com/ROBERTON74/AeroGenerador
 
-Conexión GitHub–Vercel realizada correctamente mediante `vercel git connect`: los siguientes pushes al repositorio disparan el despliegue. Sin cambios en las restricciones de publicación de trabajos futuros: esta autorización corresponde a esta entrega.
+Conexión GitHub–Vercel aceptada mediante `vercel git connect`. No se ha confirmado todavía un despliegue automático por push; la publicación actual se realizó con la CLI y está verificada. Esta autorización corresponde a esta entrega.
 
 78 comprobaciones HTTPS correctas sobre la dirección pública, sin autenticación: portadas, ruta `/portal` y 75 archivos de ejecución. En navegador aislado a 390 px: portal con tres papers, cuatro rutas de visores bajo `/portal/assets/`, enlaces a la aplicación en `/` y sin desbordamiento horizontal. Evidencias locales en `respaldos/publicacion_2026-10-21/`.
+
+Aplicación React pública verificada en navegador a 1440 px y 390 px: turbina y mar de Blender cargados, velocidad 0,75, siete métricas, sin excepciones JavaScript ni desbordamiento móvil. REData devuelve HTTP 200 y dato diario del 21 de octubre de 2026, identificado como respaldo público diario en el dashboard. ESIOS devuelve HTTP 403 por faltar la clave del servidor; el respaldo actúa correctamente. Captura revisada y resultado en `react-publico.json`.
 
 La revisión automática rechazó transferir la clave local ESIOS al secreto del servidor Vercel porque exige autorización específica para esa clave y ese destino. Se pidió esa autorización al usuario; no se envió la clave ni se incluyó en GitHub. La publicación mantiene la cadena de respaldo existente (REData público y simulación identificada si los proveedores fallan). Cuando el usuario lo autorice expresamente, configurar únicamente `ESIOS_API_KEY` como secreto de Vercel y volver a desplegar.
 
