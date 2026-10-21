@@ -39,3 +39,7 @@ Antes de preparar la subida se superaron 70 comprobaciones funcionales, 45 recur
 La selección de Git incluye fuentes, documentación y recursos de ejecución. Se excluyen los respaldos incrementales, exportaciones de trabajo, dependencias, perfiles de navegador, logs y archivos de entorno. Comprobación previa de 173 archivos preparados: sin coincidencias con las credenciales locales, sin archivos `.env` privados y sin archivos superiores a 100 MB.
 
 La instalación del portal informa de cuatro avisos altos en herramientas de desarrollo (Angular CLI/build, MCP SDK y Vite). No se publica ningún servidor de desarrollo ni MCP; el portal se sirve como archivos estáticos. No se aplican los cambios mayores regresivos que propone `npm audit fix --force`. Se conserva el lockfile aprobado.
+
+## Comprobación de toda la entrega después de activar ESIOS
+
+Por petición adicional del usuario se contrasta nuevamente todo lo actualizado. Los 73 archivos de fuentes y recursos del portal se comparan con la instalación local aprobada: recursos públicos idénticos; las únicas diferencias de fuentes son los enlaces de producción y espacios. Ningún archivo de ejecución de React, portal, modelos o API falta en GitHub. El código desplegado coincide con el vigente; los commits posteriores al despliegue solo documentan su resultado. Las 78 comprobaciones HTTPS vuelven a pasar y Vercel confirma `READY`. Evidencia local: `respaldos/publicacion_2026-10-21/integridad_entrega.json`.
