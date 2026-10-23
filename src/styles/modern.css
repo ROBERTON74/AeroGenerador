@@ -269,3 +269,8 @@ button:focus-visible, a:focus-visible, .stress-toggle:has(input:focus-visible) {
   .technical-panel .fatigue-intro { display:none; }
 }
 @media(max-width:520px) { .technical-panel { width:auto; max-height:270px; } .scene-toolbar { width:calc(100% - 24px); display:grid; } }
+
+/* Show the approved ocean on the first visible scene, including cold loads. */
+.loading-screen.scene-loading { position:fixed; z-index:100; background:#081c2b; pointer-events:auto; }
+.sea-load-error { position:fixed; z-index:20; bottom:12px; left:12px; right:12px; margin:0; padding:12px; border-radius:8px; background:#102b3b; color:#fff; font-size:13px; }
+.sea-load-error button { margin-left:8px; padding:5px 10px; border-radius:6px; cursor:pointer; }

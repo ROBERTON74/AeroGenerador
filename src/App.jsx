@@ -14,6 +14,7 @@ export default function App() {
 
   // Activa o desactiva la capa visual de esfuerzos mecanicos en la escena 3D.
   const [showStressMap, setShowStressMap] = useState(false);
+  const [seaStatus, setSeaStatus] = useState('loading');
   const [showDelMap, setShowDelMap] = useState(() => new URLSearchParams(window.location.search).get('vista') === 'del');
   const [cameraView, setCameraView] = useState(() => {
     const view = new URLSearchParams(window.location.search).get('vista');
@@ -49,7 +50,7 @@ export default function App() {
   return (
     <main className="app-shell">
       {/* Escena principal: recibe los datos para animar rotor, entorno y esfuerzos. */}
-      <WindTurbineScene windData={data} showStressMap={showStressMap} showDelMap={showDelMap} cameraView={cameraView} cameraRevision={cameraRevision} autoRotate={autoRotate} reducedMotion={reducedMotion} />
+      <WindTurbineScene windData={data} showStressMap={showStressMap} showDelMap={showDelMap} cameraView={cameraView} cameraRevision={cameraRevision} autoRotate={autoRotate} reducedMotion={reducedMotion} onSeaStatusChange={setSeaStatus} />
       <div className="scene-vignette" aria-hidden="true" />
       <header className="site-header">
         <a className="brand" href="#" aria-label="AeroGenerador, volver a la vista general" onClick={(event) => { event.preventDefault(); selectView('overview'); }}>
@@ -75,8 +76,9 @@ export default function App() {
       </nav>
       <div className="scene-hint"><MousePointer2 size={14} /><span>Arrastra para explorar · Acerca con la rueda</span></div>
 
-      {/* Pantalla de carga solo mientras aun no existe ningun dato inicial. */}
-      {loading && !data ? <LoadingScreen /> : null}
+      {/* No descubrir la escena hasta que el océano aprobado esté montado. */}
+      {seaStatus === 'loading' ? <LoadingScreen scene message="Preparando el océano…" /> : loading && !data ? <LoadingScreen /> : null}
+      {seaStatus === 'error' ? <p className="sea-load-error" role="alert">No se pudo cargar el océano. Se muestra el mar de respaldo. <button type="button" onClick={() => window.location.reload()}>Reintentar</button></p> : null}
 
       {/* Dashboard inferior: muestra datos energeticos, SCADA y controles de analisis. */}
       <Dashboard

@@ -365,7 +365,7 @@ function ServiceBoat() {
   );
 }
 
-function OffshoreEnvironment({ reducedMotion }) {
+function OffshoreEnvironment({ reducedMotion, onSeaStatusChange }) {
   // Entorno principal actual: mar, cimentacion, barco, cables, espuma y turbinas lejanas.
   const foamBands = useMemo(
     () =>
@@ -384,7 +384,7 @@ function OffshoreEnvironment({ reducedMotion }) {
 
   return (
     <group>
-      <BlenderSea fallback={<AnimatedSea />} reducedMotion={reducedMotion} />
+      <BlenderSea fallback={<AnimatedSea />} reducedMotion={reducedMotion} onStatusChange={onSeaStatusChange} />
       <OffshoreMonopile />
       <MaintenanceWorker />
       <UnderwaterCutaway />
@@ -847,7 +847,7 @@ function SceneContent({ windData, showStressMap, showDelMap, ...cameraProps }) {
         </Suspense>
       </TurbineModelBoundary>
       {cameraProps.cameraView === 'rainflow' ? <AerodynamicOverlay yaw={windData?.scada?.yawMisalignmentDeg ?? 0} reducedMotion={cameraProps.reducedMotion} /> : null}
-      <OffshoreEnvironment reducedMotion={cameraProps.reducedMotion} />
+      <OffshoreEnvironment reducedMotion={cameraProps.reducedMotion} onSeaStatusChange={cameraProps.onSeaStatusChange} />
       <GroundDataGrid power={power} />
       <HolographicTelemetry power={power} />
       <WindFlowParticles power={power} />
