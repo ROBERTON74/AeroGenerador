@@ -1,5 +1,9 @@
 # Publicación conjunta · 21 de octubre de 2026
 
+## Corrección de entrada al mar · 23 de octubre de 2026
+
+El mar antiguo deja de mostrarse mientras se descarga el mar aprobado de Blender. La aplicación espera a que este esté montado para descubrir la escena. Ver `carga_mar_2026-10-23.md`. Commit de código `23900d4`; despliegue automático por push confirmado, `dpl_5UV4GKJBy8sMZ2G7DuoSo7EHwWwf`, `Ready`, con alias público y paquete `index-CRCuq5mF.js`. 78 comprobaciones HTTPS correctas y ESIOS HTTP 200. Sin cambios de acabado, animación o velocidad del mar.
+
 El usuario autoriza expresamente subir el trabajo a GitHub y Vercel para abrirlo desde ordenador y móvil. Esta petición resuelve las restricciones anteriores de no publicar.
 
 Se integra una copia del portal Angular en `portal/`, sin cambiar el proyecto local hermano. React conserva `/` y el portal usa `/portal/`. Los dos enlaces del portal a la aplicación apuntan a `/` en producción y mantienen el puerto 5177 cuando el portal se ejecuta en el puerto local 4200. Modelos, materiales, animaciones, océano, vídeos, papers y atribuciones se conservan.
