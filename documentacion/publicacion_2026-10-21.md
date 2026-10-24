@@ -1,5 +1,9 @@
 # Publicación conjunta · 21 de octubre de 2026
 
+## Mar de plataformas y reproducción móvil · 24 de octubre de 2026
+
+Commit `955411e`, despliegue automático `dpl_8GdCnzNksXxrKxcAiv2JGfUXumtA`, `Ready` con dominio público. Semisumergible, TLP y jacket usan la misma implementación de superficie del React aprobado al 75 %; vídeos con inicio rápido sin recodificación y `playsinline`. Pasan las pruebas de datos y controles, ambas compilaciones y 83 comprobaciones HTTPS. Los tres vídeos responden HTTP 206 a peticiones de tramos. ESIOS HTTP 200 con datos del día 24. Ver `revision_movil_2026-10-24.md` para cambios, respaldo y la limitación de revisión visual en móvil: el control de Edge se detuvo por no poder identificar su URL.
+
 ## Corrección de entrada al mar · 23 de octubre de 2026
 
 El mar antiguo deja de mostrarse mientras se descarga el mar aprobado de Blender. La aplicación espera a que este esté montado para descubrir la escena. Ver `carga_mar_2026-10-23.md`. Commit de código `23900d4`; despliegue automático por push confirmado, `dpl_5UV4GKJBy8sMZ2G7DuoSo7EHwWwf`, `Ready`, con alias público y paquete `index-CRCuq5mF.js`. 78 comprobaciones HTTPS correctas y ESIOS HTTP 200. Sin cambios de acabado, animación o velocidad del mar.
