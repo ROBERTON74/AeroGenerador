@@ -1,3 +1,7 @@
+## Vigilancia horaria autorizada · 24 de octubre de 2026
+
+El usuario solicita revisar la web pública cada hora. Workflow `.github/workflows/vigilancia-web.yml` en GitHub Actions, cron `17 * * * *`, para comprobar portadas, recursos, vídeos y datos. Ver `documentacion/vigilancia_horaria_2026-10-24.md` para activación, informes y límites. No confundirlo con una garantía de disponibilidad ni con reparación automática. Notificaciones por correo sujetas a los ajustes de GitHub. Mantener actualizado `scripts/monitor_resources.json` al cambiar recursos públicos. Conservar el horario salvo petición del usuario.
+
 ## Mar aprobado y reproducción móvil · 24 de octubre de 2026
 
 Por petición del usuario, semisumergible, TLP y jacket utilizan la misma implementación de superficie que el React aprobado: `portal/public/assets/entorno-offshore/blenderSea.js`, copia exacta de `src/components/blenderSea.js`, con opacidad superficial 0,96, normales finas y movimiento original a 0,75×. Sustituye la antigua superficie al 26 %; se conserva la vista submarina al 60 %, fauna, arena, modelos y cámaras. DPR móvil limitado a 1,25 y opción Ligera a 1. Tres vídeos con inicio rápido sin recodificación y `playsinline`. Ver `documentacion/revision_movil_2026-10-24.md` para cambios, pruebas, publicación y límites. No regenerar el adaptador antiguo sobre esta revisión. Copias anteriores en `respaldos/revision_movil_2026-10-24/`. React y laboratorio conservados. La revisión visual física en móvil no está validada; el control de Edge se detuvo al no poder identificar su URL.

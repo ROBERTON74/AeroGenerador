@@ -1,0 +1,52 @@
+name: Vigilancia web cada hora
+
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/vigilancia-web.yml'
+      - 'scripts/monitor_public_site.mjs'
+      - 'scripts/monitor_public_site.test.mjs'
+      - 'scripts/monitor_resources.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vigilancia-web
+  cancel-in-progress: false
+
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /scripts/monitor_public_site.mjs
+            /scripts/monitor_public_site.test.mjs
+            /scripts/monitor_resources.json
+            /package.json
+      - uses: actions/setup-node@v7.1.0
+        with:
+          node-version: '24'
+      - name: Probar el detector de caídas
+        run: node --test scripts/monitor_public_site.test.mjs
+      - name: Comprobar el dominio público
+        env:
+          MONITOR_REPORT: monitor-report.json
+        run: node scripts/monitor_public_site.mjs
+      - name: Conservar el informe
+        if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: vigilancia-${{ github.run_id }}
+          path: monitor-report.json
+          if-no-files-found: warn
+          retention-days: 14
