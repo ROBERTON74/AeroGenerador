@@ -53,7 +53,7 @@ function fit(name='general'){
  orbit.target.copy(center);camera.position.copy(center).addScaledVector(new THREE.Vector3(1,.3,2.4).normalize(),distance);orbit.update();
  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===name)));
 }
-function resize(){camera.aspect=stage.clientWidth/stage.clientHeight;camera.updateProjectionMatrix();renderer.setSize(stage.clientWidth,stage.clientHeight);fit(selectedView);}
+function resize(){renderer.setPixelRatio(Math.min(devicePixelRatio,document.querySelector('#quality')?.value==='low'?1:stage.clientWidth<740?1.25:1.5));camera.aspect=stage.clientWidth/stage.clientHeight;camera.updateProjectionMatrix();renderer.setSize(stage.clientWidth,stage.clientHeight);fit(selectedView);}
 new ResizeObserver(resize).observe(stage);resize();
 new GLTFLoader().load('./plataforma_flotante.glb',gltf=>{
  root=gltf.scene;spin=root.getObjectByName('GIRO_ROTOR_ORIGINAL_12_RPM');platform=root.getObjectByName('FLOTANTE_BASE_TRIANGULAR');rotor=root.getObjectByName('ROTOR_3_PALAS_ESCALA_PRECISA_EJE_Y');

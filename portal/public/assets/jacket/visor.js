@@ -9,7 +9,7 @@ const stage=document.querySelector('#stage'),loading=document.querySelector('#lo
 let renderer;
 try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});}
 catch(e){loading.textContent='No se ha podido iniciar WebGL. Puedes abrir el render de Blender desde el enlace lateral.';throw e;}
-renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor(0,0);
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0,0);
 renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;stage.appendChild(renderer.domElement);
 const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.1,3000);
 const pmrem=new THREE.PMREMGenerator(renderer);
@@ -56,7 +56,7 @@ function fit(name='general'){
  orbit.target.copy(center);camera.position.copy(center).addScaledVector(new THREE.Vector3(1,.3,2.4).normalize(),distance);orbit.update();
  document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===name)));
 }
-function resize(){camera.aspect=stage.clientWidth/stage.clientHeight;camera.updateProjectionMatrix();renderer.setSize(stage.clientWidth,stage.clientHeight);fit(selectedView);}
+function resize(){renderer.setPixelRatio(Math.min(devicePixelRatio,document.querySelector('#quality')?.value==='low'?1:stage.clientWidth<740?1.25:1.5));camera.aspect=stage.clientWidth/stage.clientHeight;camera.updateProjectionMatrix();renderer.setSize(stage.clientWidth,stage.clientHeight);fit(selectedView);}
 new ResizeObserver(resize).observe(stage);resize();
 new GLTFLoader().load('./jacket.glb',gltf=>{
  root=gltf.scene;spin=root.getObjectByName('JACKET_ROTOR_ANIMADO_12_RPM');platform=root.getObjectByName('JACKET_CELOSIA_AMARILLA');ring=root.getObjectByName('JACKET_PILOTES_OSCUROS');rotor=spin?.children.find(o=>o.name.startsWith('ROTOR_3_PALAS_ESCALA_PRECISA_EJE_Y'));
@@ -81,7 +81,7 @@ new GLTFLoader().load('./jacket.glb',gltf=>{
  // Read-only diagnostics for verifying animation and rendering.
  window.offshoreViewer={get environment(){return {...seaSurface.userData};},get seaSample(){return seaSurface.userData.seaTime;},get waterline(){return seaSurface.position.y;},get seaOpacity(){return seaSurface.material.uniforms.opacity.value;},get angle(){return angle;},get playing(){return playing;},get quaternion(){return spin.quaternion.toArray();},get calls(){return renderer.info.render.calls;},get visible(){return parentVisible&&!document.hidden;},get textureMaterials(){let n=0;root.traverse(o=>{if(o.isMesh){for(const m of(Array.isArray(o.material)?o.material:[o.material]))if(m.normalMap&&m.roughnessMap)n++;}});return n;},get selectedView(){return selectedView;},get definition(){return document.querySelector('#quality').value;}};
 },e=>{if(e.total)loading.textContent=`Cargando el modelo 3D… ${Math.round(e.loaded/e.total*100)} %`;},()=>{loading.textContent='No se ha podido cargar el modelo. Puedes abrir el render de Blender desde el enlace lateral.';});
-document.querySelector('#quality').onchange=e=>{renderer.setPixelRatio(e.target.value==='high'?Math.min(devicePixelRatio,2):1);resize();};
+document.querySelector('#quality').onchange=()=>resize();
 document.querySelector('#play').onclick=()=>setPlaying(!playing);
 document.querySelector('#speed').onchange=e=>speed=Number(e.target.value);
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>fit(b.dataset.view));document.querySelector('#reset').onclick=()=>fit();
