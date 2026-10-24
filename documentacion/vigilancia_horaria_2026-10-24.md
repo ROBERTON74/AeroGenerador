@@ -28,4 +28,10 @@ Esto es vigilancia de disponibilidad; no garantiza servicio ininterrumpido, no r
 
 Fuentes: [horarios y límites de GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule), [notificaciones de Actions](https://docs.github.com/en/subscriptions-and-notifications/how-tos/managing-github-actions-notifications).
 
-El resultado de activación y primera ejecución en GitHub se registra al terminar.
+## Activación confirmada
+
+Commit `6c25217`, publicado en `main`. GitHub confirma el workflow `394920686` en estado `active`. Primera ejecución real en su runner: [40075476564](https://github.com/ROBERTON74/AeroGenerador/actions/runs/40075476564), disparada por el push, termina `success`. Pasan las pruebas del detector, la comprobación del dominio público y la conservación del informe. La programación horaria está declarada y activa; no se afirma haber esperado al primer evento de cron.
+
+Historial: [Vigilancia web cada hora](https://github.com/ROBERTON74/AeroGenerador/actions/workflows/vigilancia-web.yml). Para correo, revisar [notificaciones de la cuenta](https://github.com/settings/notifications), apartado Actions. No se han modificado los ajustes de correo ni se ha contratado un servicio externo.
+
+La modificación local previa de `portal/src/app/app.ts` para acceso por Wi-Fi se deja fuera de estos commits; no forma parte del monitor ni altera esta verificación.
